@@ -1,0 +1,2 @@
+fastapi[all]==0.42.0
+motor==2.0.0

@@ -14,7 +14,7 @@ router = APIRouter()
 ##########
 # ROUTES #
 ##########
-@router.get('/heartbeat', response_model=HeartbeatResult, name='heartbeat')
+@router.get("/heartbeat", response_model=HeartbeatResult, name="heartbeat")
 def get_heartbeat() -> HeartbeatResult:
     heartbeat = HeartbeatResult(is_alive=True)
     return heartbeat

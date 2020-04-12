@@ -5,8 +5,9 @@ import invoke
 
 INPUT_DESCRIPTION = 'List of directories to act on. [default = "."]'
 
-@invoke.task(help={ 'targets': INPUT_DESCRIPTION })
-def black(ctx, targets='.'):
+
+@invoke.task(help={"targets": INPUT_DESCRIPTION})
+def black(ctx, targets="."):
     """Formats code with black.
     
     Arguments:
@@ -15,10 +16,13 @@ def black(ctx, targets='.'):
     Keyword Arguments:
         targets {str} -- space separated list of directories (default: {'.'})
     """
-    
+    print(f"Formatting code under directories: [{targets}]")
+    args = ["black", targets]
+    ctx.run(" ".join(args))
 
-@invoke.task(help={ 'targets': INPUT_DESCRIPTION })
-def sort_imports(ctx, targets='.'):
+
+@invoke.task(help={"targets": INPUT_DESCRIPTION})
+def sort(ctx, targets="."):
     """Sort imports of files listed under given directories.
     
     Arguments:
@@ -27,6 +31,6 @@ def sort_imports(ctx, targets='.'):
     Keyword Arguments:
         targets {str} -- space separated list of directories (default: {'.'})
     """
-    print(f'Sorting imports under directories: [{targets}]')
-    args = ['black', targets]
-    ctx.run(' '.join(args))
+    print(f"Sorting imports under directories: [{targets}]")
+    args = ["black", targets]
+    ctx.run(" ".join(args))

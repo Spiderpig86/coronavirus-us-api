@@ -1,0 +1,19 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+fastapi = {extras = ["all"],version = "==0.42.0"}
+motor = "==2.0.0"
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+start = 'uvicorn backend.main:api'
+dev = 'uvicorn backend.main:api --reload'
+sort = 'invoke sort'
+format = 'invoke black'

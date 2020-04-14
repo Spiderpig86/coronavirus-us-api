@@ -6,4 +6,7 @@ python:
 
 install:
   - "pip install pipenv"
-  - "pipenv install --dev --skip-lock"
+  - "pipenv install --skip-lock"
+
+script:
+    - "make clean-code"

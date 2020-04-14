@@ -34,3 +34,35 @@ def sort(ctx, targets="."):
     print(f"Sorting imports under directories: [{targets}]")
     args = ["black", targets]
     ctx.run(" ".join(args))
+
+@invoke.task
+def check(ctx, format=False, sort=False, diff=False):
+    """Master function for code cleaning.
+    
+    Arguments:
+        ctx {context} -- program context execution.
+    
+    Keyword Arguments:
+        format {bool} -- whether to format (default: {False})
+        sort {bool} -- whether to sort (default: {False})
+        diff {bool} -- display diff for commands (default: {False})
+    """
+    if not any([format, sort]):
+        format = True
+        sort = True
+
+    fmt_args = ["black", "--check", "."]
+    sort_args = ["isort", "-rc", "--check", "."]
+
+    if diff:
+        fmt_args.append("--diff")
+        sort_args.append("--diff")
+
+    cmd_args = []
+    if format:
+        cmd_args.extend(fmt_args)
+    if sort:
+        if cmd_args:
+            cmd_args.append("&")
+        cmd_args.extend(sort_args)
+    ctx.run(" ".join(cmd_args))

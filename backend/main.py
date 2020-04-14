@@ -17,7 +17,6 @@ from backend.core.config.constants import (
 )
 from backend.core.events import startup_handler, shutdown_handler
 
-
 def get_api() -> FastAPI:
     fast_api = FastAPI(
         title=APP_NAME,

@@ -4,6 +4,9 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+invoke = "*"
+black = "==19.10b0"
+isort = "*"
 
 [packages]
 fastapi = {extras = ["all"],version = "==0.42.0"}

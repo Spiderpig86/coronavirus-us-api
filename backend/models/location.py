@@ -4,14 +4,16 @@ Generic model to represent a location and the statistics that each location shou
 """
 
 from datetime import datetime
-from pydantic import BaseModel
 from typing import Dict, List
+
+from pydantic import BaseModel
 
 from .history import History
 from .statistic import Statistics
 
+
 class Location(BaseModel):
-    id: str # UUID
+    id: str  # UUID
     country: str
     state: str
     fips: str

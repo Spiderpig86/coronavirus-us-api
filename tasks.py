@@ -32,12 +32,13 @@ def sort(ctx, targets="."):
         targets {str} -- space separated list of directories (default: {'.'})
     """
     print(f"Sorting imports under directories: [{targets}]")
-    args = ["black", targets]
+    args = ["isort", "-rc", "--atomic", targets]
     ctx.run(" ".join(args))
+
 
 @invoke.task
 def check(ctx, format=False, sort=False, diff=False):
-    """Master function for code cleaning.
+    """Function that enforces code quality in in deployment for pipeline.
     
     Arguments:
         ctx {context} -- program context execution.

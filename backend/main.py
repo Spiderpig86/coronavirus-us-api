@@ -2,20 +2,23 @@
 
 Coronavirus-us is an API dedicated to fetching live and historical statistics on infections and deaths on a country, state, and county level.
 """
+import os
+
+import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import os
-import uvicorn
 
 from backend.api.routes.router import Router
-from backend.core.config.constants import (
+from backend.core.events import shutdown_handler, startup_handler
+
+from backend.core.config.constants import (  # isort:skip
     API_PREFIX,
-    APP_NAME,
-    APP_DESCRIPTION,
-    APP_VERSION,
     APP_DEBUG,
+    APP_DESCRIPTION,
+    APP_NAME,
+    APP_VERSION,
 )
-from backend.core.events import startup_handler, shutdown_handler
+
 
 def get_api() -> FastAPI:
     fast_api = FastAPI(
@@ -45,6 +48,7 @@ def get_api() -> FastAPI:
     )
 
     return fast_api
+
 
 api = get_api()
 

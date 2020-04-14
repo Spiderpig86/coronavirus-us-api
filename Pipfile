@@ -8,6 +8,10 @@ verify_ssl = true
 [packages]
 fastapi = {extras = ["all"],version = "==0.42.0"}
 motor = "==2.0.0"
+pydantic = "*"
+gunicorn = "*"
+pyyaml = "*"
+cached = "*"
 
 [requires]
 python_version = "3.7"

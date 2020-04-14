@@ -9,4 +9,4 @@ install:
   - "pipenv install --skip-lock"
 
 script:
-    - "make clean-code"
+    - "make refactor"

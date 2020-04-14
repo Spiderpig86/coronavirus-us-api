@@ -8,5 +8,5 @@ API = api
 format:
 	invoke format
 
-clean-code:
+refactor:
 	invoke check --format --sort

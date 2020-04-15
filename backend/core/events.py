@@ -5,7 +5,6 @@ File containing lifecycle event handlers for the server.
 from typing import Callable
 
 from fastapi import FastAPI
-
 from loguru import logger
 
 

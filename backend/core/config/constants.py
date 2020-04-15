@@ -21,3 +21,8 @@ API_TAG_HEALTH = "health"
 CONFIG_PATH = "config/config.yml"
 CONFIG_APP_PORT = CONFIG.get("app.port")
 CONFIG_FASTAPI_DEBUG_KEY = "debug"
+
+# Data Endpoints
+DATA_ENDPOINTS = {
+    "NytService": "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv"
+}

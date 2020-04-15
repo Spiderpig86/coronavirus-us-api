@@ -7,16 +7,18 @@ from loguru import logger
 
 WEBCLIENT: ClientSession
 
+
 async def setup_webclient():
     """Create webclient wrapper for the api lifespan.
     """
     global WEBCLIENT
-    logger.info('Setting up WebClient...')
+    logger.info("Setting up WebClient...")
     WEBCLIENT = ClientSession(timeout=ClientTimeout(total=60))
+
 
 async def teardown_webclient():
     """Cleanup webclient.
     """
     global WEBCLIENT
-    logger.info('Cleaning up WebClient...')
+    logger.info("Cleaning up WebClient...")
     await WEBCLIENT.close()

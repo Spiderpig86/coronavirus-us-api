@@ -16,6 +16,8 @@ gunicorn = "*"
 pyyaml = "*"
 cached = "*"
 loguru = "*"
+asynccache = "*"
+asyncache = "*"
 
 [requires]
 python_version = "3.7"

@@ -8,3 +8,5 @@ Data is regularly updated here: https://github.com/nytimes/covid-19-data
 class NytService:
     def __init__(self):
         pass
+
+    @cached

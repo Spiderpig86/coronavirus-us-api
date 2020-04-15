@@ -15,6 +15,7 @@ pydantic = "*"
 gunicorn = "*"
 pyyaml = "*"
 cached = "*"
+loguru = "*"
 
 [requires]
 python_version = "3.7"

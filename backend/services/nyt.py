@@ -5,6 +5,7 @@ Data is regularly updated here: https://github.com/nytimes/covid-19-data
 """
 import csv
 from datetime import datetime
+from typing import List
 
 from asyncache import cached
 from cachetools import TTLCache

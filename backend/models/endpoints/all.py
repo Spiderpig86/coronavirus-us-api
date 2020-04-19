@@ -2,6 +2,8 @@
 
 API model for All endpoint.
 """
+from typing import List
+
 from pydantic import BaseModel
 
 from backend.models.location import Location

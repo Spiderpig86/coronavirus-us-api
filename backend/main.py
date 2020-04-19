@@ -3,8 +3,8 @@
 Coronavirus-us is an API dedicated to fetching live and historical statistics on infections and deaths on a country, state, and county level.
 """
 import os
-import uvicorn
 
+import uvicorn
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger

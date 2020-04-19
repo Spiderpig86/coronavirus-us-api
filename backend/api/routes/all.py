@@ -33,4 +33,4 @@ async def get_all(
 
     # Fetch data
     data_source_service = await request.state.data_source
-    locations = await data_source_service.get_data()
+    await data_source_service.get_data()

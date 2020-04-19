@@ -7,5 +7,5 @@ from pydantic import BaseModel
 
 
 class Statistics(BaseModel):
-    cases: int
+    confirmed: int
     deaths: int

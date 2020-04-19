@@ -8,6 +8,7 @@ from datetime import datetime
 
 from asyncache import cached
 from cachetools import TTLCache
+from loguru import logger
 
 from backend.core.config.constants import DATA_ENDPOINTS
 from backend.core.utils.webclient import WEBCLIENT
@@ -15,13 +16,14 @@ from backend.models.history import Category, History
 from backend.models.location import Location
 
 
-class NytService:
+class NytDataService:
     def __init__(self):
         self.ENDPOINT = DATA_ENDPOINTS.get(type(self).__name__)
 
     @cached(cache=TTLCache(maxsize=1024, ttl=3600))
     async def get_data(self):
         csv_data = ""
+        logger.info("Fetching NYT data.")
 
         # https://docs.aiohttp.org/en/stable/client_quickstart.html#make-a-request
         async with WEBCLIENT.get(self.ENDPOINT) as response:
@@ -61,6 +63,9 @@ class NytService:
                     },
                 )
             )
+
+        logger.info("Finished transforming results.")
+        return locations
 
     async def group_locations(self, csv_data: List):
         """Groups statistics by given county and state.

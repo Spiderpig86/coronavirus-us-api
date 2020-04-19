@@ -9,4 +9,4 @@ format:
 	invoke format
 
 refactor:
-	invoke check --format --sort
+	invoke check --format --sort --diff

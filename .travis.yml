@@ -8,5 +8,4 @@ install:
   - "pipenv install --dev --skip-lock"
 
 script:
-    - "isort --verbose"
     - "make refactor"

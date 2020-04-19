@@ -16,7 +16,6 @@ gunicorn = "*"
 pyyaml = "*"
 cached = "*"
 loguru = "*"
-asynccache = "*"
 asyncache = "*"
 
 [requires]

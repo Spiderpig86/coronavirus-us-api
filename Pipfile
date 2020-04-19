@@ -4,19 +4,19 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-invoke = "*"
 black = "==19.10b0"
+invoke = "*"
 isort = "*"
 
 [packages]
-fastapi = {extras = ["all"],version = "==0.42.0"}
-motor = "==2.0.0"
-pydantic = "*"
-gunicorn = "*"
-pyyaml = "*"
-cached = "*"
-loguru = "*"
 asyncache = "*"
+cached = "*"
+fastapi = "*"
+loguru = "*"
+motor = "==2.0.0"
+gunicorn = "*"
+pydantic = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.7"

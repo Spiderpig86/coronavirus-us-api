@@ -67,3 +67,15 @@ def check(ctx, format=False, sort=False, diff=False):
             cmd_args.append("&")
         cmd_args.extend(sort_args)
     ctx.run(" ".join(cmd_args))
+
+
+@invoke.task
+def precommit(ctx):
+    """Runs pre-commit hook for all files using flake8, black, and isort.
+    
+    Arguments:
+        ctx {context} -- program context execution.
+    """
+    print("Executing pre-commit hook...")
+    args = ["pre-commit", "run", "--all-files"]
+    ctx.run(" ".join(args))

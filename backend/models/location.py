@@ -13,7 +13,7 @@ from .statistics import Statistics
 
 
 class Location(BaseModel):
-    id: str # UUID
+    id: str  # UUID
     country: str
     state: str
     county: str

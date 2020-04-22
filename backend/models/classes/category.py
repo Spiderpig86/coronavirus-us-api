@@ -6,7 +6,6 @@ from collections import OrderedDict
 
 
 class Category:
-
     def __init__(self, history=None):
         self.__category = history if history else {}
 

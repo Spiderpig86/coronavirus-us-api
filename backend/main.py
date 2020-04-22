@@ -72,7 +72,7 @@ def get_api() -> FastAPI:
         # Inject data source service
         request.state.data_source = data_source
 
-        logger.info(f"Data source service {data_source.__class__.name} injected...")
+        logger.info(f"Data source service {data_source.__class__.__name__} injected...")
         response = await next(request)
         return response
 

@@ -4,6 +4,7 @@ Endpoint for fetching all information given a source.
 """
 from fastapi import APIRouter, HTTPException, Request
 
+from backend.models.classes.statistics import Statistics
 from backend.models.endpoints.all import AllResult
 
 ######################
@@ -24,7 +25,7 @@ async def get_all(
     county: str = None,
     state: str = None,
     history: bool = False,
-) -> AllResult:
+):
 
     params_dict = dict(request.query_params)
 
@@ -32,5 +33,19 @@ async def get_all(
     params_dict.pop("history", None)
 
     # Fetch data
-    data_source_service = await request.state.data_source
-    await data_source_service.get_data()
+    data_source_service = request.state.data_source
+    location_data = await data_source_service.get_data()
+
+    latest = Statistics(
+        confirmed=sum(
+            map(lambda location: location.history["confirmed"].sum, location_data)
+        ),
+        deaths=sum(map(lambda location: location.history["deaths"].sum, location_data)),
+    )
+
+    return {
+        "latest": latest.to_dict(),
+        "locations": [
+            location.to_dict(True) for location in location_data
+        ],  # TODO: Do not hardcode boolean
+    }

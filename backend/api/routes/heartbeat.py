@@ -4,7 +4,7 @@ Endpoint that will be used to monitor uptime and latency of service.
 """
 from fastapi import APIRouter
 
-from backend.models.heartbeat import HeartbeatResult
+from backend.models.endpoints.heartbeat import HeartbeatResult
 
 ######################
 # ROUTER DECLARATION #

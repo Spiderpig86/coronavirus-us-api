@@ -9,13 +9,14 @@ from typing import Dict, List
 from pydantic import BaseModel
 
 from .history import History
-from .statistic import Statistics
+from .statistics import Statistics
 
 
 class Location(BaseModel):
-    id: str  # UUID
+    id: str # UUID
     country: str
     state: str
+    county: str
     fips: str
     history: History
     last_updated: datetime

@@ -39,19 +39,26 @@ async def get_all(
     # TODO: Refactor filtering
     for key, value in params_dict.items():
         key = key.lower()
-        value = value.lower().strip("__") # Remove access to private/internal fields
+        value = value.lower().strip("__")  # Remove access to private/internal fields
 
         if not value:
             continue
         print(key, value)
 
-        location_data = list(filter(lambda location: str(getattr(location, key)).lower() == value, location_data))
+        location_data = list(
+            filter(
+                lambda location: str(getattr(location, key)).lower() == value,
+                location_data,
+            )
+        )
 
     latest = Statistics(
         confirmed=sum(
             map(lambda location: location.timelines["confirmed"].sum, location_data)
         ),
-        deaths=sum(map(lambda location: location.timelines["deaths"].sum, location_data)),
+        deaths=sum(
+            map(lambda location: location.timelines["deaths"].sum, location_data)
+        ),
     )
 
     return {

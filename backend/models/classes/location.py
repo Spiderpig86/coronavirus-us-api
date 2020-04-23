@@ -5,7 +5,9 @@ Concrete implementation of the Location model.
 
 
 class Location:
-    def __init__(self, id, country, state, county, fips, timelines, last_updated, latest):
+    def __init__(
+        self, id, country, state, county, fips, timelines, last_updated, latest
+    ):
         self.id = id
         self.country = country
         self.state = state

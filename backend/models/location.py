@@ -4,7 +4,7 @@ Generic model to represent a location and the statistics that each location shou
 """
 
 from datetime import datetime
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from pydantic import BaseModel
 
@@ -18,6 +18,6 @@ class Location(BaseModel):
     state: str
     county: str
     fips: str
-    timelines: Timelines
+    timelines: Optional[Timelines]
     last_updated: datetime
     latest: Statistics

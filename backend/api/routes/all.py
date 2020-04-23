@@ -24,28 +24,39 @@ async def get_all(
     fips_code: str = None,
     county: str = None,
     state: str = None,
-    history: bool = False,
+    timelines: bool = False,
 ):
 
     params_dict = dict(request.query_params)
 
     params_dict.pop("source", None)
-    params_dict.pop("history", None)
+    params_dict.pop("timelines", None)
 
     # Fetch data
     data_source_service = request.state.data_source
     location_data = await data_source_service.get_data()
 
+    # TODO: Refactor filtering
+    for key, value in params_dict.items():
+        key = key.lower()
+        value = value.lower().strip("__") # Remove access to private/internal fields
+
+        if not value:
+            continue
+        print(key, value)
+
+        location_data = list(filter(lambda location: str(getattr(location, key)).lower() == value, location_data))
+
     latest = Statistics(
         confirmed=sum(
-            map(lambda location: location.history["confirmed"].sum, location_data)
+            map(lambda location: location.timelines["confirmed"].sum, location_data)
         ),
-        deaths=sum(map(lambda location: location.history["deaths"].sum, location_data)),
+        deaths=sum(map(lambda location: location.timelines["deaths"].sum, location_data)),
     )
 
     return {
         "latest": latest.to_dict(),
         "locations": [
-            location.to_dict(True) for location in location_data
+            location.to_dict(timelines) for location in location_data
         ],  # TODO: Do not hardcode boolean
     }

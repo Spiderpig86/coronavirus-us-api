@@ -5,13 +5,13 @@ Concrete implementation of the Location model.
 
 
 class Location:
-    def __init__(self, id, country, state, county, fips, history, last_updated, latest):
+    def __init__(self, id, country, state, county, fips, timelines, last_updated, latest):
         self.id = id
         self.country = country
         self.state = state
         self.county = county
         self.fips = fips
-        self.history = history
+        self.timelines = timelines
         self.last_updated = last_updated
         self.latest = latest
 
@@ -39,7 +39,7 @@ class Location:
         """Transforms location model to dictionary representation.
         
         Keyword Arguments:
-            include_history {bool} -- flag to toggle inclusion of historical information (default: {False})
+            include_timelines {bool} -- flag to toggle inclusion of historical information (default: {False})
         
         Returns:
             {dict} -- dictionary representation of Location class.
@@ -59,6 +59,6 @@ class Location:
         }
 
         if include_timelines:
-            response["timelines"] = {k: v.to_dict() for k, v in self.history.items()}
+            response["timelines"] = {k: v.to_dict() for k, v in self.timelines.items()}
 
         return response

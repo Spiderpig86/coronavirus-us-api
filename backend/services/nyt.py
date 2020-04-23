@@ -17,7 +17,7 @@ from backend.core.utils import webclient
 from backend.models.classes.category import Category
 from backend.models.classes.location import Location
 from backend.models.classes.statistics import Statistics
-from backend.models.history import History
+from backend.models.history import Timelines
 
 
 class NytDataService(object):
@@ -67,7 +67,7 @@ class NytDataService(object):
                     county=location_tuple[0],
                     state=location_tuple[1],
                     fips=location_tuple[2],
-                    history={"confirmed": confirmed, "deaths": deaths,},
+                    timelines={"confirmed": confirmed, "deaths": deaths,},
                     last_updated=datetime.utcnow().isoformat()
                     + "Z",  # TODO: Util function,
                     latest=Statistics(

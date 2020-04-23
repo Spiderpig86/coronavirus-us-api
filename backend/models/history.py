@@ -12,6 +12,6 @@ class Category(BaseModel):
     latest: int
 
 
-class History(BaseModel):
+class Timelines(BaseModel):
     confirmed: Category
     deaths: Category

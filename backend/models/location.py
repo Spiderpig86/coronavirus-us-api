@@ -8,7 +8,7 @@ from typing import Dict, List
 
 from pydantic import BaseModel
 
-from .history import History
+from .history import Timelines
 from .statistics import Statistics
 
 
@@ -18,6 +18,6 @@ class Location(BaseModel):
     state: str
     county: str
     fips: str
-    history: History
+    timelines: Timelines
     last_updated: datetime
     latest: Statistics

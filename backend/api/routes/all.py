@@ -6,6 +6,7 @@ from fastapi import APIRouter, HTTPException, Request
 
 from backend.models.classes.statistics import Statistics
 from backend.models.endpoints.all import AllResult
+from backend.models.source import Source
 
 ######################
 # ROUTER DECLARATION #
@@ -20,7 +21,7 @@ router = APIRouter()
 )
 async def get_all(
     request: Request,
-    source: str = "nyt",  # TODO: Change to enum
+    source: Source = "nyt",
     fips_code: str = None,
     county: str = None,
     state: str = None,

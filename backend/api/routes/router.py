@@ -16,4 +16,6 @@ class Router:
             heartbeat.router, tags=[API_TAG_HEALTH], prefix="/health"
         )
         self.api_router.include_router(all.router, tags=[API_TAG_DATA], prefix="/data")
-        self.api_router.include_router(latest.router, tags=[API_TAG_DATA], prefix="/data")
+        self.api_router.include_router(
+            latest.router, tags=[API_TAG_DATA], prefix="/data"
+        )

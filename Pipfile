@@ -24,6 +24,6 @@ python_version = "3.7"
 
 [scripts]
 start = 'uvicorn backend.main:api'
-dev = 'uvicorn backend.main:api --reload'
+dev = 'uvicorn backend.main:api --reload --log-level=debug'
 sort = 'invoke sort'
 format = 'invoke black'

@@ -33,17 +33,6 @@ class Category:
         # Fallback value of 0.
         return 0
 
-    @property
-    def sum(self):
-        """Gets the numerical sum of statistic for category.
-        
-        Returns:
-            {int} -- sum for statistic.
-        """
-
-        values = list(self.category.values())
-        return sum(values)
-
     def to_dict(self):
         """Transforms Category to dict representation.
         

@@ -30,12 +30,13 @@ async def get_all(
 
     params_dict = dict(request.query_params)
 
+    # Remove unfiltered parameters
     params_dict.pop("source", None)
     params_dict.pop("timelines", None)
 
     # Fetch data
     data_source_service = request.state.data_source
-    location_data = await data_source_service.get_data()
+    location_data, _ = await data_source_service.get_data()
 
     # TODO: Refactor filtering
     for key, value in params_dict.items():
@@ -44,7 +45,6 @@ async def get_all(
 
         if not value:
             continue
-        print(key, value)
 
         location_data = list(
             filter(
@@ -55,10 +55,10 @@ async def get_all(
 
     latest = Statistics(
         confirmed=sum(
-            map(lambda location: location.timelines["confirmed"].sum, location_data)
+            map(lambda location: location.timelines["confirmed"].latest, location_data)
         ),
         deaths=sum(
-            map(lambda location: location.timelines["deaths"].sum, location_data)
+            map(lambda location: location.timelines["deaths"].latest, location_data)
         ),
     )
 

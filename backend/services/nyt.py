@@ -26,6 +26,11 @@ class NytDataService(object):
 
     @cached(cache=TTLCache(maxsize=1024, ttl=3600))
     async def get_data(self):
+        """Method that retrieves data from the New York Times.
+        
+        Returns:
+            Location[], str -- returns list of location stats and the last updated date.
+        """
         csv_data = ""
         logger.info("Fetching NYT data...")
 
@@ -41,6 +46,7 @@ class NytDataService(object):
         print(f"Elapsed grouped_locations {str(_end-_start)}ms")
 
         locations = []
+        last_updated = datetime.utcnow().isoformat() + "Z"  # TODO: Util function
         _start = time.time() * 1000.0
         for location_tuple, events in grouped_locations.items():
             confirmed_map = events["confirmed"]
@@ -68,8 +74,7 @@ class NytDataService(object):
                     state=location_tuple[1],
                     fips=location_tuple[2],
                     timelines={"confirmed": confirmed, "deaths": deaths,},
-                    last_updated=datetime.utcnow().isoformat()
-                    + "Z",  # TODO: Util function,
+                    last_updated=last_updated,
                     latest=Statistics(
                         confirmed=confirmed.latest, deaths=deaths.latest
                     ).to_dict(),
@@ -80,7 +85,7 @@ class NytDataService(object):
         print(f"Elapsed loop {str(_end-_start)}ms")
 
         logger.info("Finished transforming results.")
-        return locations
+        return locations, last_updated
 
     def group_locations(self, csv_data: List):
         """Groups statistics by given county and state.

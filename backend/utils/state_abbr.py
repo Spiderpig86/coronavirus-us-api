@@ -62,8 +62,9 @@ STATE_ABBR__STATE_NAME = {
     "WA": "Washington",
     "WV": "West Virginia",
     "WI": "Wisconsin",
-    "WY": "Wyoming"
+    "WY": "Wyoming",
 }
+
 
 def get_state_name(state_abbr: str) -> str:
     """Given a state abbreviation, return its full name.

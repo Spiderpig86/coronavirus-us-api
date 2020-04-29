@@ -22,7 +22,9 @@ router = APIRouter()
     name="Latest",
     response_model_exclude_unset=True,
 )
-async def get_latest(request: Request, source: Source = "nyt"):
+async def get_latest(
+    request: Request, source: Source = "nyt"
+):  # TODO: Do not hardcode default
     data_source_service = request.state.data_source
     location_data, last_updated = await data_source_service.get_data()
 

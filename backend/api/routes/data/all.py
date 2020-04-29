@@ -7,6 +7,7 @@ from fastapi import APIRouter, HTTPException, Request
 from backend.models.classes.statistics import Statistics
 from backend.models.endpoints.all import AllResult
 from backend.models.source import Source
+from backend.utils.state_abbr import STATE_ABBR__STATE_NAME, get_state_name
 
 ######################
 # ROUTER DECLARATION #
@@ -45,6 +46,9 @@ async def get_all(
 
         if not value:
             continue
+
+        if key == "state" and value.upper() in STATE_ABBR__STATE_NAME:
+            value = get_state_name(value)
 
         location_data = list(
             filter(

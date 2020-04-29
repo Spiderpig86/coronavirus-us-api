@@ -22,7 +22,7 @@ router = APIRouter()
 async def get_all(
     request: Request,
     source: Source = "nyt",
-    fips_code: str = None,
+    fips: str = None,
     county: str = None,
     state: str = None,
     timelines: bool = False,

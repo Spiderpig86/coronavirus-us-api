@@ -1,0 +1,90 @@
+"""State Service
+
+Service used for returning state information.
+"""
+import csv
+
+from asyncache import cached
+from cachetools import TTLCache
+from loguru import logger
+
+from backend.core.config.constants import DATA_ENDPOINTS
+from backend.core.utils import webclient
+from backend.models.classes.location_data import LocationData
+from backend.models.classes.coordinates import Coordinates
+
+
+class LocationStatsService(object):
+    def __init__(self):
+        self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
+
+    def get_data(self):
+        return {"counties": self._get_county_data(), "states": self._get_state_data()}
+
+    @cached(cache=TTLCache(maxsize=1024, ttl=36000))
+    async def _get_state_data(self):
+        csv_data = ""
+
+        logger.info("Fetching CSV data for states...")
+
+        async with webclient.WEBCLIENT.get(f'{self.ENDPOINT}/STATE_INFO.csv') as response:
+            csv_data = await response.text()
+
+        parsed_data = list(csv.DictReader(csv_data.splitlines()))
+
+        state_map = {}
+
+        for state_data in parsed_data:
+            state_map[_state_data_id(state_data)] = LocationData(
+                state_data["UID"],
+                state_data["iso2"],
+                state_data["iso3"],
+                state_data["code3"],
+                state_data["FIPS"],
+                state_data["Admin2"],
+                state_data["State"],
+                state_data["Country"],
+                Coordinates(state_data["Latitude"], state_data["Longitude"]),
+                state_data["Combined_Key"],
+                state_data["Population"],
+            )
+
+        return state_map
+
+    @cached(cache=TTLCache(maxsize=1024, ttl=36000))
+    async def _get_county_data(self):
+        csv_data = ""
+
+        logger.info("Fetching CSV data for counties...")
+
+        async with webclient.WEBCLIENT.get(f'{self.ENDPOINT}/COUNTY_INFO.csv') as response:
+            csv_data = await response.text()
+
+        parsed_data = list(csv.DictReader(csv_data.splitlines()))
+
+        county_map = {}
+
+        for county_data in parsed_data:
+            county_map[_county_data_id(county_data)] = LocationData(
+                county_data["UID"],
+                county_data["iso2"],
+                county_data["iso3"],
+                county_data["code3"],
+                county_data["FIPS"],
+                county_data["Admin2"],
+                county_data["State"],
+                county_data["Country"],
+                Coordinates(county_data["Latitude"], county_data["Longitude"]),
+                county_data["Combined_Key"],
+                county_data["Population"],
+            )
+
+        return county_map
+
+    def _state_data_id(self, state_data):
+
+        return (state_data["State"], state_data["Country"])
+
+    def _county_data_id(self, county_data):
+
+        return (county_data["Admin2"], county_data["State"], county_data["Country"])

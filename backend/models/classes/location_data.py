@@ -33,3 +33,18 @@ class LocationData(object):
             Coordinates -- object representing coordinates for location.
         """
         return Coordinates(latitude, longitude)
+
+    def to_dict(self):
+        return {
+            "UID": self.UID,
+            "iso2": self.iso2,
+            "iso3": self.iso3,
+            "code3": self.code3,
+            "fips": self.fips,
+            "admin2": self.admin2,
+            "state": self.state,
+            "country": self.country,
+            "coordinates": self.coordinates.to_dict(),
+            "combined_key": self.combined_key,
+            "population": self.population,
+        }

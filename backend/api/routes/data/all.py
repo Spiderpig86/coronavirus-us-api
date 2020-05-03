@@ -27,6 +27,7 @@ async def get_all(
     county: str = None,
     state: str = None,
     timelines: bool = False,
+    properties: bool = False,
 ):
 
     params_dict = dict(request.query_params)
@@ -34,6 +35,7 @@ async def get_all(
     # Remove unfiltered parameters
     params_dict.pop("source", None)
     params_dict.pop("timelines", None)
+    params_dict.pop("properties", None)
 
     # Fetch data
     data_source_service = request.state.data_source
@@ -66,9 +68,24 @@ async def get_all(
         ),
     )
 
+    county_data_map = None
+    if properties:
+        location_data_service = request.state.location_data_service
+        location_properties = await location_data_service.get_data()
+
+        county_data_map = location_properties["counties"]
+
+    locations_response = []
+    for location in location_data:
+        result = location.to_dict(timelines)
+        if properties and location.county != "Unknown":
+            result["properties"] = county_data_map[
+                (location.county.lower(), location.state, location.country)
+            ].to_dict()
+
+        locations_response.append(result)
+
     return {
         "latest": latest.to_dict(),
-        "locations": [
-            location.to_dict(timelines) for location in location_data
-        ],  # TODO: Do not hardcode boolean
+        "locations": locations_response,
     }

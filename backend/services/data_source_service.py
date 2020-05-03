@@ -3,9 +3,11 @@
 Data Service Container used for dependency injection into routes for data retrieval.
 """
 
-from backend.services.nyt import NytDataService
+from backend.services.location_data_service import LocationDataService
+from backend.services.nyt_service import NytDataService
 
 DATA_SOURCE_CONTAINER = {"nyt": NytDataService()}
+LOCATION_DATA_SERVICE = LocationDataService()
 
 
 def get_data_source(data_source: str):

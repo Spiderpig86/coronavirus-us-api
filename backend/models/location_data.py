@@ -6,7 +6,7 @@ from typing import Dict, List, Optional
 
 from pydantic import BaseModel
 
-from backend.models.classes.coordinates import Coordinates
+from backend.models.coordinates import Coordinates
 from backend.models.source import Source
 
 

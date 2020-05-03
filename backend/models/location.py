@@ -8,8 +8,9 @@ from typing import Dict, List, Optional
 
 from pydantic import BaseModel
 
-from .history import Timelines
-from .statistics import Statistics
+from backend.models.history import Timelines
+from backend.models.location_data import LocationData
+from backend.models.statistics import Statistics
 
 
 class Location(BaseModel):
@@ -21,3 +22,4 @@ class Location(BaseModel):
     timelines: Optional[Timelines]
     last_updated: datetime
     latest: Statistics
+    properties: Optional[LocationData]

@@ -1,75 +1,6 @@
-840,US,USA,840,,,,US,40,-100,US,329466283
-16,AS,ASM,16,60,,American Samoa,US,-14.271,-170.132,"American Samoa, US",55641
-316,GU,GUM,316,66,,Guam,US,13.4443,144.7937,"Guam, US",164229
-580,MP,MNP,580,69,,Northern Mariana Islands,US,15.0979,145.6739,"Northern Mariana Islands, US",55144
-850,VI,VIR,850,78,,Virgin Islands,US,18.3358,-64.8963,"Virgin Islands, US",107268
-630,PR,PRI,630,72,,Puerto Rico,US,18.2208,-66.5901,"Puerto Rico, US",2933408
-84088888,US,USA,840,88888,,Diamond Princess,US,,,"Diamond Princess, US",
-84099999,US,USA,840,99999,,Grand Princess,US,,,"Grand Princess, US",
-84000001,US,USA,840,1,,Alabama,US,32.3182,-86.9023,"Alabama, US",4688897
-84000002,US,USA,840,2,,Alaska,US,61.3707,-152.4044,"Alaska, US",597749
-84000004,US,USA,840,4,,Arizona,US,33.7298,-111.4312,"Arizona, US",7278717
-84000005,US,USA,840,5,,Arkansas,US,34.9697,-92.3731,"Arkansas, US",2589027
-84000006,US,USA,840,6,,California,US,36.1162,-119.6816,"California, US",39208620
-84000008,US,USA,840,8,,Colorado,US,39.0598,-105.3111,"Colorado, US",5666813
-84000009,US,USA,840,9,,Connecticut,US,41.5978,-72.7554,"Connecticut, US",3565287
-84000010,US,USA,840,10,,Delaware,US,39.3185,-75.5071,"Delaware, US",973764
-84000011,US,USA,840,11,,District of Columbia,US,38.8974,-77.0268,"District of Columbia, US",705749
-84000012,US,USA,840,12,,Florida,US,27.7663,-81.6868,"Florida, US",21232606
-84000013,US,USA,840,13,,Georgia,US,33.0406,-83.6431,"Georgia, US",10139393
-84000015,US,USA,840,15,,Hawaii,US,21.0943,-157.4983,"Hawaii, US",1415786
-84000016,US,USA,840,16,,Idaho,US,44.2405,-114.4788,"Idaho, US",1610497
-84000017,US,USA,840,17,,Illinois,US,40.3495,-88.9861,"Illinois, US",11735653
-84000018,US,USA,840,18,,Indiana,US,39.8494,-86.2583,"Indiana, US",6543994
-84000019,US,USA,840,19,,Iowa,US,42.0115,-93.2105,"Iowa, US",2620713
-84000020,US,USA,840,20,,Kansas,US,38.5266,-96.7265,"Kansas, US",2438488
-84000021,US,USA,840,21,,Kentucky,US,37.6681,-84.6701,"Kentucky, US",3423303
-84000022,US,USA,840,22,,Louisiana,US,31.1695,-91.8678,"Louisiana, US",4597266
-84000023,US,USA,840,23,,Maine,US,44.6939,-69.3819,"Maine, US",1174006
-84000024,US,USA,840,24,,Maryland,US,39.0639,-76.8021,"Maryland, US",5943335
-84000025,US,USA,840,25,,Massachusetts,US,42.2302,-71.5301,"Massachusetts, US",6863772
-84000026,US,USA,840,26,,Michigan,US,43.3266,-84.5361,"Michigan, US",7967259
-84000027,US,USA,840,27,,Minnesota,US,45.6945,-93.9002,"Minnesota, US",4946446
-84000028,US,USA,840,28,,Mississippi,US,32.7416,-89.6787,"Mississippi, US",2895206
-84000029,US,USA,840,29,,Missouri,US,38.4561,-92.2884,"Missouri, US",5859456
-84000030,US,USA,840,30,,Montana,US,46.9219,-110.4544,"Montana, US",865987
-84000031,US,USA,840,31,,Nebraska,US,41.1254,-98.2681,"Nebraska, US",1525272
-84000032,US,USA,840,32,,Nevada,US,38.3135,-117.0554,"Nevada, US",3016697
-84000033,US,USA,840,33,,New Hampshire,US,43.4525,-71.5639,"New Hampshire, US",1328148
-84000034,US,USA,840,34,,New Jersey,US,40.2989,-74.521,"New Jersey, US",8882190
-84000035,US,USA,840,35,,New Mexico,US,34.8405,-106.2485,"New Mexico, US",1667533
-84000036,US,USA,840,36,,New York,US,42.1657,-74.9481,"New York, US",16861025
-84000037,US,USA,840,37,,North Carolina,US,35.6301,-79.8064,"North Carolina, US",9917875
-84000038,US,USA,840,38,,North Dakota,US,47.5289,-99.784,"North Dakota, US",606418
-84000039,US,USA,840,39,,Ohio,US,40.3888,-82.7649,"Ohio, US",11173860
-84000040,US,USA,840,40,,Oklahoma,US,35.5653,-96.9289,"Oklahoma, US",3657634
-84000041,US,USA,840,41,,Oregon,US,44.572,-122.0709,"Oregon, US",4007074
-84000042,US,USA,840,42,,Pennsylvania,US,40.5908,-77.2098,"Pennsylvania, US",12587497
-84000044,US,USA,840,44,,Rhode Island,US,41.6809,-71.5118,"Rhode Island, US",1059361
-84000045,US,USA,840,45,,South Carolina,US,33.8569,-80.945,"South Carolina, US",5039975
-84000046,US,USA,840,46,,South Dakota,US,44.2998,-99.4388,"South Dakota, US",735892
-84000047,US,USA,840,47,,Tennessee,US,35.7478,-86.6923,"Tennessee, US",6564929
-84000048,US,USA,840,48,,Texas,US,31.0545,-97.5635,"Texas, US",22984561
-84000049,US,USA,840,49,,Utah,US,40.15,-111.8624,"Utah, US",2865882
-84000050,US,USA,840,50,,Vermont,US,44.0459,-72.7107,"Vermont, US",610591
-84000051,US,USA,840,51,,Virginia,US,37.7693,-78.17,"Virginia, US",7907230
-84000053,US,USA,840,53,,Washington,US,47.4009,-121.4905,"Washington, US",7549403
-84000054,US,USA,840,54,,West Virginia,US,38.4912,-80.9545,"West Virginia, US",1322998
-84000055,US,USA,840,55,,Wisconsin,US,44.2685,-89.6165,"Wisconsin, US",5174571
-84000056,US,USA,840,56,,Wyoming,US,42.756,-107.3025,"Wyoming, US",497240
-84070001,US,USA,840,,,Recovered,US,,,"Recovered, US",
+UID,iso2,iso3,code3,FIPS,Admin2,State,Country,Latitude,Longitude,Formal_Name,Population
 84070002,US,USA,840,,Dukes and Nantucket,Massachusetts,US,41.40674725,-70.68763497,"Dukes and Nantucket, Massachusetts, US",28731
 84070003,US,USA,840,,Kansas City,Missouri,US,39.0997,-94.5786,"Kansas City, Missouri, US",488943
-84070004,US,USA,840,,Michigan Department of Corrections (MDOC),Michigan,US,,,"Michigan Department of Corrections (MDOC), Michigan, US",
-84070005,US,USA,840,,Federal Correctional Institution (FCI),Michigan,US,,,"Federal Correctional Institution (FCI), Michigan, US",
-84070006,US,USA,840,,Air Force,US Military,US,,,"Air Force, US Military, US",
-84070007,US,USA,840,,Army,US Military,US,,,"Army, US Military, US",
-84070008,US,USA,840,,Marine Corps,US Military,US,,,"Marine Corps, US Military, US",
-84070009,US,USA,840,,Navy,US Military,US,,,"Navy, US Military, US",
-84070010,US,USA,840,,Unassigned,US Military,US,,,"Unassigned, US Military, US",
-84070011,US,USA,840,,,US Military,US,,,"US Military, US",
-84070012,US,USA,840,,Inmates,Federal Bureau of Prisons,US,,,"Inmates, Federal Bureau of Prisons, US",
-84070013,US,USA,840,,Staff,Federal Bureau of Prisons,US,,,"Staff, Federal Bureau of Prisons, US",
 84070014,US,USA,840,,,Federal Bureau of Prisons,US,,,"Federal Bureau of Prisons, US",
 84070015,US,USA,840,,Bear River,Utah,US,41.52106798,-113.0832816,"Bear River, Utah, US",186818
 84070016,US,USA,840,,Central Utah,Utah,US,39.37231946,-111.5758676,"Central Utah, Utah, US",81954
@@ -77,109 +8,6 @@
 84070018,US,USA,840,,Southwest Utah,Utah,US,37.85447192,-111.4418764,"Southwest Utah, Utah, US",252042
 84070019,US,USA,840,,TriCounty,Utah,US,40.12491499,-109.5174415,"TriCounty, Utah, US",56622
 84070020,US,USA,840,,Weber-Morgan,Utah,US,41.27116049,-111.9145117,"Weber-Morgan, Utah, US",272337
-84070021,US,USA,840,,,Veteran Hospitals,US,,,"Veteran Hospitals, US",
-84080001,US,USA,840,80001,Out of AL,Alabama,US,,,"Out of AL, Alabama, US",
-84080002,US,USA,840,80002,Out of AK,Alaska,US,,,"Out of AK, Alaska, US",
-84080004,US,USA,840,80004,Out of AZ,Arizona,US,,,"Out of AZ, Arizona, US",
-84080005,US,USA,840,80005,Out of AR,Arkansas,US,,,"Out of AR, Arkansas, US",
-84080006,US,USA,840,80006,Out of CA,California,US,,,"Out of CA, California, US",
-84080008,US,USA,840,80008,Out of CO,Colorado,US,,,"Out of CO, Colorado, US",
-84080009,US,USA,840,80009,Out of CT,Connecticut,US,,,"Out of CT, Connecticut, US",
-84080010,US,USA,840,80010,Out of DE,Delaware,US,,,"Out of DE, Delaware, US",
-84080011,US,USA,840,80011,Out of DC,District of Columbia,US,,,"Out of DC, District of Columbia, US",
-84080012,US,USA,840,80012,Out of FL,Florida,US,,,"Out of FL, Florida, US",
-84080013,US,USA,840,80013,Out of GA,Georgia,US,,,"Out of GA, Georgia, US",
-84080015,US,USA,840,80015,Out of HI,Hawaii,US,,,"Out of HI, Hawaii, US",
-84080016,US,USA,840,80016,Out of ID,Idaho,US,,,"Out of ID, Idaho, US",
-84080017,US,USA,840,80017,Out of IL,Illinois,US,,,"Out of IL, Illinois, US",
-84080018,US,USA,840,80018,Out of IN,Indiana,US,,,"Out of IN, Indiana, US",
-84080019,US,USA,840,80019,Out of IA,Iowa,US,,,"Out of IA, Iowa, US",
-84080020,US,USA,840,80020,Out of KS,Kansas,US,,,"Out of KS, Kansas, US",
-84080021,US,USA,840,80021,Out of KY,Kentucky,US,,,"Out of KY, Kentucky, US",
-84080022,US,USA,840,80022,Out of LA,Louisiana,US,,,"Out of LA, Louisiana, US",
-84080023,US,USA,840,80023,Out of ME,Maine,US,,,"Out of ME, Maine, US",
-84080024,US,USA,840,80024,Out of MD,Maryland,US,,,"Out of MD, Maryland, US",
-84080025,US,USA,840,80025,Out of MA,Massachusetts,US,,,"Out of MA, Massachusetts, US",
-84080026,US,USA,840,80026,Out of MI,Michigan,US,,,"Out of MI, Michigan, US",
-84080027,US,USA,840,80027,Out of MN,Minnesota,US,,,"Out of MN, Minnesota, US",
-84080028,US,USA,840,80028,Out of MS,Mississippi,US,,,"Out of MS, Mississippi, US",
-84080029,US,USA,840,80029,Out of MO,Missouri,US,,,"Out of MO, Missouri, US",
-84080030,US,USA,840,80030,Out of MT,Montana,US,,,"Out of MT, Montana, US",
-84080031,US,USA,840,80031,Out of NE,Nebraska,US,,,"Out of NE, Nebraska, US",
-84080032,US,USA,840,80032,Out of NV,Nevada,US,,,"Out of NV, Nevada, US",
-84080033,US,USA,840,80033,Out of NH,New Hampshire,US,,,"Out of NH, New Hampshire, US",
-84080034,US,USA,840,80034,Out of NJ,New Jersey,US,,,"Out of NJ, New Jersey, US",
-84080035,US,USA,840,80035,Out of NM,New Mexico,US,,,"Out of NM, New Mexico, US",
-84080036,US,USA,840,80036,Out of NY,New York,US,,,"Out of NY, New York, US",
-84080037,US,USA,840,80037,Out of NC,North Carolina,US,,,"Out of NC, North Carolina, US",
-84080038,US,USA,840,80038,Out of ND,North Dakota,US,,,"Out of ND, North Dakota, US",
-84080039,US,USA,840,80039,Out of OH,Ohio,US,,,"Out of OH, Ohio, US",
-84080040,US,USA,840,80040,Out of OK,Oklahoma,US,,,"Out of OK, Oklahoma, US",
-84080041,US,USA,840,80041,Out of OR,Oregon,US,,,"Out of OR, Oregon, US",
-84080042,US,USA,840,80042,Out of PA,Pennsylvania,US,,,"Out of PA, Pennsylvania, US",
-84080044,US,USA,840,80044,Out of RI,Rhode Island,US,,,"Out of RI, Rhode Island, US",
-84080045,US,USA,840,80045,Out of SC,South Carolina,US,,,"Out of SC, South Carolina, US",
-84080046,US,USA,840,80046,Out of SD,South Dakota,US,,,"Out of SD, South Dakota, US",
-84080047,US,USA,840,80047,Out of TN,Tennessee,US,,,"Out of TN, Tennessee, US",
-84080048,US,USA,840,80048,Out of TX,Texas,US,,,"Out of TX, Texas, US",
-84080049,US,USA,840,80049,Out of UT,Utah,US,,,"Out of UT, Utah, US",
-84080050,US,USA,840,80050,Out of VT,Vermont,US,,,"Out of VT, Vermont, US",
-84080051,US,USA,840,80051,Out of VA,Virginia,US,,,"Out of VA, Virginia, US",
-84080053,US,USA,840,80053,Out of WA,Washington,US,,,"Out of WA, Washington, US",
-84080054,US,USA,840,80054,Out of WV,West Virginia,US,,,"Out of WV, West Virginia, US",
-84080055,US,USA,840,80055,Out of WI,Wisconsin,US,,,"Out of WI, Wisconsin, US",
-84080056,US,USA,840,80056,Out of WY,Wyoming,US,,,"Out of WY, Wyoming, US",
-84090001,US,USA,840,90001,Unassigned,Alabama,US,,,"Unassigned, Alabama, US",
-84090002,US,USA,840,90002,Unassigned,Alaska,US,,,"Unassigned, Alaska, US",
-84090004,US,USA,840,90004,Unassigned,Arizona,US,,,"Unassigned, Arizona, US",
-84090005,US,USA,840,90005,Unassigned,Arkansas,US,,,"Unassigned, Arkansas, US",
-84090006,US,USA,840,90006,Unassigned,California,US,,,"Unassigned, California, US",
-84090008,US,USA,840,90008,Unassigned,Colorado,US,,,"Unassigned, Colorado, US",
-84090009,US,USA,840,90009,Unassigned,Connecticut,US,,,"Unassigned, Connecticut, US",
-84090010,US,USA,840,90010,Unassigned,Delaware,US,,,"Unassigned, Delaware, US",
-84090011,US,USA,840,90011,Unassigned,District of Columbia,US,,,"Unassigned, District of Columbia, US",
-84090012,US,USA,840,90012,Unassigned,Florida,US,,,"Unassigned, Florida, US",
-84090013,US,USA,840,90013,Unassigned,Georgia,US,,,"Unassigned, Georgia, US",
-84090015,US,USA,840,90015,Unassigned,Hawaii,US,,,"Unassigned, Hawaii, US",
-84090016,US,USA,840,90016,Unassigned,Idaho,US,,,"Unassigned, Idaho, US",
-84090017,US,USA,840,90017,Unassigned,Illinois,US,,,"Unassigned, Illinois, US",
-84090018,US,USA,840,90018,Unassigned,Indiana,US,,,"Unassigned, Indiana, US",
-84090019,US,USA,840,90019,Unassigned,Iowa,US,,,"Unassigned, Iowa, US",
-84090020,US,USA,840,90020,Unassigned,Kansas,US,,,"Unassigned, Kansas, US",
-84090021,US,USA,840,90021,Unassigned,Kentucky,US,,,"Unassigned, Kentucky, US",
-84090022,US,USA,840,90022,Unassigned,Louisiana,US,,,"Unassigned, Louisiana, US",
-84090023,US,USA,840,90023,Unassigned,Maine,US,,,"Unassigned, Maine, US",
-84090024,US,USA,840,90024,Unassigned,Maryland,US,,,"Unassigned, Maryland, US",
-84090025,US,USA,840,90025,Unassigned,Massachusetts,US,,,"Unassigned, Massachusetts, US",
-84090026,US,USA,840,90026,Unassigned,Michigan,US,,,"Unassigned, Michigan, US",
-84090027,US,USA,840,90027,Unassigned,Minnesota,US,,,"Unassigned, Minnesota, US",
-84090028,US,USA,840,90028,Unassigned,Mississippi,US,,,"Unassigned, Mississippi, US",
-84090029,US,USA,840,90029,Unassigned,Missouri,US,,,"Unassigned, Missouri, US",
-84090030,US,USA,840,90030,Unassigned,Montana,US,,,"Unassigned, Montana, US",
-84090031,US,USA,840,90031,Unassigned,Nebraska,US,,,"Unassigned, Nebraska, US",
-84090032,US,USA,840,90032,Unassigned,Nevada,US,,,"Unassigned, Nevada, US",
-84090033,US,USA,840,90033,Unassigned,New Hampshire,US,,,"Unassigned, New Hampshire, US",
-84090034,US,USA,840,90034,Unassigned,New Jersey,US,,,"Unassigned, New Jersey, US",
-84090035,US,USA,840,90035,Unassigned,New Mexico,US,,,"Unassigned, New Mexico, US",
-84090036,US,USA,840,90036,Unassigned,New York,US,,,"Unassigned, New York, US",
-84090037,US,USA,840,90037,Unassigned,North Carolina,US,,,"Unassigned, North Carolina, US",
-84090038,US,USA,840,90038,Unassigned,North Dakota,US,,,"Unassigned, North Dakota, US",
-84090039,US,USA,840,90039,Unassigned,Ohio,US,,,"Unassigned, Ohio, US",
-84090040,US,USA,840,90040,Unassigned,Oklahoma,US,,,"Unassigned, Oklahoma, US",
-84090041,US,USA,840,90041,Unassigned,Oregon,US,,,"Unassigned, Oregon, US",
-84090042,US,USA,840,90042,Unassigned,Pennsylvania,US,,,"Unassigned, Pennsylvania, US",
-84090044,US,USA,840,90044,Unassigned,Rhode Island,US,,,"Unassigned, Rhode Island, US",
-84090045,US,USA,840,90045,Unassigned,South Carolina,US,,,"Unassigned, South Carolina, US",
-84090046,US,USA,840,90046,Unassigned,South Dakota,US,,,"Unassigned, South Dakota, US",
-84090047,US,USA,840,90047,Unassigned,Tennessee,US,,,"Unassigned, Tennessee, US",
-84090048,US,USA,840,90048,Unassigned,Texas,US,,,"Unassigned, Texas, US",
-84090049,US,USA,840,90049,Unassigned,Utah,US,,,"Unassigned, Utah, US",
-84090050,US,USA,840,90050,Unassigned,Vermont,US,,,"Unassigned, Vermont, US",
-84090051,US,USA,840,90051,Unassigned,Virginia,US,,,"Unassigned, Virginia, US",
-84090053,US,USA,840,90053,Unassigned,Washington,US,,,"Unassigned, Washington, US",
-84090054,US,USA,840,90054,Unassigned,West Virginia,US,,,"Unassigned, West Virginia, US",
-84090055,US,USA,840,90055,Unassigned,Wisconsin,US,,,"Unassigned, Wisconsin, US",
-84090056,US,USA,840,90056,Unassigned,Wyoming,US,,,"Unassigned, Wyoming, US",
 84001001,US,USA,840,1001,Autauga,Alabama,US,32.53952745,-86.64408227,"Autauga, Alabama, US",55869
 84001003,US,USA,840,1003,Baldwin,Alabama,US,30.72774991,-87.72207058,"Baldwin, Alabama, US",223234
 84001005,US,USA,840,1005,Barbour,Alabama,US,31.868263,-85.3871286,"Barbour, Alabama, US",24686
@@ -250,32 +78,33 @@
 84002013,US,USA,840,2013,Aleutians East,Alaska,US,55.32222414,-161.9722021,"Aleutians East, Alaska, US",3337
 84002016,US,USA,840,2016,Aleutians West,Alaska,US,52.72541116,-110.4086433,"Aleutians West, Alaska, US",5634
 84002020,US,USA,840,2020,Anchorage,Alaska,US,61.14998174,-149.1426986,"Anchorage, Alaska, US",288000
-84002050,US,USA,840,2050,Bethel,Alaska,US,60.90980451,-159.8561831,"Bethel, Alaska, US",18386
+84002050,US,USA,840,2050,Bethel Census Area,Alaska,US,60.90980451,-159.8561831,"Bethel, Alaska, US",18386
 84002060,US,USA,840,2060,Bristol Bay,Alaska,US,58.74513976,-156.701064,"Bristol Bay, Alaska, US",836
 84002068,US,USA,840,2068,Denali,Alaska,US,63.67264044,-150.0076108,"Denali, Alaska, US",2097
 84002070,US,USA,840,2070,Dillingham,Alaska,US,59.79603738,-158.2381942,"Dillingham, Alaska, US",4916
-84002090,US,USA,840,2090,Fairbanks North Star,Alaska,US,64.80726247,-146.5692662,"Fairbanks North Star, Alaska, US",96849
+84002090,US,USA,840,2090,Fairbanks North Star Borough,Alaska,US,64.80726247,-146.5692662,"Fairbanks North Star, Alaska, US",96849
 84002100,US,USA,840,2100,Haines,Alaska,US,59.09893571,-135.4679843,"Haines, Alaska, US",2530
 84002105,US,USA,840,2105,Hoonah-Angoon,Alaska,US,58.29307365,-135.6424424,"Hoonah-Angoon, Alaska, US",2148
-84002110,US,USA,840,2110,Juneau,Alaska,US,58.45031811,-134.200436,"Juneau, Alaska, US",31974
-84002122,US,USA,840,2122,Kenai Peninsula,Alaska,US,60.24429722,-151.5388884,"Kenai Peninsula, Alaska, US",58708
-84002130,US,USA,840,2130,Ketchikan Gateway,Alaska,US,55.57445008,-130.975561,"Ketchikan Gateway, Alaska, US",13901
-84002150,US,USA,840,2150,Kodiak Island,Alaska,US,57.65529415,-153.7493579,"Kodiak Island, Alaska, US",12998
+84002110,US,USA,840,2110,Juneau City and Borough,Alaska,US,58.45031811,-134.200436,"Juneau, Alaska, US",31974
+84002122,US,USA,840,2122,Kenai Peninsula Borough,Alaska,US,60.24429722,-151.5388884,"Kenai Peninsula, Alaska, US",58708
+84002130,US,USA,840,2130,Ketchikan Gateway Borough,Alaska,US,55.57445008,-130.975561,"Ketchikan Gateway, Alaska, US",13901
+84002150,US,USA,840,2150,Kodiak Island Borough,Alaska,US,57.65529415,-153.7493579,"Kodiak Island, Alaska, US",12998
 84002158,US,USA,840,2158,Kusilvak,Alaska,US,62.1542916,-163.3967883,"Kusilvak, Alaska, US",8314
 84002164,US,USA,840,2164,Lake and Peninsula,Alaska,US,58.62403337,-156.2140589,"Lake and Peninsula, Alaska, US",1592
-84002170,US,USA,840,2170,Matanuska-Susitna,Alaska,US,62.31305045,-149.5741743,"Matanuska-Susitna, Alaska, US",108317
-84002180,US,USA,840,2180,Nome,Alaska,US,64.90320724,-164.0353804,"Nome, Alaska, US",10004
+84002170,US,USA,840,2170,Matanuska-Susitna Borough,Alaska,US,62.31305045,-149.5741743,"Matanuska-Susitna, Alaska, US",108317
+84002180,US,USA,840,2180,Nome Census Area,Alaska,US,64.90320724,-164.0353804,"Nome, Alaska, US",10004
 84002185,US,USA,840,2185,North Slope,Alaska,US,69.31479216,-153.4836093,"North Slope, Alaska, US",9832
 84002188,US,USA,840,2188,Northwest Arctic,Alaska,US,67.04919196,-159.7503946,"Northwest Arctic, Alaska, US",7621
-84002195,US,USA,840,2195,Petersburg,Alaska,US,57.13978948,-132.9540995,"Petersburg, Alaska, US",3266
-84002198,US,USA,840,2198,Prince of Wales-Hyder,Alaska,US,55.76261984,-133.0511621,"Prince of Wales-Hyder, Alaska, US",6203
-84002220,US,USA,840,2220,Sitka,Alaska,US,57.24124555,-135.3206587,"Sitka, Alaska, US",8493
+84002195,US,USA,840,2195,Petersburg Borough,Alaska,US,57.13978948,-132.9540995,"Petersburg, Alaska, US",3266
+84002198,US,USA,840,2198,Prince of Wales-Hyder Census Area,Alaska,US,55.76261984,-133.0511621,"Prince of Wales-Hyder, Alaska, US",6203
+84002220,US,USA,840,2220,Sitka Census Area,Alaska,US,57.24124555,-135.3206587,"Sitka, Alaska, US",8493
+84002220,US,USA,840,2220,Sitka City and Borough,Alaska,US,57.24124555,-135.3206587,"Sitka, Alaska, US",8493
 84002230,US,USA,840,2230,Skagway,Alaska,US,59.56149996,-135.3337748,"Skagway, Alaska, US",1183
-84002240,US,USA,840,2240,Southeast Fairbanks,Alaska,US,63.87692095,-143.2127643,"Southeast Fairbanks, Alaska, US",6893
+84002240,US,USA,840,2240,Southeast Fairbanks Census Area,Alaska,US,63.87692095,-143.2127643,"Southeast Fairbanks, Alaska, US",6893
 84002261,US,USA,840,2261,Valdez-Cordova,Alaska,US,61.47502768,-144.7126799,"Valdez-Cordova, Alaska, US",9202
 84002275,US,USA,840,2275,Wrangell,Alaska,US,56.3202004,-132.0583731,"Wrangell, Alaska, US",2502
 84002282,US,USA,840,2282,Yakutat,Alaska,US,59.8909808,-140.3601451,"Yakutat, Alaska, US",579
-84002290,US,USA,840,2290,Yukon-Koyukuk,Alaska,US,65.50815459,-151.3907387,"Yukon-Koyukuk, Alaska, US",5230
+84002290,US,USA,840,2290,Yukon-Koyukuk Census Area,Alaska,US,65.50815459,-151.3907387,"Yukon-Koyukuk, Alaska, US",5230
 84004001,US,USA,840,4001,Apache,Arizona,US,35.39465006,-109.4892383,"Apache, Arizona, US",71887
 84004003,US,USA,840,4003,Cochise,Arizona,US,31.87934684,-109.7516088,"Cochise, Arizona, US",125922
 84004005,US,USA,840,4005,Coconino,Arizona,US,35.83883429,-111.7707178,"Coconino, Arizona, US",143476
@@ -1982,7 +1811,7 @@
 84035007,US,USA,840,35007,Colfax,New Mexico,US,36.60569702,-104.6472674,"Colfax, New Mexico, US",11941
 84035009,US,USA,840,35009,Curry,New Mexico,US,34.57421077,-103.3468876,"Curry, New Mexico, US",48954
 84035011,US,USA,840,35011,De Baca,New Mexico,US,34.34274529,-104.4117842,"De Baca, New Mexico, US",1748
-84035013,US,USA,840,35013,Dona Ana,New Mexico,US,32.35275771,-106.8329387,"Dona Ana, New Mexico, US",218195
+84035013,US,USA,840,35013,Doña Ana,New Mexico,US,32.35275771,-106.8329387,"Doña Ana, New Mexico, US",218195
 84035015,US,USA,840,35015,Eddy,New Mexico,US,32.47167456,-104.3053527,"Eddy, New Mexico, US",58460
 84035017,US,USA,840,35017,Grant,New Mexico,US,32.73911281,-108.3827845,"Grant, New Mexico, US",26998
 84035019,US,USA,840,35019,Guadalupe,New Mexico,US,34.86319296,-104.790669,"Guadalupe, New Mexico, US",4300
@@ -3095,44 +2924,44 @@
 84051195,US,USA,840,51195,Wise,Virginia,US,36.9746148,-82.62410519,"Wise, Virginia, US",37383
 84051197,US,USA,840,51197,Wythe,Virginia,US,36.91582035,-81.07834059,"Wythe, Virginia, US",28684
 84051199,US,USA,840,51199,York,Virginia,US,37.24374789,-76.54412815,"York, Virginia, US",68280
-84051510,US,USA,840,51510,Alexandria,Virginia,US,38.814003,-77.08183073,"Alexandria, Virginia, US",159428
-84051520,US,USA,840,51520,Bristol,Virginia,US,36.6163024,-82.16359122,"Bristol, Virginia, US",16762
-84051530,US,USA,840,51530,Buena Vista,Virginia,US,37.73484642,-79.35296097,"Buena Vista, Virginia, US",6478
-84051540,US,USA,840,51540,Charlottesville,Virginia,US,38.03527919,-78.48569588,"Charlottesville, Virginia, US",47266
-84051550,US,USA,840,51550,Chesapeake,Virginia,US,36.67670048,-76.30545744,"Chesapeake, Virginia, US",244835
-84051570,US,USA,840,51570,Colonial Heights,Virginia,US,37.26420587,-77.39609676,"Colonial Heights, Virginia, US",17370
-84051580,US,USA,840,51580,Covington,Virginia,US,37.7824656,-79.98631446,"Covington, Virginia, US",5538
-84051590,US,USA,840,51590,Danville,Virginia,US,36.58022376,-79.40395668,"Danville, Virginia, US",40044
-84051595,US,USA,840,51595,Emporia,Virginia,US,36.69455571,-77.53406129,"Emporia, Virginia, US",5346
+84051510,US,USA,840,51510,Alexandria City,Virginia,US,38.814003,-77.08183073,"Alexandria, Virginia, US",159428
+84051520,US,USA,840,51520,Bristol City,Virginia,US,36.6163024,-82.16359122,"Bristol, Virginia, US",16762
+84051530,US,USA,840,51530,Buena Vista City,Virginia,US,37.73484642,-79.35296097,"Buena Vista, Virginia, US",6478
+84051540,US,USA,840,51540,Charlottesville City,Virginia,US,38.03527919,-78.48569588,"Charlottesville, Virginia, US",47266
+84051550,US,USA,840,51550,Chesapeake City,Virginia,US,36.67670048,-76.30545744,"Chesapeake, Virginia, US",244835
+84051570,US,USA,840,51570,Colonial Heights City,Virginia,US,37.26420587,-77.39609676,"Colonial Heights, Virginia, US",17370
+84051580,US,USA,840,51580,Covington City,Virginia,US,37.7824656,-79.98631446,"Covington, Virginia, US",5538
+84051590,US,USA,840,51590,Danville City,Virginia,US,36.58022376,-79.40395668,"Danville, Virginia, US",40044
+84051595,US,USA,840,51595,Emporia City,Virginia,US,36.69455571,-77.53406129,"Emporia, Virginia, US",5346
 84051600,US,USA,840,51600,Fairfax City,Virginia,US,38.85157547,-77.2977964,"Fairfax City, Virginia, US",24019
-84051610,US,USA,840,51610,Falls Church,Virginia,US,38.88485255,-77.17560759,"Falls Church, Virginia, US",14617
+84051610,US,USA,840,51610,Falls Church City,Virginia,US,38.88485255,-77.17560759,"Falls Church, Virginia, US",14617
 84051620,US,USA,840,51620,Franklin City,Virginia,US,36.6831435,-76.93859681,"Franklin City, Virginia, US",7967
-84051630,US,USA,840,51630,Fredericksburg,Virginia,US,38.2977863,-77.4922454,"Fredericksburg, Virginia, US",29036
-84051640,US,USA,840,51640,Galax,Virginia,US,36.66601852,-80.91703124,"Galax, Virginia, US",6347
-84051650,US,USA,840,51650,Hampton,Virginia,US,37.03513786,-76.35879121,"Hampton, Virginia, US",134510
-84051660,US,USA,840,51660,Harrisonburg,Virginia,US,38.43542574,-78.87536254,"Harrisonburg, Virginia, US",53016
-84051670,US,USA,840,51670,Hopewell,Virginia,US,37.29186313,-77.29754684,"Hopewell, Virginia, US",22529
-84051678,US,USA,840,51678,Lexington,Virginia,US,37.78258621,-79.44262866,"Lexington, Virginia, US",7446
-84051680,US,USA,840,51680,Lynchburg,Virginia,US,37.40021399,-79.19888138,"Lynchburg, Virginia, US",82168
-84051683,US,USA,840,51683,Manassas,Virginia,US,38.7464321,-77.48509905,"Manassas, Virginia, US",41085
-84051685,US,USA,840,51685,Manassas Park,Virginia,US,38.77058531,-77.44399307,"Manassas Park, Virginia, US",17478
+84051630,US,USA,840,51630,Fredericksburg City,Virginia,US,38.2977863,-77.4922454,"Fredericksburg, Virginia, US",29036
+84051640,US,USA,840,51640,Galax City,Virginia,US,36.66601852,-80.91703124,"Galax, Virginia, US",6347
+84051650,US,USA,840,51650,Hampton City,Virginia,US,37.03513786,-76.35879121,"Hampton, Virginia, US",134510
+84051660,US,USA,840,51660,Harrisonburg City,Virginia,US,38.43542574,-78.87536254,"Harrisonburg, Virginia, US",53016
+84051670,US,USA,840,51670,Hopewell City,Virginia,US,37.29186313,-77.29754684,"Hopewell, Virginia, US",22529
+84051678,US,USA,840,51678,Lexington City,Virginia,US,37.78258621,-79.44262866,"Lexington, Virginia, US",7446
+84051680,US,USA,840,51680,Lynchburg City,Virginia,US,37.40021399,-79.19888138,"Lynchburg, Virginia, US",82168
+84051683,US,USA,840,51683,Manassas City,Virginia,US,38.7464321,-77.48509905,"Manassas, Virginia, US",41085
+84051685,US,USA,840,51685,Manassas Park City,Virginia,US,38.77058531,-77.44399307,"Manassas Park, Virginia, US",17478
 84051690,US,USA,840,51690,Martinsville,Virginia,US,36.68212094,-79.86352771,"Martinsville, Virginia, US",12554
-84051700,US,USA,840,51700,Newport News,Virginia,US,37.08166899,-76.51754109,"Newport News, Virginia, US",179225
-84051710,US,USA,840,51710,Norfolk,Virginia,US,36.89934014,-76.26420872,"Norfolk, Virginia, US",242742
-84051720,US,USA,840,51720,Norton,Virginia,US,36.93357076,-82.62750411,"Norton, Virginia, US",3981
-84051730,US,USA,840,51730,Petersburg,Virginia,US,37.20530399,-77.39368102,"Petersburg, Virginia, US",31346
-84051735,US,USA,840,51735,Poquoson,Virginia,US,37.14259351,-76.35798148,"Poquoson, Virginia, US",12271
-84051740,US,USA,840,51740,Portsmouth,Virginia,US,36.85914825,-76.35971629,"Portsmouth, Virginia, US",94398
-84051750,US,USA,840,51750,Radford,Virginia,US,37.12222899,-80.5602732,"Radford, Virginia, US",18249
+84051700,US,USA,840,51700,Newport News City,Virginia,US,37.08166899,-76.51754109,"Newport News, Virginia, US",179225
+84051710,US,USA,840,51710,Norfolk City,Virginia,US,36.89934014,-76.26420872,"Norfolk, Virginia, US",242742
+84051720,US,USA,840,51720,Norton City,Virginia,US,36.93357076,-82.62750411,"Norton, Virginia, US",3981
+84051730,US,USA,840,51730,Petersburg City,Virginia,US,37.20530399,-77.39368102,"Petersburg, Virginia, US",31346
+84051735,US,USA,840,51735,Poquoson City,Virginia,US,37.14259351,-76.35798148,"Poquoson, Virginia, US",12271
+84051740,US,USA,840,51740,Portsmouth City,Virginia,US,36.85914825,-76.35971629,"Portsmouth, Virginia, US",94398
+84051750,US,USA,840,51750,Radford City,Virginia,US,37.12222899,-80.5602732,"Radford, Virginia, US",18249
 84051760,US,USA,840,51760,Richmond City,Virginia,US,37.53255773,-77.47966921,"Richmond City, Virginia, US",230436
 84051770,US,USA,840,51770,Roanoke City,Virginia,US,37.27791025,-79.96189766,"Roanoke City, Virginia, US",99143
-84051775,US,USA,840,51775,Salem,Virginia,US,37.2836193,-80.06219455,"Salem, Virginia, US",25301
-84051790,US,USA,840,51790,Staunton,Virginia,US,38.15965544,-79.05979937,"Staunton, Virginia, US",24932
-84051800,US,USA,840,51800,Suffolk,Virginia,US,36.70155394,-76.63603554,"Suffolk, Virginia, US",92108
-84051810,US,USA,840,51810,Virginia Beach,Virginia,US,36.73285734,-76.04566934,"Virginia Beach, Virginia, US",449974
-84051820,US,USA,840,51820,Waynesboro,Virginia,US,38.06451466,-78.90293905,"Waynesboro, Virginia, US",22630
-84051830,US,USA,840,51830,Williamsburg,Virginia,US,37.28131268,-76.70905141,"Williamsburg, Virginia, US",14954
-84051840,US,USA,840,51840,Winchester,Virginia,US,39.17054517,-78.17325058,"Winchester, Virginia, US",28078
+84051775,US,USA,840,51775,Salem City,Virginia,US,37.2836193,-80.06219455,"Salem, Virginia, US",25301
+84051790,US,USA,840,51790,Staunton City,Virginia,US,38.15965544,-79.05979937,"Staunton, Virginia, US",24932
+84051800,US,USA,840,51800,Suffolk City,Virginia,US,36.70155394,-76.63603554,"Suffolk, Virginia, US",92108
+84051810,US,USA,840,51810,Virginia Beach City,Virginia,US,36.73285734,-76.04566934,"Virginia Beach, Virginia, US",449974
+84051820,US,USA,840,51820,Waynesboro City,Virginia,US,38.06451466,-78.90293905,"Waynesboro, Virginia, US",22630
+84051830,US,USA,840,51830,Williamsburg City,Virginia,US,37.28131268,-76.70905141,"Williamsburg, Virginia, US",14954
+84051840,US,USA,840,51840,Winchester City,Virginia,US,39.17054517,-78.17325058,"Winchester, Virginia, US",28078
 84053001,US,USA,840,53001,Adams,Washington,US,46.98299757,-118.5601734,"Adams, Washington, US",19983
 84053003,US,USA,840,53003,Asotin,Washington,US,46.18894415,-117.2022851,"Asotin, Washington, US",22582
 84053005,US,USA,840,53005,Benton,Washington,US,46.23946995,-119.5120834,"Benton, Washington, US",204390

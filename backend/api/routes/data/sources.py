@@ -6,6 +6,8 @@ from fastapi import APIRouter, HTTPException, Request
 
 from backend.models.source import Source
 
+from backend.models.endpoints.sources import SourceResult
+
 ######################
 # ROUTER DECLARATION #
 ######################
@@ -16,13 +18,13 @@ router = APIRouter()
 ##########
 @router.get(
     "/sources",
-    response_model=object,
+    response_model=SourceResult,
     name="Sources",
     response_model_exclude_unset=True,
 )
 async def get_sources(
-    request: Request, source: Source = "nyt"
-):  # TODO: Do not hardcode default
-    # TODO: Stubbing
-
-    return None
+    request: Request
+):
+    return {
+        "sources": Source.list()
+    }

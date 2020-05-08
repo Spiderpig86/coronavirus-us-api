@@ -4,19 +4,20 @@ Concrete implementation of the Location model.
 """
 from backend.utils.country_population import COUNTRY_POPULATION
 
+
 class Location:
     def __init__(
         self, id, country, state, county, fips, timelines, last_updated, latest
     ):
         self.id = id
         self.country = country
-        self.state = state
-        self.county = county
+        self.state = state.strip()
+        self.county = county.strip()
         self.fips = fips
         self.timelines = timelines
         self.last_updated = last_updated
         self.latest = latest
-        self.properties = None # This is set later
+        self.properties = None  # This is set later
 
     @property
     def state_population(self):
@@ -71,7 +72,7 @@ class Location:
 
         if include_timelines:
             response["timelines"] = {k: v.to_dict() for k, v in self.timelines.items()}
-        
+
         if properties:
             response["properties"] = self.properties
 

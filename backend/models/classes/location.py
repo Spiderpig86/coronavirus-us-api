@@ -45,11 +45,12 @@ class Location:
         """
         self.properties = properties
 
-    def to_dict(self, include_timelines=False):
+    def to_dict(self, include_timelines=False, properties=False):
         """Transforms location model to dictionary representation.
         
         Keyword Arguments:
             include_timelines {bool} -- flag to toggle inclusion of historical information (default: {False})
+            properties {bool} -- flag to toggle inclusion of location properties (default: {False})
         
         Returns:
             {dict} -- dictionary representation of Location class.
@@ -70,5 +71,8 @@ class Location:
 
         if include_timelines:
             response["timelines"] = {k: v.to_dict() for k, v in self.timelines.items()}
+        
+        if properties:
+            response["properties"] = self.properties
 
         return response

@@ -7,13 +7,10 @@ from backend.utils.country_population import COUNTRY_POPULATION
 
 class Location:
     def __init__(
-        self, id, country, state, county, fips, timelines, last_updated, latest
+        self, id, country, timelines, last_updated, latest
     ):
         self.id = id
-        self.country = country
-        self.state = state.strip()
-        self.county = county.strip()
-        self.fips = fips
+        self.country = country.strip()
         self.timelines = timelines
         self.last_updated = last_updated
         self.latest = latest
@@ -60,14 +57,8 @@ class Location:
         response = {
             "id": self.id,
             "country": self.country,
-            "state": self.state,
-            "county": self.county,
-            "fips": self.fips,
             "last_updated": self.last_updated,
             "latest": self.latest,
-            # Properties
-            "state_population": self.state_population,
-            "country_population": self.country_population,
         }
 
         if include_timelines:
@@ -77,3 +68,29 @@ class Location:
             response["properties"] = self.properties
 
         return response
+
+class NytLocation(Location):
+
+    def __init__(self, id, country, timelines, last_updated, latest, state, county, fips):
+        super().__init__(id, country, timelines, last_updated, latest)
+        self.state = state
+        self.county = county
+        self.fips = fips
+
+    # TODO: Update to_dict
+
+class JhuLocation(Location):
+
+    def __init__(self, id, country, timelines, last_updated, latest, state, uid, iso2, iso3, code3, fips, admin2, latitude, longitude):
+        super().__init__(id, country, timelines, last_updated, latest)
+        self.state = state
+        self.uid = uid
+        self.iso2 = iso2
+        self.iso3 = iso3
+        self.code3 = code3
+        self.fips = fips
+        self.admin2 = admin2
+        self.latitude = latitude
+        self.longitude = longitude
+
+    # TODO: Update to_dict

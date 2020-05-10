@@ -11,6 +11,7 @@ class Category(BaseModel):
     history: Dict[str, int] = {}  # https://docs.python.org/3/library/typing.html
     latest: int
 
+
 class Timelines(BaseModel):
     confirmed: Category
     deaths: Category

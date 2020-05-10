@@ -17,6 +17,8 @@ APP_DEBUG = CONFIG.get("fastapi.debug")
 API_PREFIX = "/api"
 API_TAG_HEALTH = "health"
 API_TAG_DATA = "data"
+API_TAG_COUNTIES = "counties"
+API_TAG_STATES = "states"
 
 # Configuration
 CONFIG_PATH = "config/config.yml"
@@ -25,7 +27,7 @@ CONFIG_FASTAPI_DEBUG_KEY = "debug"
 
 # Data Endpoints
 DATA_ENDPOINTS = {
-    "NytDataService": "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv",
-    "NyStatesService": "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv",
+    "NytDataService__Counties": "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv",
+    "NytDataService__States": "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv",
     "LocationDataService": "http://localhost:5000",
 }

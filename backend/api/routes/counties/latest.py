@@ -26,7 +26,7 @@ async def get_latest(
     request: Request, source: Source = "nyt"
 ):  # TODO: Do not hardcode default
     data_source_service = request.state.data_source
-    location_data, last_updated = await data_source_service.get_data()
+    location_data, last_updated = await data_source_service.get_county_data()
 
     latest_dict = Statistics(
         confirmed=sum(

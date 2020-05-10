@@ -16,9 +16,9 @@ from backend.models.statistics import Statistics
 class Location(BaseModel):
     id: str  # UUID
     country: str
-    state: str
-    county: str
-    fips: str
+    state: Optional[str]
+    county: Optional[str]
+    fips: Optional[str]
     timelines: Optional[Timelines]
     last_updated: datetime
     latest: Statistics

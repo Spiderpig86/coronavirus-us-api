@@ -1,4 +1,4 @@
-"""New York Times Information Retriever for Counties
+"""New York Times Information Retriever
 
 Fetches live information for Coronanvirus statistics from the New York Times.
 Data is regularly updated here: https://github.com/nytimes/covid-19-data
@@ -15,7 +15,7 @@ from loguru import logger
 from backend.core.config.constants import DATA_ENDPOINTS
 from backend.core.utils import webclient
 from backend.models.classes.category import Category
-from backend.models.classes.location import Location
+from backend.models.classes.location import NytLocation
 from backend.models.classes.statistics import Statistics
 from backend.models.history import Timelines
 
@@ -25,17 +25,29 @@ class NytDataService(object):
         self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
 
     @cached(cache=TTLCache(maxsize=1024, ttl=3600))
-    async def get_data(self):
+    async def get_state_data(self):
+        ENDPOINT = DATA_ENDPOINTS.get(f"{self.__class__.__name__}__States")
+        return await self._get_data(ENDPOINT)
+
+    @cached(cache=TTLCache(maxsize=1024, ttl=3600))
+    async def get_county_data(self):
+        ENDPOINT = DATA_ENDPOINTS.get(f"{self.__class__.__name__}__Counties")
+        return await self._get_data(ENDPOINT)
+
+    async def _get_data(self, endpoint: str):
         """Method that retrieves data from the New York Times.
         
+        Arguments:
+            endpoint {str} -- string that represents endpoint to get data from.
+
         Returns:
             Location[], str -- returns list of location stats and the last updated date.
         """
         csv_data = ""
-        logger.info("Fetching NYT county data...")
+        logger.info("Fetching NYT data...")
 
         # https://docs.aiohttp.org/en/stable/client_quickstart.html#make-a-request
-        async with webclient.WEBCLIENT.get(self.ENDPOINT) as response:
+        async with webclient.WEBCLIENT.get(endpoint) as response:
             csv_data = await response.text()
 
         parsed_data = list(csv.DictReader(csv_data.splitlines()))
@@ -67,7 +79,7 @@ class NytDataService(object):
             )
 
             locations.append(
-                Location(
+                NytLocation(
                     id=self._location_id(location_tuple),
                     country="US",
                     county=location_tuple[0],
@@ -99,7 +111,11 @@ class NytDataService(object):
         location_result = {}
 
         for timestamp in csv_data:
-            location_id = (timestamp["county"], timestamp["state"], timestamp["fips"])
+            location_id = (
+                self._get_field_from_map(timestamp, "county"),
+                self._get_field_from_map(timestamp, "state"),
+                self._get_field_from_map(timestamp, "fips"),
+            )
 
             updated_date = timestamp["date"]
             confirmed = timestamp["cases"]
@@ -115,10 +131,8 @@ class NytDataService(object):
             location_result[location_id]["deaths"][updated_date] = int(deaths or 0)
         return location_result
 
-    def _location_id(
-        self, tuple_id: tuple
-    ):  # TODO: Refactor to util function for multi-field id
-        """Generates string ID given tuple containing county, state and FIPS code.
+    def _location_id(self, tuple_id: tuple):
+        """Generates string ID given tuple containing a variable number of fields.
         
         Arguments:
             tuple_id {tuple} -- tuple containing county, state and FIPS code.
@@ -126,4 +140,16 @@ class NytDataService(object):
         Returns:
             str -- string ID representation.
         """
-        return f"{tuple_id[0]}@{tuple_id[1]}@{tuple_id[2]}"
+        return "@".join([item for item in tuple_id])
+
+    def _get_field_from_map(self, data, field) -> str:  # TODO: Extract to utils
+        """Tries to get value from a map by key. Otherwise, returns empty string.
+
+        Arguments:
+            data {map} -- the map to query.
+            field {str} -- the field we want to get.
+
+        Returns:
+            str -- string value at field.
+        """
+        return data[field] if field in data else ""

@@ -6,9 +6,7 @@ from backend.utils.country_population import COUNTRY_POPULATION
 
 
 class Location:
-    def __init__(
-        self, id, country, timelines, last_updated, latest
-    ):
+    def __init__(self, id, country, timelines, last_updated, latest):
         self.id = id
         self.country = country.strip()
         self.timelines = timelines
@@ -69,19 +67,46 @@ class Location:
 
         return response
 
-class NytLocation(Location):
 
-    def __init__(self, id, country, timelines, last_updated, latest, state, county, fips):
+class NytLocation(Location):
+    def __init__(
+        self, id, country, timelines, last_updated, latest, state, county, fips
+    ):
         super().__init__(id, country, timelines, last_updated, latest)
         self.state = state
         self.county = county
         self.fips = fips
 
     # TODO: Update to_dict
+    def to_dict(self, include_timelines=False, properties=False):
+        response = super().to_dict(include_timelines, properties)
+
+        return {
+            **response,
+            "state": self.state,
+            "county": self.county,
+            "fips": self.fips,
+        }
+
 
 class JhuLocation(Location):
-
-    def __init__(self, id, country, timelines, last_updated, latest, state, uid, iso2, iso3, code3, fips, admin2, latitude, longitude):
+    def __init__(
+        self,
+        id,
+        country,
+        timelines,
+        last_updated,
+        latest,
+        state,
+        uid,
+        iso2,
+        iso3,
+        code3,
+        fips,
+        admin2,
+        latitude,
+        longitude,
+    ):
         super().__init__(id, country, timelines, last_updated, latest)
         self.state = state
         self.uid = uid

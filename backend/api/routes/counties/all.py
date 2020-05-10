@@ -39,7 +39,7 @@ async def get_all(
 
     # Fetch data
     data_source_service = request.state.data_source
-    location_data, _ = await data_source_service.get_data()
+    location_data, _ = await data_source_service.get_county_data()
 
     # TODO: Refactor filtering
     for key, value in params_dict.items():

@@ -1,4 +1,4 @@
-"""New York Times Information Retriever
+"""New York Times Information Retriever for Counties
 
 Fetches live information for Coronanvirus statistics from the New York Times.
 Data is regularly updated here: https://github.com/nytimes/covid-19-data
@@ -32,7 +32,7 @@ class NytDataService(object):
             Location[], str -- returns list of location stats and the last updated date.
         """
         csv_data = ""
-        logger.info("Fetching NYT data...")
+        logger.info("Fetching NYT county data...")
 
         # https://docs.aiohttp.org/en/stable/client_quickstart.html#make-a-request
         async with webclient.WEBCLIENT.get(self.ENDPOINT) as response:
@@ -96,7 +96,6 @@ class NytDataService(object):
         Returns:
             {Dict} -- dictionary containing timeseries for confirmed cases and deaths grouped by location.
         """
-
         location_result = {}
 
         for timestamp in csv_data:

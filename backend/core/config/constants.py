@@ -26,5 +26,6 @@ CONFIG_FASTAPI_DEBUG_KEY = "debug"
 # Data Endpoints
 DATA_ENDPOINTS = {
     "NytDataService": "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv",
+    "NyStatesService": "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv",
     "LocationDataService": "http://localhost:5000",
 }

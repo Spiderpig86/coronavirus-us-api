@@ -6,6 +6,7 @@ from typing import Dict, Optional
 
 from pydantic import BaseModel
 
+
 class Category(BaseModel):
     history: Dict[str, int] = {}  # https://docs.python.org/3/library/typing.html
     latest: int

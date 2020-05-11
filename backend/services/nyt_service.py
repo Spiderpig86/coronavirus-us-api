@@ -53,7 +53,7 @@ class NytDataService(object):
         parsed_data = list(csv.DictReader(csv_data.splitlines()))
 
         _start = time.time() * 1000.0
-        grouped_locations = self.group_locations(parsed_data)
+        grouped_locations = self._group_locations(parsed_data)
         _end = time.time() * 1000.0
         print(f"Elapsed grouped_locations {str(_end-_start)}ms")
 
@@ -96,10 +96,10 @@ class NytDataService(object):
         _end = time.time() * 1000.0
         print(f"Elapsed loop {str(_end-_start)}ms")
 
-        logger.info("Finished transforming results.")
+        logger.info("Finished transforming NYT results.")
         return locations, last_updated
 
-    def group_locations(self, csv_data: List):
+    def _group_locations(self, csv_data: List):
         """Groups statistics by given county and state.
         
         Arguments:

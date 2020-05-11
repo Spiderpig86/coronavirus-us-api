@@ -18,6 +18,7 @@ motor = "==2.0.0"
 gunicorn = "*"
 pydantic = "*"
 pyyaml = "*"
+python-dateutil = "*"
 
 [requires]
 python_version = "3.7"

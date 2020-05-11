@@ -77,7 +77,6 @@ class NytLocation(Location):
         self.county = county
         self.fips = fips
 
-    # TODO: Update to_dict
     def to_dict(self, include_timelines=False, properties=False):
         response = super().to_dict(include_timelines, properties)
 
@@ -118,4 +117,18 @@ class JhuLocation(Location):
         self.latitude = latitude
         self.longitude = longitude
 
-    # TODO: Update to_dict
+    def to_dict(self, include_timelines=False, properties=False):
+        response = super().to_dict(include_timelines, properties)
+
+        return {
+            **response,
+            "uid": self.uid,
+            "iso2": self.ios2,
+            "iso3": self.iso3,
+            "code3": self.code3,
+            "state": self.state,
+            "county": self.admin2,
+            "fips": self.fips,
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+        }

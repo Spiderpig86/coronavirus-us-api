@@ -7,7 +7,7 @@ from backend.services.jhu_service import JhuDataService
 from backend.services.location_data_service import LocationDataService
 from backend.services.nyt_service import NytDataService
 
-DATA_SOURCE_CONTAINER = {"nyt": NytDataService(), "jhu": JhuDataService}
+DATA_SOURCE_CONTAINER = {"nyt": NytDataService(), "jhu": JhuDataService()}
 LOCATION_DATA_SERVICE = LocationDataService()
 
 

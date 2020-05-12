@@ -29,6 +29,6 @@ CONFIG_FASTAPI_DEBUG_KEY = "debug"
 DATA_ENDPOINTS = {
     "NytDataService__Counties": "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv",
     "NytDataService__States": "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv",
-    "JhuDataService": "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/csse_covid_19_data/csse_covid_19_time_series/",
+    "JhuDataService": "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/csse_covid_19_data/csse_covid_19_time_series",
     "LocationDataService": "http://localhost:5000",
 }

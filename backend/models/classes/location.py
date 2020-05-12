@@ -123,7 +123,7 @@ class JhuLocation(Location):
         return {
             **response,
             "uid": self.uid,
-            "iso2": self.ios2,
+            "iso2": self.iso2,
             "iso3": self.iso3,
             "code3": self.code3,
             "state": self.state,

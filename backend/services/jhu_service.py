@@ -29,7 +29,50 @@ class JhuDataService(object):
     # TODO: Get states
     @cached(cache=TTLCache(maxsize=1024, ttl=3600))
     async def get_state_data(self):
-        return None
+        results_by_county, last_updated = await self._get_data(self.ENDPOINT)
+
+        # Aggregate results on a per state basis
+        state_results = {}
+        for result in results_by_county:
+            id = result.id.split("@")[:2]
+
+            if not id[1] in state_results:
+                # TODO: Fill missing fields with data from location properties API
+                state_results[id[1]] = JhuLocation(
+                    id=self._location_id((id[0], id[1])),
+                    uid="",
+                    iso2="",
+                    iso3="",
+                    code3="",
+                    fips="",
+                    admin2="",
+                    state=result.state,
+                    country="",
+                    latitude="",
+                    longitude="",
+                    last_updated=last_updated,
+                    timelines={"confirmed": {}, "deaths": {}},
+                    latest=Statistics(-1, -1),
+                )
+
+            jhu_location = state_results[id[1]]
+            for confirmed_date, count in result.timelines["confirmed"].category.items():
+                value = jhu_location.timelines["confirmed"].get(confirmed_date, 0)
+                jhu_location.timelines["confirmed"][confirmed_date] = value + count
+
+            for deaths_date, count in result.timelines["deaths"].category.items():
+                value = jhu_location.timelines["deaths"].get(deaths_date, 0)
+                jhu_location.timelines["deaths"][deaths_date] = value + count
+
+        # Remap dicts to Category
+        for _, state in state_results.items():
+            state.timelines["confirmed"] = Category(state.timelines["confirmed"])
+            state.timelines["deaths"] = Category(state.timelines["deaths"])
+            state.latest = Statistics(
+                state.timelines["confirmed"].latest, state.timelines["deaths"].latest
+            ).to_dict()
+
+        return state_results.values(), last_updated
 
     async def get_county_data(self):
         return await self._get_data(self.ENDPOINT)
@@ -118,9 +161,9 @@ class JhuDataService(object):
 
         for timestamp in parsed_data:
             location_id = location_id = (
-                self._get_field_from_map(timestamp, "Admin2"),
+                self._get_field_from_map(timestamp, "Country_Region"),
                 self._get_field_from_map(timestamp, "Province_State"),
-                self._get_field_from_map(timestamp, "FIPS"),
+                self._get_field_from_map(timestamp, "Admin2"),
             )
             dates = self._filter_date_columns(timestamp.items())
 

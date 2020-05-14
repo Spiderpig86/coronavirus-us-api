@@ -47,7 +47,7 @@ class JhuDataService(object):
                     fips="",
                     admin2="",
                     state=result.state,
-                    country="",
+                    country=result.country,
                     latitude="",
                     longitude="",
                     last_updated=last_updated,

@@ -19,6 +19,12 @@ class Location(BaseModel):
     state: Optional[str]
     county: Optional[str]
     fips: Optional[str]
+    uid: Optional[str]
+    iso2: Optional[str]
+    iso3: Optional[str]
+    code3: Optional[str]
+    latitude: Optional[str]
+    longitude: Optional[str]
     timelines: Optional[Timelines]
     last_updated: datetime
     latest: Statistics

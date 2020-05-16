@@ -23,62 +23,8 @@ from backend.models.history import Timelines
 
 
 class JhuDataService(object):
-    def __init__(self):
-        self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
-
-    # TODO: Get states
     @cached(cache=TTLCache(maxsize=1024, ttl=3600))
-    async def get_state_data(self):
-        results_by_county, last_updated = await self._get_data(self.ENDPOINT)
-
-        # Aggregate results on a per state basis
-        state_results = {}
-        for result in results_by_county:
-            id = result.id.split("@")[:2]
-
-            if not id[1] in state_results:
-                # TODO: Fill missing fields with data from location properties API
-                state_results[id[1]] = JhuLocation(
-                    id=self._location_id((id[0], id[1])),
-                    uid="",
-                    iso2="",
-                    iso3="",
-                    code3="",
-                    fips="",
-                    admin2="",
-                    state=result.state,
-                    country=result.country,
-                    latitude="",
-                    longitude="",
-                    last_updated=last_updated,
-                    timelines={"confirmed": {}, "deaths": {}},
-                    latest=Statistics(-1, -1),
-                )
-
-            jhu_location = state_results[id[1]]
-            for confirmed_date, count in result.timelines["confirmed"].category.items():
-                value = jhu_location.timelines["confirmed"].get(confirmed_date, 0)
-                jhu_location.timelines["confirmed"][confirmed_date] = value + count
-
-            for deaths_date, count in result.timelines["deaths"].category.items():
-                value = jhu_location.timelines["deaths"].get(deaths_date, 0)
-                jhu_location.timelines["deaths"][deaths_date] = value + count
-
-        # Remap dicts to Category
-        for _, state in state_results.items():
-            state.timelines["confirmed"] = Category(state.timelines["confirmed"])
-            state.timelines["deaths"] = Category(state.timelines["deaths"])
-            state.latest = Statistics(
-                state.timelines["confirmed"].latest, state.timelines["deaths"].latest
-            ).to_dict()
-
-        return state_results.values(), last_updated
-
-    async def get_county_data(self):
-        return await self._get_data(self.ENDPOINT)
-
-    @cached(cache=TTLCache(maxsize=1024, ttl=3600))
-    async def _get_data(self, endpoint: str):
+    async def get_data(self, endpoint: str):
         """Method that retrieves data from JHU CSSEGSI.
         
         Arguments:
@@ -89,12 +35,14 @@ class JhuDataService(object):
         """
         location_result = {}  # Store the final map of datapoints
         _start = time.time() * 1000.0
-        location_result = await self._get_by_stat("confirmed", location_result)
+        location_result = await self._get_by_stat(
+            endpoint, "confirmed", location_result
+        )
         _end = time.time() * 1000.0
         print(f"Elapsed grouped_locations {str(_end-_start)}ms")
 
         _start = time.time() * 1000.0
-        location_result = await self._get_by_stat("deaths", location_result)
+        location_result = await self._get_by_stat(endpoint, "deaths", location_result)
         _end = time.time() * 1000.0
         print(f"Elapsed grouped_locations {str(_end-_start)}ms")
 
@@ -121,7 +69,7 @@ class JhuDataService(object):
 
             locations.append(
                 JhuLocation(
-                    id=self._location_id(location_tuple),
+                    id=self.location_id(location_tuple),
                     uid=events["UID"],
                     iso2=events["iso2"],
                     iso3=events["iso3"],
@@ -144,11 +92,11 @@ class JhuDataService(object):
         return locations, last_updated
 
     async def _get_by_stat(
-        self, stat: str, location_result: dict
+        self, endpoint: str, stat: str, location_result: dict
     ):  # TODO: Change stat to enum
 
         # TODO: Log
-        endpoint = f"{self.ENDPOINT}/time_series_covid19_{stat}_US.csv"
+        endpoint = f"{endpoint}/time_series_covid19_{stat}_US.csv"
 
         csv_data = ""
         logger.info("Fetching JHU data...")
@@ -192,7 +140,7 @@ class JhuDataService(object):
 
         return location_result
 
-    def _location_id(self, tuple_id: tuple):
+    def location_id(self, tuple_id: tuple):
         """Generates string ID given tuple containing a variable number of fields.
         
         Arguments:

@@ -12,7 +12,6 @@ from asyncache import cached
 from cachetools import TTLCache
 from loguru import logger
 
-from backend.core.config.constants import DATA_ENDPOINTS
 from backend.core.utils import webclient
 from backend.models.classes.category import Category
 from backend.models.classes.location import NytLocation
@@ -21,20 +20,8 @@ from backend.models.history import Timelines
 
 
 class NytDataService(object):
-    def __init__(self):
-        self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
-
     @cached(cache=TTLCache(maxsize=1024, ttl=3600))
-    async def get_state_data(self):
-        ENDPOINT = DATA_ENDPOINTS.get(f"{self.__class__.__name__}__States")
-        return await self._get_data(ENDPOINT)
-
-    @cached(cache=TTLCache(maxsize=1024, ttl=3600))
-    async def get_county_data(self):
-        ENDPOINT = DATA_ENDPOINTS.get(f"{self.__class__.__name__}__Counties")
-        return await self._get_data(ENDPOINT)
-
-    async def _get_data(self, endpoint: str):
+    async def get_data(self, endpoint: str):
         """Method that retrieves data from the New York Times.
         
         Arguments:

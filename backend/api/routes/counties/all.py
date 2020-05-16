@@ -71,9 +71,7 @@ async def get_all(
     county_data_map = None
     if properties:
         location_data_service = request.state.location_data_service
-        location_properties = await location_data_service.get_data()
-
-        county_data_map = location_properties["counties"]
+        county_data_map = await location_data_service.get_county_data()
 
     locations_response = []
     for location in location_data:

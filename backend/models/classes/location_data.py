@@ -8,7 +8,7 @@ from backend.models.classes.coordinates import Coordinates
 
 
 @dataclass
-class LocationData(object):
+class LocationProperties(object):
     UID: str = None
     iso2: str = None
     iso3: str = None
@@ -17,7 +17,7 @@ class LocationData(object):
     admin2: str = None
     state: str = None
     country: str = None
-    coordinates: Coordinates = None
+    coordinates: Coordinates = Coordinates(None, None)
     combined_key: str = None
     population: int = 0
 

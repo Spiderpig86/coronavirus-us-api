@@ -113,7 +113,7 @@ class JhuLocation(Location):
         self.iso3 = iso3
         self.code3 = code3
         self.fips = fips
-        self.admin2 = admin2
+        self.county = admin2
         self.latitude = latitude
         self.longitude = longitude
 
@@ -127,7 +127,7 @@ class JhuLocation(Location):
             "iso3": self.iso3,
             "code3": self.code3,
             "state": self.state,
-            "county": self.admin2,
+            "county": self.county,
             "fips": self.fips,
             "latitude": self.latitude,
             "longitude": self.longitude,

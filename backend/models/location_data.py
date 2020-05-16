@@ -10,13 +10,13 @@ from backend.models.coordinates import Coordinates
 from backend.models.source import Source
 
 
-class LocationData(BaseModel):
+class LocationProperties(BaseModel):
     UID: str
     iso2: str
     iso3: str
     code3: str
     fips: str
-    admin2: str
+    county: str
     state: str
     country: str
     coordinates: Coordinates

@@ -9,7 +9,7 @@ from typing import Dict, List, Optional
 from pydantic import BaseModel
 
 from backend.models.history import Timelines
-from backend.models.location_data import LocationData
+from backend.models.location_data import LocationProperties
 from backend.models.statistics import Statistics
 
 
@@ -22,10 +22,11 @@ class Location(BaseModel):
     uid: Optional[str]
     iso2: Optional[str]
     iso3: Optional[str]
+    admin2: Optional[str]
     code3: Optional[str]
     latitude: Optional[str]
     longitude: Optional[str]
     timelines: Optional[Timelines]
     last_updated: datetime
     latest: Statistics
-    properties: Optional[LocationData]
+    properties: Optional[LocationProperties]

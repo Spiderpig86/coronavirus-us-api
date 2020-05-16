@@ -11,21 +11,15 @@ from loguru import logger
 from backend.core.config.constants import DATA_ENDPOINTS
 from backend.core.utils import webclient
 from backend.models.classes.coordinates import Coordinates
-from backend.models.classes.location_data import LocationData
+from backend.models.classes.location_data import LocationProperties
 
 
 class LocationDataService(object):
     def __init__(self):
         self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
 
-    async def get_data(self):
-        return {
-            "counties": await self._get_county_data(),
-            "states": await self._get_state_data(),
-        }
-
     @cached(cache=TTLCache(maxsize=1024, ttl=36000))
-    async def _get_state_data(self):
+    async def get_state_data(self):
         csv_data = ""
 
         logger.info("Fetching CSV data for states...")
@@ -40,7 +34,7 @@ class LocationDataService(object):
         state_map = {}
 
         for state_data in parsed_data:
-            state_map[self._state_data_id(state_data)] = LocationData(
+            state_map[self._state_data_id(state_data)] = LocationProperties(
                 state_data["UID"],
                 state_data["iso2"],
                 state_data["iso3"],
@@ -57,7 +51,7 @@ class LocationDataService(object):
         return state_map
 
     @cached(cache=TTLCache(maxsize=1024, ttl=36000))
-    async def _get_county_data(self):
+    async def get_county_data(self):
         csv_data = ""
 
         logger.info("Fetching CSV data for counties...")
@@ -72,7 +66,7 @@ class LocationDataService(object):
         county_map = {}
 
         for county_data in parsed_data:
-            county_map[self._county_data_id(county_data)] = LocationData(
+            county_map[self._county_data_id(county_data)] = LocationProperties(
                 county_data["UID"],
                 county_data["iso2"],
                 county_data["iso3"],

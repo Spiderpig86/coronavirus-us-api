@@ -67,21 +67,16 @@ async def get_all(
         ),
     )
 
-    county_data_map = None
+    state_data_map = None
     if properties:
         location_data_service = request.state.location_data_service
-        location_properties = await location_data_service.get_data()
-
-        county_data_map = location_properties["counties"]
+        state_data_map = await location_data_service.get_state_data()
 
     locations_response = []
     for location in location_data:
-        if properties and location.county != "Unknown":
-            location.set_properties(
-                county_data_map[
-                    (location.county.lower(), location.state, location.country)
-                ].to_dict()
-            )
+        key = (location.state, location.country)
+        if properties and key in state_data_map:
+            location.set_properties(state_data_map[key].to_dict())
         result = location.to_dict(timelines, properties)
 
         locations_response.append(result)

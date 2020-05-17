@@ -42,7 +42,7 @@ class NytDataService(object):
         _start = time.time() * 1000.0
         grouped_locations = self._group_locations(parsed_data)
         _end = time.time() * 1000.0
-        print(f"Elapsed grouped_locations {str(_end-_start)}ms")
+        logger.info(f"Elapsed grouped_locations {str(_end-_start)}ms")
 
         locations = []
         last_updated = datetime.utcnow().isoformat() + "Z"  # TODO: Util function
@@ -81,7 +81,7 @@ class NytDataService(object):
             )
 
         _end = time.time() * 1000.0
-        print(f"Elapsed loop {str(_end-_start)}ms")
+        logger.info(f"Elapsed loop {str(_end-_start)}ms")
 
         logger.info("Finished transforming NYT results.")
         return locations, last_updated

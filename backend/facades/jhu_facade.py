@@ -3,6 +3,8 @@
 Class that interfaces with jhu_service.py to aggregate data.
 """
 
+import asyncio
+
 from backend.core.config.constants import DATA_ENDPOINTS
 from backend.facades.facade import DataSourceFacade
 from backend.models.classes.category import Category
@@ -18,14 +20,15 @@ class JhuFacade(DataSourceFacade):
         self.DATA_SERVICE = JhuDataService()
         self.LOCATION_SERVICE = LocationDataService()
         self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
-        
+
     async def get_state_data(self):
-        results_by_county, last_updated = await self.DATA_SERVICE.get_data(
-            self.ENDPOINT
+        promises = await asyncio.gather(
+            self.DATA_SERVICE.get_data(self.ENDPOINT),
+            self.LOCATION_SERVICE.get_state_data(),
         )
 
-        # TODO: Get location properties
-        state_data = await self.LOCATION_SERVICE.get_state_data()
+        results_by_county, last_updated = promises[0]
+        state_data = promises[1]
 
         # Aggregate results on a per state basis
         state_results = {}
@@ -33,7 +36,7 @@ class JhuFacade(DataSourceFacade):
             id = result.id.split("@")[:2]
             key = (id[1], id[0])
 
-            if not key in state_results:
+            if key not in state_results:
                 properties_for_state = (
                     state_data[key] if key in state_data else LocationProperties()
                 )

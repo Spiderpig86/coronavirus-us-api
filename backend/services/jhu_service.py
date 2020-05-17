@@ -39,12 +39,12 @@ class JhuDataService(object):
             endpoint, "confirmed", location_result
         )
         _end = time.time() * 1000.0
-        print(f"Elapsed grouped_locations {str(_end-_start)}ms")
+        logger.info(f"Elapsed grouped_locations {str(_end-_start)}ms")
 
         _start = time.time() * 1000.0
         location_result = await self._get_by_stat(endpoint, "deaths", location_result)
         _end = time.time() * 1000.0
-        print(f"Elapsed grouped_locations {str(_end-_start)}ms")
+        logger.info(f"Elapsed grouped_locations {str(_end-_start)}ms")
 
         locations = []
         last_updated = datetime.utcnow().isoformat() + "Z"  # TODO: Util function

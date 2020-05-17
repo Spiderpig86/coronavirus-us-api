@@ -19,6 +19,7 @@ gunicorn = "*"
 pydantic = "*"
 pyyaml = "*"
 python-dateutil = "*"
+asyncio = "*"
 
 [requires]
 python_version = "3.7"

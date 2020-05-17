@@ -3,23 +3,26 @@
 Class that interfaces with jhu_service.py to aggregate data.
 """
 
-from backend.services.jhu_service import JhuDataService
-from backend.models.classes.location import JhuLocation
-from backend.models.classes.category import Category
-from backend.models.classes.statistics import Statistics
-from backend.services.location_data_service import LocationDataService
-from backend.models.classes.location_data import LocationProperties
 from backend.core.config.constants import DATA_ENDPOINTS
+from backend.facades.facade import DataSourceFacade
+from backend.models.classes.category import Category
+from backend.models.classes.location import JhuLocation
+from backend.models.classes.location_data import LocationProperties
+from backend.models.classes.statistics import Statistics
+from backend.services.jhu_service import JhuDataService
+from backend.services.location_data_service import LocationDataService
 
-class JhuFacade(object):
 
+class JhuFacade(DataSourceFacade):
     def __init__(self):
         self.DATA_SERVICE = JhuDataService()
-        self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
         self.LOCATION_SERVICE = LocationDataService()
-
+        self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
+        
     async def get_state_data(self):
-        results_by_county, last_updated = await self.DATA_SERVICE.get_data(self.ENDPOINT)
+        results_by_county, last_updated = await self.DATA_SERVICE.get_data(
+            self.ENDPOINT
+        )
 
         # TODO: Get location properties
         state_data = await self.LOCATION_SERVICE.get_state_data()
@@ -31,9 +34,11 @@ class JhuFacade(object):
             key = (id[1], id[0])
 
             if not key in state_results:
-                properties_for_state = state_data[key] if key in state_data else LocationProperties()
+                properties_for_state = (
+                    state_data[key] if key in state_data else LocationProperties()
+                )
                 state_results[key] = JhuLocation(
-                    id=self.DATA_SERVICE.location_id(key), # TODO: Util functions
+                    id=self.DATA_SERVICE.location_id(key),  # TODO: Util functions
                     uid=properties_for_state.UID,
                     iso2=properties_for_state.iso2,
                     iso3=properties_for_state.iso3,

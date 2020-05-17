@@ -22,7 +22,9 @@ API_TAG_STATES = "states"
 
 # Configuration
 CONFIG_PATH = "config/config.yml"
+CONFIG_APP_HOST = CONFIG.get("app.host")
 CONFIG_APP_PORT = CONFIG.get("app.port")
+CONFIG_APP_LOG_LEVEL = CONFIG.get("app.log_level")
 CONFIG_FASTAPI_DEBUG_KEY = "debug"
 
 # Data Endpoints

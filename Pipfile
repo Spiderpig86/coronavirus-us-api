@@ -20,6 +20,7 @@ pydantic = "*"
 pyyaml = "*"
 python-dateutil = "*"
 asyncio = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.7"

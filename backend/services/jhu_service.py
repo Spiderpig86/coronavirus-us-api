@@ -20,6 +20,7 @@ from backend.models.classes.category import Category
 from backend.models.classes.location import JhuLocation
 from backend.models.classes.statistics import Statistics
 from backend.models.history import Timelines
+from backend.utils.functions import Functions
 
 
 class JhuDataService(object):
@@ -47,7 +48,7 @@ class JhuDataService(object):
         logger.info(f"Elapsed grouped_locations {str(_end-_start)}ms")
 
         locations = []
-        last_updated = datetime.utcnow().isoformat() + "Z"  # TODO: Util function
+        last_updated = Functions.get_formatted_date()
 
         for location_tuple, events, in location_result.items():
             confirmed_map = events["confirmed"]
@@ -55,21 +56,21 @@ class JhuDataService(object):
 
             confirmed = Category(
                 {
-                    datetime.strptime(date, "%m/%d/%y").isoformat() + "Z": amount
+                    Functions.get_formatted_date(date): amount
                     for date, amount in confirmed_map.items()
                 }
             )
 
             deaths = Category(
                 {
-                    datetime.strptime(date, "%m/%d/%y").isoformat() + "Z": amount
+                    Functions.get_formatted_date(date): amount
                     for date, amount in deaths_map.items()
                 }
             )
 
             locations.append(
                 JhuLocation(
-                    id=self.location_id(location_tuple),
+                    id=Functions.to_location_id(location_tuple),
                     uid=events["UID"],
                     iso2=events["iso2"],
                     iso3=events["iso3"],
@@ -139,17 +140,6 @@ class JhuDataService(object):
                 location_result[location_id][stat][date] = int(amount or 0)
 
         return location_result
-
-    def location_id(self, tuple_id: tuple):
-        """Generates string ID given tuple containing a variable number of fields.
-        
-        Arguments:
-            tuple_id {tuple} -- tuple containing county, state and FIPS code.
-        
-        Returns:
-            str -- string ID representation.
-        """
-        return "@".join([item for item in tuple_id])
 
     def _get_field_from_map(self, data, field) -> str:  # TODO: Extract to utils
         """Tries to get value from a map by key. Otherwise, returns empty string.

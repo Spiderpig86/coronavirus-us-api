@@ -78,14 +78,3 @@ class JhuFacade(DataSourceFacade):
 
     async def get_county_data(self):
         return await self.DATA_SERVICE.get_data(self.ENDPOINT)
-
-    def _location_id(self, tuple_id: tuple):
-        """Generates string ID given tuple containing a variable number of fields.
-        
-        Arguments:
-            tuple_id {tuple} -- tuple containing county, state and FIPS code.
-        
-        Returns:
-            str -- string ID representation.
-        """
-        return "@".join([item for item in tuple_id])

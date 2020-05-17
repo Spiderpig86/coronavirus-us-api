@@ -11,7 +11,12 @@ from loguru import logger
 
 from backend.api.routes.router import Router
 from backend.core.events import shutdown_handler, startup_handler
-from backend.core.config.constants import CONFIG_APP_HOST, CONFIG_APP_PORT, CONFIG_APP_LOG_LEVEL
+
+from backend.core.config.constants import (  # isort:skip
+    CONFIG_APP_HOST,
+    CONFIG_APP_LOG_LEVEL,
+    CONFIG_APP_PORT,
+)
 
 from backend.services.data_source_service import (  # isort:skip
     LOCATION_DATA_SERVICE,
@@ -89,5 +94,8 @@ api = get_api()
 
 if __name__ == "__main__":
     uvicorn.run(
-        "backend:main:api", host=CONFIG_APP_HOST, port=int(CONFIG_APP_PORT), log_level=CONFIG_APP_LOG_LEVEL,
+        "backend:main:api",
+        host=CONFIG_APP_HOST,
+        port=int(CONFIG_APP_PORT),
+        log_level=CONFIG_APP_LOG_LEVEL,
     )

@@ -79,3 +79,13 @@ def precommit(ctx):
     print("Executing pre-commit hook...")
     args = ["pre-commit", "run", "--all-files"]
     ctx.run(" ".join(args))
+
+
+@invoke.task
+def test(ctx):
+    """Runs unit tests for API
+
+    Arguments:
+        ctx {context} -- program context execution.
+    """
+    ctx.run(" ".join(["pytest", "-v"]))

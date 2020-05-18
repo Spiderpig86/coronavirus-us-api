@@ -13,6 +13,7 @@ from backend.models.classes.location_data import LocationProperties
 from backend.models.classes.statistics import Statistics
 from backend.services.jhu_service import JhuDataService
 from backend.services.location_data_service import LocationDataService
+from backend.utils.functions import Functions
 
 
 class JhuFacade(DataSourceFacade):
@@ -41,7 +42,7 @@ class JhuFacade(DataSourceFacade):
                     state_data[key] if key in state_data else LocationProperties()
                 )
                 state_results[key] = JhuLocation(
-                    id=self.DATA_SERVICE.location_id(key),  # TODO: Util functions
+                    id=Functions.to_location_id(key),
                     uid=properties_for_state.UID,
                     iso2=properties_for_state.iso2,
                     iso3=properties_for_state.iso3,

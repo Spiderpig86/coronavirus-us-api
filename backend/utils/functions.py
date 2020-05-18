@@ -8,20 +8,24 @@ from datetime import datetime
 
 class Functions:
     @staticmethod
-    def get_formatted_date(initial: datetime = None) -> str:
+    def get_formatted_date(initial_date: str = None, format: str = None) -> str:
         """Generates formatted date strings to be used as keys.
 
         Keyword Arguments:
-            initial {Date} -- datetime object to format (default: {None})
+            initial_date {Date} -- datetime object to format (default: {None})
 
         Returns:
             str -- resulting ISO format date string.
         """
-        date = datetime.strptime(initial, "%m/%d/%y") if initial else datetime.utcnow()
+        date = (
+            datetime.strptime(initial_date, format)
+            if initial_date
+            else datetime.utcnow()
+        )
         return date.isoformat() + "Z"
 
     @staticmethod
-    def to_location_id(self, tuple_id: tuple):
+    def to_location_id(tuple_id: tuple):
         """Generates string ID given tuple containing a variable number of fields.
         
         Arguments:

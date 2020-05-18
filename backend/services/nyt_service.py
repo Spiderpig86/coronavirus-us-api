@@ -54,14 +54,14 @@ class NytDataService(object):
 
             confirmed = Category(
                 {
-                    Functions.get_formatted_date(date): amount
+                    Functions.get_formatted_date(date, "%Y-%m-%d"): amount
                     for date, amount in confirmed_map.items()
                 }
             )
 
             deaths = Category(
                 {
-                    Functions.get_formatted_date(date): amount
+                    Functions.get_formatted_date(date, "%Y-%m-%d"): amount
                     for date, amount in deaths_map.items()
                 }
             )

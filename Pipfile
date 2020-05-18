@@ -8,6 +8,7 @@ black = "==19.10b0"
 invoke = "*"
 isort = "*"
 pre-commit = "*"
+pytest = "*"
 
 [packages]
 asyncache = "*"
@@ -20,7 +21,6 @@ pydantic = "*"
 pyyaml = "*"
 python-dateutil = "*"
 asyncio = "*"
-pytest = "*"
 
 [requires]
 python_version = "3.7"

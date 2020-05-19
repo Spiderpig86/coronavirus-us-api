@@ -90,6 +90,7 @@ def test(ctx):
     """
     ctx.run(" ".join(["coverage", "run", "-m", "pytest", "-v"]))
 
+
 @invoke.task
 def coverage(ctx):
     """Generate detailed test coverage report.

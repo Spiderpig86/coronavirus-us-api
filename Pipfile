@@ -9,6 +9,8 @@ invoke = "*"
 isort = "*"
 pre-commit = "*"
 pytest = "*"
+coverage = "*"
+codecov = "*"
 
 [packages]
 asyncache = "*"

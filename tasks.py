@@ -88,4 +88,13 @@ def test(ctx):
     Arguments:
         ctx {context} -- program context execution.
     """
-    ctx.run(" ".join(["pytest", "-v"]))
+    ctx.run(" ".join(["coverage", "run", "-m", "pytest", "-v"]))
+
+@invoke.task
+def coverage(ctx):
+    """Generate detailed test coverage report.
+
+    Arguments:
+        ctx {context} -- program context execution.
+    """
+    ctx.run(" ".join(["coverage", "report", "-m"]))

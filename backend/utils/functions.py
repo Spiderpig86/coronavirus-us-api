@@ -34,4 +34,10 @@ class Functions:
         Returns:
             str -- string ID representation.
         """
+        if not tuple_id:
+            raise Exception("The given 'tuple_id' cannot be null or empty.")
+    
+        if type(tuple_id) != tuple:
+            raise Exception(f"Given 'tuple_id' must of type tuple, but was {type(tuple_id)}.")
+
         return "@".join([item for item in tuple_id])

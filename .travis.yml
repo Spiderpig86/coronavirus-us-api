@@ -12,9 +12,22 @@ install:
   - "pip install pipenv"
   - "pipenv install --dev --skip-lock"
 
-script:
-    - "make refactor"
-    - "coverage run -m pytest -v"
+stages:
+  - Formatting
+  - Unit Tests
+  - Integration Tests
+  - Prod
 
-after_success:
-    - codecov
+jobs:
+  include:
+    - stage: Formatting
+      script:
+        make refactor
+    - stage: Unit Tests
+      script:
+        coverage run -m pytest -v &&
+        codecov
+    - stage: Integration Tests
+      script: skip
+    - stage: Prod
+      script: skip

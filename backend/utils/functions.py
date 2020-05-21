@@ -13,6 +13,7 @@ class Functions:
 
         Keyword Arguments:
             initial_date {Date} -- datetime object to format (default: {None})
+            format {Date} -- format of given date string (default: {None})
 
         Returns:
             str -- resulting ISO format date string.
@@ -35,10 +36,10 @@ class Functions:
             str -- string ID representation.
         """
         if not tuple_id:
-            raise Exception("The given 'tuple_id' cannot be null or empty.")
+            raise ValueError("The given 'tuple_id' cannot be null or empty.")
 
         if type(tuple_id) != tuple:
-            raise Exception(
+            raise ValueError(
                 f"Given 'tuple_id' must of type tuple, but was {type(tuple_id)}."
             )
 

@@ -75,7 +75,7 @@ def get_state_name(state_abbr: str) -> str:
     Returns:
         str -- full name of the state.
     """
-    if state_abbr.upper() in STATE_ABBR__STATE_NAME:
-        return STATE_ABBR__STATE_NAME[state_abbr.upper()].lower()
+    if not state_abbr or not state_abbr.upper() in STATE_ABBR__STATE_NAME:
+        return "--"
 
-    return "--"
+    return STATE_ABBR__STATE_NAME[state_abbr.upper()].lower()

@@ -4,7 +4,7 @@ Route that returns time series for confirmed cases.
 """
 from fastapi import APIRouter, HTTPException, Request
 
-from backend.models.source import Source
+from backend.models.swagger.source import Source
 
 ######################
 # ROUTER DECLARATION #

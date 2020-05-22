@@ -6,7 +6,7 @@ from datetime import datetime
 
 from pydantic import BaseModel
 
-from backend.models.statistics import Statistics
+from backend.models.swagger.statistics import Statistics
 
 
 class LatestResult(BaseModel):

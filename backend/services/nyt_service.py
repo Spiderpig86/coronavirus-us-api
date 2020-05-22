@@ -16,7 +16,7 @@ from backend.core.utils import webclient
 from backend.models.classes.category import Category
 from backend.models.classes.location import NytLocation
 from backend.models.classes.statistics import Statistics
-from backend.models.history import Timelines
+from backend.models.swagger.history import Timelines
 from backend.utils.functions import Functions
 
 

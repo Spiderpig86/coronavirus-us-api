@@ -6,8 +6,8 @@ from typing import Dict, List, Optional
 
 from pydantic import BaseModel
 
-from backend.models.coordinates import Coordinates
-from backend.models.source import Source
+from backend.models.swagger.coordinates import Coordinates
+from backend.models.swagger.source import Source
 
 
 class LocationProperties(BaseModel):

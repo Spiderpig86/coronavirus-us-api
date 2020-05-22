@@ -6,8 +6,8 @@ from typing import List
 
 from pydantic import BaseModel
 
-from backend.models.location import Location
-from backend.models.statistics import Statistics
+from backend.models.swagger.location import Location
+from backend.models.swagger.statistics import Statistics
 
 
 class AllResult(BaseModel):

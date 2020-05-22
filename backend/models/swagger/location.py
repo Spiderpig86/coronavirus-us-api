@@ -8,9 +8,9 @@ from typing import Dict, List, Optional
 
 from pydantic import BaseModel
 
-from backend.models.history import Timelines
-from backend.models.location_data import LocationProperties
-from backend.models.statistics import Statistics
+from backend.models.swagger.history import Timelines
+from backend.models.swagger.location_data import LocationProperties
+from backend.models.swagger.statistics import Statistics
 
 
 class Location(BaseModel):

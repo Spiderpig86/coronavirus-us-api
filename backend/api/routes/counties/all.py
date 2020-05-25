@@ -78,7 +78,7 @@ async def get_all(
         if properties and location.county != "Unknown":
             location.set_properties(
                 county_data_map[
-                    (location.county.lower(), location.state, location.country)
+                    (location.country, location.state, location.county.lower(),)
                 ].to_dict()
             )
         result = location.to_dict(timelines, properties)

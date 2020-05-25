@@ -74,7 +74,10 @@ async def get_all(
 
     locations_response = []
     for location in location_data:
-        key = (location.state, location.country)
+        key = (
+            location.country,
+            location.state,
+        )
         if properties and key in state_data_map:
             location.set_properties(state_data_map[key].to_dict())
         result = location.to_dict(timelines, properties)

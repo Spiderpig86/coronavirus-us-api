@@ -12,6 +12,9 @@ class NytFacade(DataSourceFacade):
         self.DATA_SERVICE = NytDataService()
         self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
 
+    async def get_country_data(self):
+        return None
+
     async def get_state_data(self):
         ENDPOINT = DATA_ENDPOINTS.get(f"{self.__class__.__name__}__States")
         return await self.DATA_SERVICE.get_data(ENDPOINT)

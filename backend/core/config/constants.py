@@ -17,8 +17,9 @@ APP_DEBUG = CONFIG.get("fastapi.debug")
 API_PREFIX = "/api"
 API_TAG_HEALTH = "health"
 API_TAG_DATA = "data"
-API_TAG_COUNTIES = "counties"
-API_TAG_STATES = "states"
+API_TAG_COUNTY = "county"
+API_TAG_STATE = "state"
+API_TAG_COUNTRY = "country"
 
 # Configuration
 CONFIG_PATH = "config/config.yml"

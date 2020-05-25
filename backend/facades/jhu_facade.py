@@ -23,13 +23,54 @@ class JhuFacade(DataSourceFacade):
         self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
 
     async def get_country_data(self):
-        promises = await asyncio.gather(
-            self.DATA_SERVICE.get_data(self.ENDPOINT),
-            self.LOCATION_SERVICE.get_state_data(),
-        )
+        """Notes: Function currently designed only for US data
+        """
+        promises = await asyncio.gather(self.DATA_SERVICE.get_data(self.ENDPOINT),)
 
         results_by_county, last_updated = promises[0]
-        state_data = promises[1]
+
+        location_properties = JhuLocation(
+            id=Functions.to_location_id(("US",)),
+            uid="840",
+            iso2="US",
+            iso3="USA",
+            code3="USA",
+            fips="",
+            admin2="",
+            state="",
+            country="US",
+            latitude="37.0902",  # TODO: Do not hardcode
+            longitude="-95.7129",
+            last_updated=last_updated,
+            timelines={"confirmed": {}, "deaths": {}},
+            latest=None,
+        )
+
+        for result in results_by_county:
+            for confirmed_date, count in result.timelines["confirmed"].category.items():
+                value = location_properties.timelines["confirmed"].get(
+                    confirmed_date, 0
+                )
+                location_properties.timelines["confirmed"][confirmed_date] = (
+                    value + count
+                )
+
+            for deaths_date, count in result.timelines["deaths"].category.items():
+                value = location_properties.timelines["deaths"].get(deaths_date, 0)
+                location_properties.timelines["deaths"][deaths_date] = value + count
+
+        location_properties.timelines["confirmed"] = Category(
+            location_properties.timelines["confirmed"]
+        )
+        location_properties.timelines["deaths"] = Category(
+            location_properties.timelines["deaths"]
+        )
+        location_properties.latest = Statistics(
+            location_properties.timelines["confirmed"].latest,
+            location_properties.timelines["deaths"].latest,
+        ).to_dict()
+
+        return [location_properties], last_updated
 
     async def get_state_data(self):
         promises = await asyncio.gather(

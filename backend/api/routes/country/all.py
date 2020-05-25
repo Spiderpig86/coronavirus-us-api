@@ -23,9 +23,6 @@ router = APIRouter()
 async def get_all(
     request: Request,
     source: Source = "nyt",
-    fips: str = None,
-    county: str = None,
-    state: str = None,
     timelines: bool = False,
     properties: bool = False,
 ):
@@ -38,8 +35,8 @@ async def get_all(
     params_dict.pop("properties", None)
 
     # Fetch data
-    data_source_service = request.state.data_source
-    location_data, _ = await data_source_service.get_county_data()
+    data_source_facade = request.state.data_source
+    location_data, _ = await data_source_facade.get_country_data()
 
     # TODO: Refactor filtering
     for key, value in params_dict.items():
@@ -48,16 +45,6 @@ async def get_all(
 
         if not value:
             continue
-
-        if key == "state" and value.upper() in STATE_ABBR__STATE_NAME:
-            value = get_state_name(value)
-
-        location_data = list(
-            filter(
-                lambda location: str(getattr(location, key)).lower() == value,
-                location_data,
-            )
-        )
 
     latest = Statistics(
         confirmed=sum(
@@ -68,24 +55,15 @@ async def get_all(
         ),
     )
 
-    county_data_map = None
+    country_data_map = None
     if properties:
         location_data_service = request.state.location_data_service
-        county_data_map = await location_data_service.get_county_data()
+        country_data_map = await location_data_service.get_country_data()
 
     locations_response = []
     for location in location_data:
-        if properties and location.county != "Unknown":
-            location.set_properties(
-                county_data_map[
-                    (location.county.lower(), location.state, location.country)
-                ].to_dict()
-            )
-        result = location.to_dict(timelines, properties)
+        # if location.country in country_data_map:
+        location.set_properties(country_data_map[(location.country,)].to_dict())
+        locations_response.append(location.to_dict(timelines, properties))
 
-        locations_response.append(result)
-
-    return {
-        "latest": latest.to_dict(),
-        "locations": locations_response,
-    }
+    return {"latest": latest.to_dict(), "locations": locations_response}

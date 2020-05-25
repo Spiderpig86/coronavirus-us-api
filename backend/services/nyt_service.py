@@ -100,9 +100,9 @@ class NytDataService(object):
 
         for timestamp in csv_data:
             location_id = (
-                self._get_field_from_map(timestamp, "county"),
+                "US",
                 self._get_field_from_map(timestamp, "state"),
-                self._get_field_from_map(timestamp, "fips"),
+                self._get_field_from_map(timestamp, "county"),
             )
 
             updated_date = timestamp["date"]

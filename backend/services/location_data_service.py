@@ -12,11 +12,33 @@ from backend.core.config.constants import DATA_ENDPOINTS
 from backend.core.utils import webclient
 from backend.models.classes.coordinates import Coordinates
 from backend.models.classes.location_properties import LocationProperties
+from backend.utils.country_population import COUNTRY_POPULATION
 
 
 class LocationDataService(object):
     def __init__(self):
         self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
+
+    @cached(cache=TTLCache(maxsize=1024, ttl=36000))
+    async def get_country_data(self):
+        coordinates = Coordinates("37.0902", "-95.7129")
+        population = COUNTRY_POPULATION["US"]
+
+        return {
+            ("US",): LocationProperties(
+                UID="840",
+                iso2="US",
+                iso3="USA",
+                code3="USA",
+                fips="",
+                admin2="",
+                state="",
+                country="US",
+                coordinates=coordinates,
+                combined_key="United States",
+                population=population,
+            )
+        }
 
     @cached(cache=TTLCache(maxsize=1024, ttl=36000))
     async def get_state_data(self):
@@ -83,7 +105,6 @@ class LocationDataService(object):
         return county_map
 
     def _state_data_id(self, state_data):
-
         return (state_data["Country"], state_data["State"])
 
     def _county_data_id(self, county_data):

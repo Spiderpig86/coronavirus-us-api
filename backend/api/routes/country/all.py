@@ -62,8 +62,11 @@ async def get_all(
 
     locations_response = []
     for location in location_data:
-        # if location.country in country_data_map:
-        location.set_properties(country_data_map[(location.country,)].to_dict())
+        key = (
+            location.country,
+        )
+        if properties and key in country_data_map:
+            location.set_properties(country_data_map[(location.country,)].to_dict())
         locations_response.append(location.to_dict(timelines, properties))
 
     return {"latest": latest.to_dict(), "locations": locations_response}

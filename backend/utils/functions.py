@@ -43,4 +43,4 @@ class Functions:
                 f"Given 'tuple_id' must of type tuple, but was {type(tuple_id)}."
             )
 
-        return "@".join([item for item in tuple_id])
+        return "@".join([item for item in tuple_id if len(item) > 0])

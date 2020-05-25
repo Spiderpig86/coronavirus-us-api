@@ -69,10 +69,10 @@ class NytDataService(object):
             locations.append(
                 NytLocation(
                     id=Functions.to_location_id(location_tuple),
-                    country="US",
-                    county=location_tuple[0],
+                    country=location_tuple[0],
+                    county=location_tuple[2],
                     state=location_tuple[1],
-                    fips=location_tuple[2],
+                    fips=location_tuple[3],
                     timelines={"confirmed": confirmed, "deaths": deaths,},
                     last_updated=last_updated,
                     latest=Statistics(
@@ -103,6 +103,7 @@ class NytDataService(object):
                 "US",
                 self._get_field_from_map(timestamp, "state"),
                 self._get_field_from_map(timestamp, "county"),
+                self._get_field_from_map(timestamp, "fips"),
             )
 
             updated_date = timestamp["date"]

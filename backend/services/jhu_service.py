@@ -109,7 +109,7 @@ class JhuDataService(object):
         parsed_data = list(csv.DictReader(csv_data.splitlines()))
 
         for timestamp in parsed_data:
-            location_id = location_id = (
+            location_id = (
                 self._get_field_from_map(timestamp, "Country_Region"),
                 self._get_field_from_map(timestamp, "Province_State"),
                 self._get_field_from_map(timestamp, "Admin2"),

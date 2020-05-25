@@ -22,6 +22,15 @@ class JhuFacade(DataSourceFacade):
         self.LOCATION_SERVICE = LocationDataService()
         self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
 
+    async def get_country_data(self):
+        promises = await asyncio.gather(
+            self.DATA_SERVICE.get_data(self.ENDPOINT),
+            self.LOCATION_SERVICE.get_state_data(),
+        )
+
+        results_by_county, last_updated = promises[0]
+        state_data = promises[1]
+
     async def get_state_data(self):
         promises = await asyncio.gather(
             self.DATA_SERVICE.get_data(self.ENDPOINT),
@@ -34,8 +43,7 @@ class JhuFacade(DataSourceFacade):
         # Aggregate results on a per state basis
         state_results = {}
         for result in results_by_county:
-            id = result.id.split("@")[:2]
-            key = (id[1], id[0])
+            key = tuple(result.id.split("@")[:2])
 
             if key not in state_results:
                 properties_for_state = (

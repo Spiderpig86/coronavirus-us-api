@@ -84,12 +84,12 @@ class LocationDataService(object):
 
     def _state_data_id(self, state_data):
 
-        return (state_data["State"], state_data["Country"])
+        return (state_data["Country"], state_data["State"])
 
     def _county_data_id(self, county_data):
 
         return (
-            county_data["Admin2"].lower(),
-            county_data["State"],
             county_data["Country"],
+            county_data["State"],
+            county_data["Admin2"].lower(),
         )

@@ -9,7 +9,7 @@ from backend.core.config.constants import DATA_ENDPOINTS
 from backend.facades.facade import DataSourceFacade
 from backend.models.classes.category import Category
 from backend.models.classes.location import JhuLocation
-from backend.models.classes.location_data import LocationProperties
+from backend.models.classes.location_properties import LocationProperties
 from backend.models.classes.statistics import Statistics
 from backend.services.jhu_service import JhuDataService
 from backend.services.location_data_service import LocationDataService

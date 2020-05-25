@@ -11,7 +11,7 @@ from loguru import logger
 from backend.core.config.constants import DATA_ENDPOINTS
 from backend.core.utils import webclient
 from backend.models.classes.coordinates import Coordinates
-from backend.models.classes.location_data import LocationProperties
+from backend.models.classes.location_properties import LocationProperties
 
 
 class LocationDataService(object):

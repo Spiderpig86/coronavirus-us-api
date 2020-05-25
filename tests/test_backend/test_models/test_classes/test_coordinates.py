@@ -18,3 +18,4 @@ def test__coordinates__to_dict__success(latitude, longitude):
     expected_response = {"latitude": latitude, "longitude": longitude}
 
     assert coordinates.to_dict() == expected_response
+    assert repr(coordinates) == f"[latitude: {coordinates.latitude}, longitude: {longitude}]"

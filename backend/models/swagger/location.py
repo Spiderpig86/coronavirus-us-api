@@ -9,7 +9,7 @@ from typing import Dict, List, Optional
 from pydantic import BaseModel
 
 from backend.models.swagger.history import Timelines
-from backend.models.swagger.location_data import LocationProperties
+from backend.models.swagger.location_properties import LocationProperties
 from backend.models.swagger.statistics import Statistics
 
 

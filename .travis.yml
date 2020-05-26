@@ -28,5 +28,5 @@ jobs:
       name: "Formatting"
 
     - stage: e2e
-      script: skip
+      script: make e2e
 

@@ -11,6 +11,7 @@ pre-commit = "*"
 pytest = "*"
 coverage = "*"
 codecov = "*"
+asynctest = "*"
 
 [packages]
 asyncache = "*"

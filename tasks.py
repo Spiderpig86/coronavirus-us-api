@@ -88,7 +88,17 @@ def test(ctx):
     Arguments:
         ctx {context} -- program context execution.
     """
-    ctx.run(" ".join(["coverage", "run", "-m", "pytest", "-v"]))
+    ctx.run(" ".join(["coverage", "run", "-m", "pytest", "-v", "./tests"]))
+
+
+@invoke.task
+def e2e(ctx):
+    """Runs e2e tests for API
+
+    Arguments:
+        ctx {context} -- program context execution.
+    """
+    ctx.run(" ".join(["python", "-m", "unittest", "-v"]))
 
 
 @invoke.task

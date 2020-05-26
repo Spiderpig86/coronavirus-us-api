@@ -25,6 +25,7 @@ pydantic = "*"
 pyyaml = "*"
 python-dateutil = "*"
 asyncio = "*"
+uvicorn = "*"
 
 [requires]
 python_version = "3.7"

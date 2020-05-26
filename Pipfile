@@ -12,6 +12,7 @@ pytest = "*"
 coverage = "*"
 codecov = "*"
 asynctest = "*"
+aiohttp = "*"
 
 [packages]
 asyncache = "*"

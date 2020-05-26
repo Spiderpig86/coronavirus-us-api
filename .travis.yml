@@ -28,5 +28,5 @@ jobs:
       name: "Formatting"
 
     - stage: e2e
-      script: make e2e
+      script: invoke e2e
 

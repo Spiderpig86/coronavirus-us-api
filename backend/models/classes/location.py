@@ -15,16 +15,6 @@ class Location:
         self.properties = None  # This is set later
 
     @property
-    def state_population(self):
-        """Returns the population of this specific state.
-        
-        Returns:
-            int -- population of this state.
-        """
-        # TODO: Implement
-        return -1
-
-    @property
     def country_population(self):
         """Returns the population of the country.
         

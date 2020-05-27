@@ -6,7 +6,7 @@ PYTHON ?= python3
 API = api
 
 format:
-	invoke format
+	invoke black
 
 e2e:
 	invoke e2e

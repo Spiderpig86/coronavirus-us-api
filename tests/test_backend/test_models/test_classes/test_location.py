@@ -3,9 +3,9 @@
 Location unit test.
 """
 from backend.models.classes.category import Category
-from backend.models.classes.statistics import Statistics
-from backend.models.classes.location import Location, JhuLocation, NytLocation
+from backend.models.classes.location import JhuLocation, Location, NytLocation
 from backend.models.classes.location_properties import LocationProperties
+from backend.models.classes.statistics import Statistics
 from backend.utils.functions import Functions
 
 VALID_LOCATION = {

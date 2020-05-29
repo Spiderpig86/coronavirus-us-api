@@ -21,4 +21,4 @@ def test__given_valid_data_source__get_data_source__success(
     "data_source", [("blah"),],
 )
 def test__given_invalid_data_source__get_data_source__error(data_source):
-    assert get_data_source(data_source) == None
+    assert get_data_source(data_source) is None

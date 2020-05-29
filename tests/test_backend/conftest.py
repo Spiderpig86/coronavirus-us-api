@@ -1,4 +1,7 @@
 import os
+from contextlib import asynccontextmanager  # Used for allowing "with" keyword
+
+import pytest
 
 from backend.core.utils import webclient
 
@@ -7,8 +10,6 @@ try:  # Pragma AsyncMock
 except ImportError:
     # Python 3.7 and beloqw
     from asyncmock import AsyncMock
-
-from contextlib import asynccontextmanager  # Used for allowing "with" keyword
 
 
 class MockedWebClientGetResponse:

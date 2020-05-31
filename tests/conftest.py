@@ -2,8 +2,13 @@ import os
 from contextlib import asynccontextmanager  # Used for allowing "with" keyword
 
 import pytest
+import datetime
+
+from backend.main import api
 
 from backend.core.utils import webclient
+from async_asgi_testclient import TestClient as AsyncTestClient
+from fastapi.testclient import TestClient
 
 try:  # Pragma AsyncMock
     from unittest.mock import AsyncMock
@@ -54,3 +59,30 @@ async def mocked_session_get(*args, **kwargs):
     filename = url.split("/")[-1].replace(".csv", "")
 
     yield MockedWebClientGetResponse(url, filename)
+
+
+@pytest.fixture
+def mock_api_client():
+    return TestClient(api)
+
+
+@pytest.fixture
+def mock_async_api_client():
+    return AsyncTestClient(api)
+
+
+class DateTimeStrpTime:
+    def __init__(self, date, strformat):
+        self.date = date
+        self.strformat = strformat
+
+    def isoformat(self):
+        return datetime.datetime.strptime(self.date, self.strformat).isoformat()
+
+
+def mocked_strptime_isoformat(*args, **kwargs):
+
+    date = args[0]
+    strformat = args[1]
+
+    return DateTimeStrpTime(date, strformat)

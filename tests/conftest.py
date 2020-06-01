@@ -1,14 +1,13 @@
+import datetime
 import os
 from contextlib import asynccontextmanager  # Used for allowing "with" keyword
 
 import pytest
-import datetime
-
-from backend.main import api
-
-from backend.core.utils import webclient
 from async_asgi_testclient import TestClient as AsyncTestClient
 from fastapi.testclient import TestClient
+
+from backend.core.utils import webclient
+from backend.main import api
 
 try:  # Pragma AsyncMock
     from unittest.mock import AsyncMock
@@ -71,7 +70,7 @@ def mock_async_api_client():
     return AsyncTestClient(api)
 
 
-class DateTimeStrpTime:
+class MockedStrpDateTime:
     def __init__(self, date, strformat):
         self.date = date
         self.strformat = strformat
@@ -81,8 +80,12 @@ class DateTimeStrpTime:
 
 
 def mocked_strptime_isoformat(*args, **kwargs):
+    """Returns a mocked instance of a datetime.strp object.
 
+    Returns:
+        MockedStrDateTime -- mocked datetime.strp object.
+    """
     date = args[0]
     strformat = args[1]
 
-    return DateTimeStrpTime(date, strformat)
+    return MockedStrpDateTime(date, strformat)

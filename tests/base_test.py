@@ -2,7 +2,6 @@
 
 Class to hold main test utility functions.
 """
-import unittest
 import json
 
 

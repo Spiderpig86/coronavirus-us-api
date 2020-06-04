@@ -25,7 +25,7 @@ from backend.utils.functions import Functions
 
 class JhuDataService(object):
     @cached(cache=TTLCache(maxsize=1024, ttl=3600))
-    async def get_data(self, endpoint: str):
+    async def get_data(self, endpoint: str) -> (List[JhuLocation], str):
         """Method that retrieves data from JHU CSSEGSI.
         
         Arguments:
@@ -162,4 +162,4 @@ class JhuDataService(object):
         #     return True
         # except ValueError:
         #     return False
-        return re.match(r"\d+\/\d{2}\/\d{2}", date)
+        return re.match(r"\d+\/\d{1,2}\/\d{2}", date)

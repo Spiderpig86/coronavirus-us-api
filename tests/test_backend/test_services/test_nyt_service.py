@@ -7,20 +7,15 @@ import pytest
 from backend.models.classes.category import Category
 from backend.models.classes.location import Location, NytLocation
 from backend.services.nyt_service import NytDataService
+from tests.base_test import TestBase
 from tests.conftest import mocked_strptime_isoformat
 
-TEST_DATE = "2020-05-30T09:19:06"
-
-fields = [
-    "id",
-    "country",
-    "timelines",
-    "last_updated",
-    "latest",
+NYT_FIELDS = {
+    *TestBase.SERVICE_LOCATION_FIELDS,
     "state",
     "county",
     "fips",
-]
+}
 
 
 @pytest.mark.asyncio
@@ -41,9 +36,11 @@ async def test_get_locations_counties(mock_web_client):
 async def _test_get_data(mock_web_client, path):
     with mock.patch("backend.utils.functions.datetime") as mock_datetime:
         with mock.patch("backend.utils.functions") as functions:
-            mock_datetime.utcnow.return_value.isoformat.return_value = TEST_DATE
+            mock_datetime.utcnow.return_value.isoformat.return_value = (
+                TestBase.TEST_DATE
+            )
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat  # Needed since strptime is used in nyt_service
-            functions.get_formatted_date.return_value = TEST_DATE
+            functions.get_formatted_date.return_value = TestBase.TEST_DATE
 
             locations, last_updated = await NytDataService().get_data(
                 f"https://raw.githubusercontent.com/nytimes/covid-19-data/master/{path}.csv"
@@ -61,18 +58,10 @@ async def _test_get_data(mock_web_client, path):
 
         location_dict = location.to_dict(include_timelines=True)
         assert location_dict is not None
-        _validate_fields(fields, location_dict)
+        TestBase._validate_fields(NYT_FIELDS, location_dict)
 
         actual_locations.append(location_dict)
 
-    output = json.dumps(actual_locations)
-
-    with open(f"tests/expected/{path}.csv", "r") as f:
-        expected = f.read()
-
-    assert json.loads(output) == json.loads(expected)
-
-
-def _validate_fields(fields, dict):
-    for field in fields:
-        assert dict[field] is not None
+    assert TestBase._validate_json_from_file(
+        actual_locations, f"tests/expected/{path}.json"
+    )

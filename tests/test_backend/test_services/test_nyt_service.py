@@ -63,5 +63,5 @@ async def _test_get_data(mock_web_client, path):
         actual_locations.append(location_dict)
 
     assert TestBase._validate_json_from_file(
-        actual_locations, f"tests/expected/{path}.json"
+        actual_locations, f"tests/expected/service/{path}.json"
     )

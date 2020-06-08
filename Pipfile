@@ -29,7 +29,8 @@ pyyaml = "*"
 python-dateutil = "*"
 asyncio = "*"
 uvicorn = "*"
-uvloop = "*"
+aiohttp = "*"
+httptools = "*"
 
 [requires]
 python_version = "3.7"

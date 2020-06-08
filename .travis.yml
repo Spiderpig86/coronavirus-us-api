@@ -29,11 +29,12 @@ jobs:
 
     - stage: e2e
       script: invoke e2e
-
-deploy:
-  provider: heroku
-  api_key:
-     secure: "FtzXXDWj/HbkkiNJoQbzo853qaKl+CqO2KidZHtWnuKy1r41oL+XPukppvm1diOic4y5+qGhosbeZZN1m2QQMtUTD0TthWx84+ElVONx+uNubX1n9bWHITygpA5MDlTAg21TZITj7EPSNWGyDFnAbAjKTJgRaFHoiQjjKLHnScccAerE/uHiS6IJfzHh3oXJvygXHhZOLPBjqUjCK7DpYmG7F9pyXUANi+EKtSTDTeDG3xsehkwmDoN0U/G5rhLePtmXk1gVnRdg2LmXCRwkul7Hl9EXLcBy3/BqW4C4YYqg3KuKXwE+jRwTJTp1AzZV5I4G5A6I6ZNXy3eybGnKNlu0blyNKCIsF9tIRIFs36OW1NtQ6Acr30fxTaNSFKc0+EEwkuRHOl/a2qwVekB4Ls1jH/M8YqC4ZyOD7C82KD0bAAOZ77D8Z8fRGF7mVz9ZgfJ2WdE+di2Tubb7WX7IZ1h0ULrp74W/fAQmjzpUMWLTXtC6UAsTYCh8So5hjS/QeI5ZyAsDZz1jxr141Umng9Bi1zqpcLe3lSWasXwTQPslO2VOHQg71uj84MuncDSwUicoZDjkX5GU+wvq8ZVJ/89w6k7uvQqddA72zKMozx3I9asRJxkq/bpgjZjGRcOdh4ZCi83SlimbhRfcx8gDWgimSkLkQxvdwHGEwZgSb+8="
-  app: coronavirus-us-api
-  on:
-    repo: Spiderpig86/coronavirus-us-api
+      
+    - stage: deploy
+      deploy:
+        provider: heroku
+        api_key:
+          secure: "FtzXXDWj/HbkkiNJoQbzo853qaKl+CqO2KidZHtWnuKy1r41oL+XPukppvm1diOic4y5+qGhosbeZZN1m2QQMtUTD0TthWx84+ElVONx+uNubX1n9bWHITygpA5MDlTAg21TZITj7EPSNWGyDFnAbAjKTJgRaFHoiQjjKLHnScccAerE/uHiS6IJfzHh3oXJvygXHhZOLPBjqUjCK7DpYmG7F9pyXUANi+EKtSTDTeDG3xsehkwmDoN0U/G5rhLePtmXk1gVnRdg2LmXCRwkul7Hl9EXLcBy3/BqW4C4YYqg3KuKXwE+jRwTJTp1AzZV5I4G5A6I6ZNXy3eybGnKNlu0blyNKCIsF9tIRIFs36OW1NtQ6Acr30fxTaNSFKc0+EEwkuRHOl/a2qwVekB4Ls1jH/M8YqC4ZyOD7C82KD0bAAOZ77D8Z8fRGF7mVz9ZgfJ2WdE+di2Tubb7WX7IZ1h0ULrp74W/fAQmjzpUMWLTXtC6UAsTYCh8So5hjS/QeI5ZyAsDZz1jxr141Umng9Bi1zqpcLe3lSWasXwTQPslO2VOHQg71uj84MuncDSwUicoZDjkX5GU+wvq8ZVJ/89w6k7uvQqddA72zKMozx3I9asRJxkq/bpgjZjGRcOdh4ZCi83SlimbhRfcx8gDWgimSkLkQxvdwHGEwZgSb+8="
+        app: coronavirus-us-api
+        on:
+          repo: Spiderpig86/coronavirus-us-api

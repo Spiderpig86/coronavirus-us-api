@@ -34,5 +34,5 @@ DATA_ENDPOINTS = {
     "NytFacade__States": "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv",
     "NytFacade__Country": "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv",
     "JhuFacade": "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/csse_covid_19_data/csse_covid_19_time_series",
-    "LocationDataService": "http://localhost:4000",
+    "LocationDataService": "https://raw.githubusercontent.com/Spiderpig86/coronavirus-us-api/master/data/",
 }

@@ -29,7 +29,7 @@ class LocationDataService(object):
                 UID="840",
                 iso2="US",
                 iso3="USA",
-                code3="USA",
+                code3="840",
                 fips="",
                 admin2="",
                 state="",
@@ -67,7 +67,7 @@ class LocationDataService(object):
                 state_data["Country"],
                 Coordinates(state_data["Latitude"], state_data["Longitude"]),
                 state_data["Formal_Name"],
-                state_data["Population"],
+                int(state_data["Population"] or 0),
             )
 
         return state_map
@@ -108,9 +108,8 @@ class LocationDataService(object):
         return (state_data["Country"], state_data["State"])
 
     def _county_data_id(self, county_data):
-
         return (
             county_data["Country"],
             county_data["State"],
-            county_data["Admin2"].lower(),
+            county_data["Admin2"].lower(),  # TODO: Why is this lower()
         )

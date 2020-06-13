@@ -4,9 +4,9 @@ Endpoint for fetching all information given a source.
 """
 from fastapi import APIRouter, HTTPException, Request
 
+from backend.models.classes.source import Source
 from backend.models.classes.statistics import Statistics
 from backend.models.swagger.endpoints.all import AllResult
-from backend.models.swagger.source import Source
 from backend.utils.state_abbr import STATE_ABBR__STATE_NAME, get_state_name
 
 ######################

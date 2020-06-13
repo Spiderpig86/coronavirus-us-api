@@ -4,7 +4,7 @@ Route that returns time series for deaths.
 """
 from fastapi import APIRouter, HTTPException, Request
 
-from backend.models.swagger.source import Source
+from backend.models.classes.source import Source
 
 ######################
 # ROUTER DECLARATION #

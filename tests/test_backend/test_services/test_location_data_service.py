@@ -58,23 +58,29 @@ EXPECTED_COUNTY_DATA = {
 
 @pytest.mark.asyncio
 async def test_get_country_data(mock_web_client):
+    # Act
     result = await LocationDataService().get_country_data()
 
+    # Assert
     assert ("US",) in result
     assert result[("US",)].to_dict() == EXPECTED_COUNTRY_DATA
 
 
 @pytest.mark.asyncio
 async def test_get_state_data(mock_web_client):
+    # Act
     result = await LocationDataService().get_state_data()
 
+    # Assert
     assert ("US", "Washington") in result
     assert result[("US", "Washington")].to_dict() == EXPECTED_STATE_DATA
 
 
 @pytest.mark.asyncio
 async def test_get_county_data(mock_web_client):
+    # Act
     result = await LocationDataService().get_county_data()
 
+    # Assert
     assert ("US", "Washington", "king") in result
     assert result[("US", "Washington", "king")].to_dict() == EXPECTED_COUNTY_DATA

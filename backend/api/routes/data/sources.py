@@ -4,8 +4,8 @@ Route that returns list of supported sources.
 """
 from fastapi import APIRouter, HTTPException, Request
 
+from backend.models.classes.source import Source
 from backend.models.swagger.endpoints.sources import SourceResult
-from backend.models.swagger.source import Source
 
 ######################
 # ROUTER DECLARATION #

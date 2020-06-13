@@ -30,6 +30,7 @@ JHU_FIELDS = {
 
 @pytest.mark.asyncio
 async def test_get_locations(mock_web_client):
+    # Arrange & Act
     with mock.patch("backend.utils.functions.datetime") as mock_datetime:
         with mock.patch("backend.utils.functions") as functions:
             mock_datetime.utcnow.return_value.isoformat.return_value = (
@@ -42,6 +43,7 @@ async def test_get_locations(mock_web_client):
                 DATA_ENDPOINTS["JhuFacade"]
             )
 
+    # Assert
     assert isinstance(locations, list)
     assert isinstance(last_updated, str)
 

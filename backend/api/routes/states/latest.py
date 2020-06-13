@@ -4,9 +4,9 @@ Route that returns the latest statistics for a given data source.
 """
 from fastapi import APIRouter, HTTPException, Request
 
+from backend.models.classes.source import Source
 from backend.models.classes.statistics import Statistics
 from backend.models.swagger.endpoints.latest import LatestResult
-from backend.models.swagger.source import Source
 
 ######################
 # ROUTER DECLARATION #

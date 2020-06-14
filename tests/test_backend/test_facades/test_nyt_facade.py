@@ -4,8 +4,13 @@ Test for NYT Facade
 """
 
 
-import pytest
 from unittest import mock
+
+import pytest
+
+from backend.facades.nyt_facade import NytFacade
+from tests.base_test import TestBase
+from tests.conftest import mocked_strptime_isoformat
 
 try:  # Pragma AsyncMock
     from unittest.mock import AsyncMock
@@ -13,19 +18,21 @@ except ImportError:
     # Python 3.7 and beloqw
     from asyncmock import AsyncMock
 
-from backend.facades.nyt_facade import NytFacade
-from tests.base_test import TestBase
-from tests.conftest import mocked_strptime_isoformat
 
 @pytest.mark.asyncio
 async def test__get_country_data__success(mock_web_client):
     # Arrange
-    TEST_NYT_COUNTRY_DATA = TestBase._initialize_from_json("tests/expected/service/us.json")
+    TEST_NYT_COUNTRY_DATA = TestBase._initialize_from_json(
+        "tests/expected/service/us.json"
+    )
     print(TEST_NYT_COUNTRY_DATA[0].to_dict())
 
     nyt_facade = NytFacade()
     mocked_data_service = AsyncMock()
-    mocked_data_service.get_data.return_value = TEST_NYT_COUNTRY_DATA, f"{TestBase.TEST_DATE}Z"
+    mocked_data_service.get_data.return_value = (
+        TEST_NYT_COUNTRY_DATA,
+        f"{TestBase.TEST_DATE}Z",
+    )
     nyt_facade.DATA_SERVICE = mocked_data_service
 
     with mock.patch("backend.utils.functions.datetime") as mock_datetime:
@@ -50,15 +57,21 @@ async def test__get_country_data__success(mock_web_client):
         actual, f"tests/expected/facade/nyt_country_data.json"
     )
 
+
 @pytest.mark.asyncio
 async def test__get_state_data__success():
     # Arrange
-    TEST_NYT_COUNTRY_DATA = TestBase._initialize_from_json("tests/expected/service/us-states.json")
+    TEST_NYT_COUNTRY_DATA = TestBase._initialize_from_json(
+        "tests/expected/service/us-states.json"
+    )
     print(TEST_NYT_COUNTRY_DATA[0].to_dict())
 
     nyt_facade = NytFacade()
     mocked_data_service = AsyncMock()
-    mocked_data_service.get_data.return_value = TEST_NYT_COUNTRY_DATA, f"{TestBase.TEST_DATE}Z"
+    mocked_data_service.get_data.return_value = (
+        TEST_NYT_COUNTRY_DATA,
+        f"{TestBase.TEST_DATE}Z",
+    )
     nyt_facade.DATA_SERVICE = mocked_data_service
 
     with mock.patch("backend.utils.functions.datetime") as mock_datetime:
@@ -83,15 +96,21 @@ async def test__get_state_data__success():
         actual, f"tests/expected/facade/nyt_state_data.json"
     )
 
+
 @pytest.mark.asyncio
 async def test__get_county_data__success():
     # Arrange
-    TEST_NYT_COUNTRY_DATA = TestBase._initialize_from_json("tests/expected/service/us-counties.json")
+    TEST_NYT_COUNTRY_DATA = TestBase._initialize_from_json(
+        "tests/expected/service/us-counties.json"
+    )
     print(TEST_NYT_COUNTRY_DATA[0].to_dict())
 
     nyt_facade = NytFacade()
     mocked_data_service = AsyncMock()
-    mocked_data_service.get_data.return_value = TEST_NYT_COUNTRY_DATA, f"{TestBase.TEST_DATE}Z"
+    mocked_data_service.get_data.return_value = (
+        TEST_NYT_COUNTRY_DATA,
+        f"{TestBase.TEST_DATE}Z",
+    )
     nyt_facade.DATA_SERVICE = mocked_data_service
 
     with mock.patch("backend.utils.functions.datetime") as mock_datetime:

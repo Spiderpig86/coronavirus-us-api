@@ -25,7 +25,6 @@ async def test__get_country_data__success(mock_web_client):
     TEST_NYT_COUNTRY_DATA = TestBase._initialize_from_json(
         "tests/expected/service/us.json"
     )
-    print(TEST_NYT_COUNTRY_DATA[0].to_dict())
 
     nyt_facade = NytFacade()
     mocked_data_service = AsyncMock()
@@ -64,7 +63,6 @@ async def test__get_state_data__success():
     TEST_NYT_COUNTRY_DATA = TestBase._initialize_from_json(
         "tests/expected/service/us-states.json"
     )
-    print(TEST_NYT_COUNTRY_DATA[0].to_dict())
 
     nyt_facade = NytFacade()
     mocked_data_service = AsyncMock()
@@ -83,7 +81,7 @@ async def test__get_state_data__success():
             MockFunctions.get_formatted_date.return_value = TestBase.TEST_DATE
 
             # Act
-            country_data, last_updated = await nyt_facade.get_country_data()
+            country_data, last_updated = await nyt_facade.get_state_data()
 
     actual = []
     for location in country_data:
@@ -103,7 +101,6 @@ async def test__get_county_data__success():
     TEST_NYT_COUNTRY_DATA = TestBase._initialize_from_json(
         "tests/expected/service/us-counties.json"
     )
-    print(TEST_NYT_COUNTRY_DATA[0].to_dict())
 
     nyt_facade = NytFacade()
     mocked_data_service = AsyncMock()
@@ -122,7 +119,7 @@ async def test__get_county_data__success():
             MockFunctions.get_formatted_date.return_value = TestBase.TEST_DATE
 
             # Act
-            country_data, last_updated = await nyt_facade.get_country_data()
+            country_data, last_updated = await nyt_facade.get_county_data()
 
     actual = []
     for location in country_data:

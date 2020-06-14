@@ -4,6 +4,9 @@ Class to hold main test utility functions.
 """
 import json
 
+from backend.models.classes.category import Category
+from backend.models.classes.location import NytLocation
+
 
 class TestBase:
 
@@ -24,3 +27,29 @@ class TestBase:
     def _validate_fields(fields, dict):
         for field in fields:
             assert dict[field] is not None
+
+    # TODO: Make this function generic
+    @staticmethod
+    def _initialize_from_json(path):
+        with open(path, "r") as f:
+            data = f.read()
+
+        json_data = json.loads(data)
+
+        results = []
+        for entry in json_data:
+            confirmed = Category(entry["timelines"]["confirmed"]["history"])
+            deaths = Category(entry["timelines"]["deaths"]["history"])
+            results.append(
+                NytLocation(
+                    id=entry["id"],
+                    country=entry["country"],
+                    county=entry["county"],
+                    state=entry["state"],
+                    fips=entry["fips"],
+                    timelines={"confirmed": confirmed, "deaths": deaths,},
+                    last_updated=entry["last_updated"],
+                    latest=entry["latest"],
+                )
+            )
+        return results

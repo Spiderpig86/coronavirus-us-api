@@ -51,6 +51,7 @@ async def _test_get_data(mock_web_client, path):
     # Assert
     assert isinstance(locations, list)
     assert isinstance(last_updated, str)
+    assert last_updated == f"{TestBase.TEST_DATE}Z"
 
     actual_locations = []
     for location in locations:

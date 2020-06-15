@@ -4,6 +4,7 @@ Class that interfaces with jhu_service.py to aggregate data.
 """
 
 import asyncio
+from typing import List
 
 from backend.core.config.constants import DATA_ENDPOINTS
 from backend.facades.facade import DataSourceFacade
@@ -22,7 +23,7 @@ class JhuFacade(DataSourceFacade):
         self.LOCATION_SERVICE = LocationDataService()
         self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
 
-    async def get_country_data(self):
+    async def get_country_data(self) -> (List[JhuLocation], str):
         """Notes: Function currently designed only for US data
         """
         promises = await asyncio.gather(self.DATA_SERVICE.get_data(self.ENDPOINT),)

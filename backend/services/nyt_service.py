@@ -21,7 +21,7 @@ from backend.utils.functions import Functions
 
 
 class NytDataService(object):
-    @cached(cache=TTLCache(maxsize=1024, ttl=3600))
+    @cached(cache=TTLCache(maxsize=256, ttl=3600))
     async def get_data(self, endpoint: str):
         """Method that retrieves data from the New York Times.
         

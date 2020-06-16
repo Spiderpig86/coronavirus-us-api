@@ -25,7 +25,7 @@ from backend.utils.functions import Functions
 
 
 class JhuDataService(object):
-    @cached(cache=TTLCache(maxsize=1024, ttl=3600))
+    @cached(cache=TTLCache(maxsize=256, ttl=3600))
     async def get_data(self, endpoint: str) -> (List[JhuLocation], str):
         """Method that retrieves data from JHU CSSEGSI.
         

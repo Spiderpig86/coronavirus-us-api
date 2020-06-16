@@ -11,7 +11,6 @@ from cachetools import TTLCache
 
 class Functions:
     @staticmethod
-    @cached(cache=TTLCache(maxsize=1024, ttl=3600))
     def get_formatted_date(initial_date: str = None, format: str = None) -> str:
         """Generates formatted date strings to be used as keys.
 
@@ -23,11 +22,25 @@ class Functions:
             str -- resulting ISO format date string.
         """
         date = (
-            datetime.strptime(initial_date, format)
+            Functions._get_formatted_date_with_param(initial_date, format)
             if initial_date
             else datetime.utcnow()
         )
         return date.isoformat() + "Z"
+
+    @staticmethod
+    @cached(cache=TTLCache(maxsize=1024, ttl=3600))
+    def _get_formatted_date_with_param(initial_date: str, format: str) -> datetime:
+        """Helper method to format dates based on given format and memoizes results.
+
+        Arguments:
+            initial_date {str} -- string representing date to format.
+            format {str} -- format of the date.
+
+        Returns:
+            datetime -- datetime object of the given date parameter.
+        """
+        return datetime.strptime(initial_date, format)
 
     @staticmethod
     def to_location_id(tuple_id: tuple):

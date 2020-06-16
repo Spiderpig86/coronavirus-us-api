@@ -52,19 +52,8 @@ class NytDataService(object):
             confirmed_map = events["confirmed"]
             deaths_map = events["deaths"]
 
-            confirmed = Category(
-                {
-                    Functions.get_formatted_date(date, "%Y-%m-%d"): amount
-                    for date, amount in confirmed_map.items()
-                }
-            )
-
-            deaths = Category(
-                {
-                    Functions.get_formatted_date(date, "%Y-%m-%d"): amount
-                    for date, amount in deaths_map.items()
-                }
-            )
+            confirmed = Category(confirmed_map)
+            deaths = Category(deaths_map)
 
             locations.append(
                 NytLocation(
@@ -106,7 +95,7 @@ class NytDataService(object):
                 self._get_field_from_map(timestamp, "fips"),
             )
 
-            updated_date = timestamp["date"]
+            updated_date = Functions.get_formatted_date(timestamp["date"], "%Y-%m-%d")
             confirmed = timestamp["cases"]
             deaths = timestamp["deaths"]
 

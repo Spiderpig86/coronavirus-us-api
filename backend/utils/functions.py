@@ -5,9 +5,13 @@ TODO: Split functions to separate files based on responsibilities.
 """
 from datetime import datetime
 
+from asyncache import cached
+from cachetools import TTLCache
+
 
 class Functions:
     @staticmethod
+    @cached(cache=TTLCache(maxsize=1024, ttl=3600))
     def get_formatted_date(initial_date: str = None, format: str = None) -> str:
         """Generates formatted date strings to be used as keys.
 

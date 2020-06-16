@@ -2,7 +2,10 @@
 
 Endpoint for fetching all information given a source.
 """
+import time
+
 from fastapi import APIRouter, HTTPException, Request
+from loguru import logger
 
 from backend.models.classes.source import Source
 from backend.models.classes.statistics import Statistics
@@ -17,9 +20,7 @@ router = APIRouter()
 ##########
 # ROUTES #
 ##########
-@router.get(
-    "/all", response_model=AllResult, name="All", response_model_exclude_unset=True
-)
+@router.get("/all", name="All", response_model_exclude_unset=True)
 async def get_all(
     request: Request,
     source: Source = "nyt",
@@ -71,7 +72,10 @@ async def get_all(
     county_data_map = None
     if properties:
         location_data_service = request.state.location_data_service
+        _start = time.time() * 1000.0
         county_data_map = await location_data_service.get_county_data()
+        _end = time.time() * 1000.0
+        logger.info(f"Elapsed for all endpoint {str(_end-_start)}ms")
 
     locations_response = []
     for location in location_data:

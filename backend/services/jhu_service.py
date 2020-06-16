@@ -58,19 +58,8 @@ class JhuDataService(object):
             confirmed_map = events["confirmed"]
             deaths_map = events["deaths"]
 
-            confirmed = Category(
-                {
-                    Functions.get_formatted_date(date, "%m/%d/%y"): amount
-                    for date, amount in confirmed_map.items()
-                }
-            )
-
-            deaths = Category(
-                {
-                    Functions.get_formatted_date(date, "%m/%d/%y"): amount
-                    for date, amount in deaths_map.items()
-                }
-            )
+            confirmed = Category(confirmed_map)
+            deaths = Category(deaths_map)
 
             locations.append(
                 JhuLocation(
@@ -160,7 +149,9 @@ class JhuDataService(object):
                 }
 
             for date, amount in dates.items():
-                location_result[location_id][stat][date] = int(amount or 0)
+                location_result[location_id][stat][
+                    Functions.get_formatted_date(date, "%m/%d/%y")
+                ] = int(amount or 0)
 
     def _get_field_from_map(self, data, field) -> str:  # TODO: Extract to utils
         """Tries to get value from a map by key. Otherwise, returns empty string.

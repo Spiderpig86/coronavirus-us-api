@@ -1,0 +1,4 @@
+ignore:
+  - "backend/facades/facade.py"
+  - "tests/**/*"
+  - "e2e/**/*"

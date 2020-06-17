@@ -31,6 +31,7 @@ asyncio = "*"
 uvicorn = "*"
 aiohttp = "*"
 httptools = "*"
+uvloop = "*"
 
 [requires]
 python_version = "3.7"

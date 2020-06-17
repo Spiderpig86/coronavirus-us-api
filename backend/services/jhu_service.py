@@ -44,7 +44,7 @@ class JhuDataService(object):
         logger.info(f"Elapsed _fetch_csv_data for all stats {str(_end-_start)}ms")
 
         _start = time.time() * 1000.0
-        tagged_promises = self._tag_promised_results(["confirmed", "deaths"], promises)
+        tagged_promises = self._tag_promised_results(["confirmed", "deaths"], promises) # [("confirmed", ...), ...]
         location_result = self._zip_results(
             tagged_promises
         )  # Store the final map of datapoints
@@ -102,10 +102,8 @@ class JhuDataService(object):
 
     def _zip_results(self, data: List[Tuple]) -> dict:
         location_result = {}
-        for zipped_results in zip(data):
-            for tagged_promise in zipped_results:  # tup is (stat, results map)
-                stat, locations = tagged_promise
-                self._populate_location_result(stat, locations, location_result)
+        for stat, locations in data:
+            self._populate_location_result(stat, locations, location_result)
 
         return location_result
 
@@ -120,7 +118,7 @@ class JhuDataService(object):
             location_result {dict} -- Map of finalized location data to put data in.
         """
 
-        for location in locations:
+        for i, location in enumerate(locations):
             location_id = (
                 self._get_field_from_map(location, "Country_Region"),
                 self._get_field_from_map(location, "Province_State"),

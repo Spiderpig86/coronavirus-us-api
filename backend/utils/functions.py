@@ -13,6 +13,7 @@ class Functions:
     @staticmethod
     def get_formatted_date(initial_date: str = None, format: str = None) -> str:
         """Generates formatted date strings to be used as keys.
+        Function is written this way due to unit testing.
 
         Keyword Arguments:
             initial_date {Date} -- datetime object to format (default: {None})
@@ -21,15 +22,12 @@ class Functions:
         Returns:
             str -- resulting ISO format date string.
         """
-        date = (
-            Functions._get_formatted_date_with_param(initial_date, format)
-            if initial_date
-            else datetime.utcnow()
-        )
-        return date.strftime('%Y-%m-%d')
+        if initial_date:
+            return Functions._get_formatted_date_with_param(initial_date, format)
+        return datetime.utcnow().strftime('%Y-%m-%d')
 
     @staticmethod
-    @cached(cache=TTLCache(maxsize=1024, ttl=3600))
+    @cached(cache=TTLCache(maxsize=512, ttl=3600))
     def _get_formatted_date_with_param(initial_date: str, format: str) -> datetime:
         """Helper method to format dates based on given format and memoizes results.
 
@@ -40,7 +38,7 @@ class Functions:
         Returns:
             datetime -- datetime object of the given date parameter.
         """
-        return datetime.strptime(initial_date, format)
+        return datetime.strptime(initial_date, format).strftime('%Y-%m-%d')
 
     @staticmethod
     def to_location_id(tuple_id: tuple):

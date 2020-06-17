@@ -3,7 +3,6 @@
 Generic model to represent a location and the statistics that each location should contain.
 """
 
-from datetime import datetime
 from typing import Dict, List, Optional
 
 from pydantic import BaseModel
@@ -27,6 +26,6 @@ class Location(BaseModel):
     latitude: Optional[str]
     longitude: Optional[str]
     timelines: Optional[Timelines]
-    last_updated: datetime
+    last_updated: str
     latest: Statistics
     properties: Optional[LocationProperties]

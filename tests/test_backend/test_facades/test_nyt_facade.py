@@ -30,15 +30,13 @@ async def test__get_country_data__success(mock_web_client):
     mocked_data_service = AsyncMock()
     mocked_data_service.get_data.return_value = (
         TEST_NYT_COUNTRY_DATA,
-        f"{TestBase.TEST_DATE}Z",
+        f"{TestBase.TEST_DATE}",
     )
     nyt_facade.DATA_SERVICE = mocked_data_service
 
     with mock.patch("backend.utils.functions.datetime") as mock_datetime:
         with mock.patch("backend.utils.functions") as MockFunctions:
-            mock_datetime.utcnow.return_value.isoformat.return_value = (
-                TestBase.TEST_DATE
-            )
+            mock_datetime.utcnow.return_value.strftime.return_value = TestBase.TEST_DATE
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat
             MockFunctions.get_formatted_date.return_value = TestBase.TEST_DATE
 
@@ -68,15 +66,13 @@ async def test__get_state_data__success():
     mocked_data_service = AsyncMock()
     mocked_data_service.get_data.return_value = (
         TEST_NYT_COUNTRY_DATA,
-        f"{TestBase.TEST_DATE}Z",
+        f"{TestBase.TEST_DATE}",
     )
     nyt_facade.DATA_SERVICE = mocked_data_service
 
     with mock.patch("backend.utils.functions.datetime") as mock_datetime:
         with mock.patch("backend.utils.functions") as MockFunctions:
-            mock_datetime.utcnow.return_value.isoformat.return_value = (
-                TestBase.TEST_DATE
-            )
+            mock_datetime.utcnow.return_value.strftime.return_value = TestBase.TEST_DATE
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat
             MockFunctions.get_formatted_date.return_value = TestBase.TEST_DATE
 
@@ -106,15 +102,13 @@ async def test__get_county_data__success():
     mocked_data_service = AsyncMock()
     mocked_data_service.get_data.return_value = (
         TEST_NYT_COUNTRY_DATA,
-        f"{TestBase.TEST_DATE}Z",
+        f"{TestBase.TEST_DATE}",
     )
     nyt_facade.DATA_SERVICE = mocked_data_service
 
     with mock.patch("backend.utils.functions.datetime") as mock_datetime:
         with mock.patch("backend.utils.functions") as MockFunctions:
-            mock_datetime.utcnow.return_value.isoformat.return_value = (
-                TestBase.TEST_DATE
-            )
+            mock_datetime.utcnow.return_value.strftime.return_value = TestBase.TEST_DATE
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat
             MockFunctions.get_formatted_date.return_value = TestBase.TEST_DATE
 

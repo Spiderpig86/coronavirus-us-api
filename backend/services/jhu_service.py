@@ -44,7 +44,9 @@ class JhuDataService(object):
         logger.info(f"Elapsed _fetch_csv_data for all stats {str(_end-_start)}ms")
 
         _start = time.time() * 1000.0
-        tagged_promises = self._tag_promised_results(["confirmed", "deaths"], promises) # [("confirmed", ...), ...]
+        tagged_promises = self._tag_promised_results(
+            ["confirmed", "deaths"], promises
+        )  # [("confirmed", ...), ...]
         location_result = self._zip_results(
             tagged_promises
         )  # Store the final map of datapoints

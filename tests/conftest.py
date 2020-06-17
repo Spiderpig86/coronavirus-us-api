@@ -78,6 +78,9 @@ class MockedStrpDateTime:
     def isoformat(self):
         return datetime.datetime.strptime(self.date, self.strformat).isoformat()
 
+    def strftime(self, fmt):
+        return datetime.datetime.strptime(self.date, self.strformat).strftime(fmt)
+
 
 def mocked_strptime_isoformat(*args, **kwargs):
     """Returns a mocked instance of a datetime.strp object.

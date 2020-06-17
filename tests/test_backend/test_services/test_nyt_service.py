@@ -37,9 +37,7 @@ async def _test_get_data(mock_web_client, path):
     # Arrange
     with mock.patch("backend.utils.functions.datetime") as mock_datetime:
         with mock.patch("backend.utils.functions") as functions:
-            mock_datetime.utcnow.return_value.isoformat.return_value = (
-                TestBase.TEST_DATE
-            )
+            mock_datetime.utcnow.return_value.strftime.return_value = TestBase.TEST_DATE
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat  # Needed since strptime is used in nyt_service
             functions.get_formatted_date.return_value = TestBase.TEST_DATE
 
@@ -51,7 +49,7 @@ async def _test_get_data(mock_web_client, path):
     # Assert
     assert isinstance(locations, list)
     assert isinstance(last_updated, str)
-    assert last_updated == f"{TestBase.TEST_DATE}Z"
+    assert last_updated == f"{TestBase.TEST_DATE}"
 
     actual_locations = []
     for location in locations:

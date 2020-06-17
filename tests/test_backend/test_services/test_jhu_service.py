@@ -33,9 +33,7 @@ async def test_get_locations(mock_web_client):
     # Arrange & Act
     with mock.patch("backend.utils.functions.datetime") as mock_datetime:
         with mock.patch("backend.utils.functions") as functions:
-            mock_datetime.utcnow.return_value.isoformat.return_value = (
-                TestBase.TEST_DATE
-            )
+            mock_datetime.utcnow.return_value.strftime.return_value = TestBase.TEST_DATE
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat  # Needed since strptime is used in nyt_service
             functions.get_formatted_date.return_value = TestBase.TEST_DATE
 

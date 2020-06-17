@@ -24,11 +24,11 @@ class Functions:
         """
         if initial_date:
             return Functions._get_formatted_date_with_param(initial_date, format)
-        return datetime.utcnow().strftime('%Y-%m-%d')
+        return datetime.utcnow().strftime("%Y-%m-%d")
 
     @staticmethod
     @cached(cache=TTLCache(maxsize=512, ttl=3600))
-    def _get_formatted_date_with_param(initial_date: str, format: str) -> datetime:
+    def _get_formatted_date_with_param(initial_date: str, format: str) -> str:
         """Helper method to format dates based on given format and memoizes results.
 
         Arguments:
@@ -38,7 +38,7 @@ class Functions:
         Returns:
             datetime -- datetime object of the given date parameter.
         """
-        return datetime.strptime(initial_date, format).strftime('%Y-%m-%d')
+        return datetime.strptime(initial_date, format).strftime("%Y-%m-%d")
 
     @staticmethod
     def to_location_id(tuple_id: tuple):
@@ -59,3 +59,19 @@ class Functions:
             )
 
         return "@".join([item for item in tuple_id if len(item) > 0])
+
+    @staticmethod
+    def try_getattr(obj: object, attr: str):
+        """Wrapper function that performs getattr(). Returns "__IGNORE__" on AttributeError.
+
+        Arguments:
+            obj {object} -- object to inspect.
+            attr {str} -- attribute name to retrieve.
+
+        Returns:
+            object -- any value located at that attribute name.
+        """
+        try:
+            return getattr(obj, attr)
+        except AttributeError:
+            return "__IGNORE__"

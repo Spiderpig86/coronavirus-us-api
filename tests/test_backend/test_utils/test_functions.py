@@ -15,10 +15,7 @@ TEST_DATETIME = datetime(2020, 5, 21, 0, 0, 0)
 
 @pytest.mark.parametrize(
     "initial_date, format, expected_value",
-    [
-        ("05/18/20", "%m/%d/%y", "2020-05-18T00:00:00Z"),
-        ("2020-05-18", "%Y-%m-%d", "2020-05-18T00:00:00Z"),
-    ],
+    [("05/18/20", "%m/%d/%y", "2020-05-18"), ("2020-05-18", "%Y-%m-%d", "2020-05-18"),],
 )
 def test__get_formatted_date__given_valid_parameters__success(
     initial_date, format, expected_value
@@ -32,7 +29,7 @@ def test__get_formatted_date__given_no_parameters__success():
         mock_datetime.utcnow.return_value = TEST_DATETIME
         result = Functions.get_formatted_date()
 
-    assert result == "2020-05-21T00:00:00Z"
+    assert result == "2020-05-21"
 
 
 def test__get_formatted_date__given_empty_initial_date__success():
@@ -41,7 +38,7 @@ def test__get_formatted_date__given_empty_initial_date__success():
         mock_datetime.utcnow.return_value = TEST_DATETIME
         result = Functions.get_formatted_date("")
 
-    assert result == "2020-05-21T00:00:00Z"
+    assert result == "2020-05-21"
 
 
 @pytest.mark.parametrize(

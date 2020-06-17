@@ -10,7 +10,7 @@ from backend.models.classes.location import NytLocation
 
 class TestBase:
 
-    TEST_DATE = "2020-05-30T09:19:06"
+    TEST_DATE = "2020-05-30"
 
     SERVICE_LOCATION_FIELDS = ["id", "country", "timelines", "last_updated", "latest"]
 

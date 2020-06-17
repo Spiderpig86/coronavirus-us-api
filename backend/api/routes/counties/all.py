@@ -10,6 +10,7 @@ from loguru import logger
 from backend.models.classes.source import Source
 from backend.models.classes.statistics import Statistics
 from backend.models.swagger.endpoints.all import AllResult
+from backend.utils.functions import Functions
 from backend.utils.state_abbr import STATE_ABBR__STATE_NAME, get_state_name
 
 ######################
@@ -55,7 +56,9 @@ async def get_all(
 
         location_data = list(
             filter(
-                lambda location: str(getattr(location, key)).lower() == value,
+                lambda location: str(Functions.try_getattr(location, key))
+                == "__IGNORE__"
+                or str(Functions.try_getattr(location, key)).lower() == value,
                 location_data,
             )
         )

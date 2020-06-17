@@ -26,10 +26,10 @@ class Functions:
             if initial_date
             else datetime.utcnow()
         )
-        return date.isoformat() + "Z"
+        return date.strftime('%Y-%m-%d')
 
     @staticmethod
-    @cached(cache=TTLCache(maxsize=128, ttl=3600))
+    @cached(cache=TTLCache(maxsize=1024, ttl=3600))
     def _get_formatted_date_with_param(initial_date: str, format: str) -> datetime:
         """Helper method to format dates based on given format and memoizes results.
 

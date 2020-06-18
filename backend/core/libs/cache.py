@@ -2,32 +2,36 @@
 
 Library in charge of managing application cache.
 """
-from aiocache import RedisCache, SimpleMemoryCache
 from typing import Union
-from backend.core.config.constants import *
+
+import aiocache
 from loguru import logger
 
-class Cache:
+from backend.core.config.constants import REDIS_URL, STAGE
 
+
+class Cache:
     def __init__(self):
         self.cache = self._build_cache()
 
-    def _build_cache(self) -> Union[RedisCache, SimpleMemoryCache]:
-        if STAGE and STAGE == "prod" and REDIS_URL: # TODO: Refactor to util?
+    def _build_cache(self) -> Union[aiocache.RedisCache, aiocache.SimpleMemoryCache]:
+        if STAGE and STAGE == "prod" and REDIS_URL:  # TODO: Refactor to util?
             logger.info("Initializing RedisCloud Cache...")
-            return RedisCache(
+            return aiocache.RedisCache(
                 endpoint=REDIS_URL.host,
                 port=REDIS_URL.port,
                 password=REDIS_URL.password,
-                create_connection_timeout=5
+                create_connection_timeout=5,
             )
         else:
             logger.info("Initializing SimpleMemoryCache...")
-            return SimpleMemoryCache()
+            return aiocache.SimpleMemoryCache()
 
     async def get_item(self, item_id: str) -> object:
         result = await self.cache.get(item_id)
-        logger.info("Cache " + ("hit " if result else "miss ") + f"for item id {item_id}")
+        logger.info(
+            "Cache " + ("hit " if result else "miss ") + f"for item id {item_id}"
+        )
         await self.cache.close()
         return result
 

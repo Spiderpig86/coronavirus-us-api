@@ -4,7 +4,7 @@ Data Source Service unit test.
 """
 import pytest
 
-from backend.services.data_source_service import get_data_source
+from backend.services.data_source_service import DataSources
 
 
 @pytest.mark.parametrize(
@@ -14,7 +14,7 @@ def test__given_valid_data_source__get_data_source__success(
     data_source, expected_value
 ):
     # Act & Assert
-    source = get_data_source(data_source)
+    source = DataSources().get_data_source(data_source)
     assert source.__class__.__name__ == expected_value
 
 
@@ -22,4 +22,4 @@ def test__given_valid_data_source__get_data_source__success(
     "data_source", [("blah"),],
 )
 def test__given_invalid_data_source__get_data_source__error(data_source):
-    assert get_data_source(data_source) is None
+    assert DataSources().get_data_source(data_source) is None

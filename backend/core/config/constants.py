@@ -4,6 +4,7 @@ All of the application constants can be found here.
 """
 import os
 from urllib.parse import urlparse
+
 from pydantic import AnyUrl
 
 from .config import CONFIG
@@ -32,8 +33,10 @@ CONFIG_APP_PORT: str = CONFIG.get("app.port")
 CONFIG_APP_LOG_LEVEL: str = CONFIG.get("app.log_level")
 
 # Deployment
-STAGE: str = os.environ.get('STAGE')
-REDIS_URL: AnyUrl = urlparse(os.environ.get('REDISCLOUD_URL')) if os.environ.get('REDISCLOUD_URL') else None
+STAGE: str = os.environ.get("STAGE")
+REDIS_URL: AnyUrl = urlparse(os.environ.get("REDISCLOUD_URL")) if os.environ.get(
+    "REDISCLOUD_URL"
+) else None
 
 # Data Endpoints
 DATA_ENDPOINTS = {

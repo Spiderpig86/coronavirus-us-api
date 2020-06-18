@@ -9,7 +9,7 @@ from cachetools import TTLCache
 from loguru import logger
 
 from backend.core.config.constants import DATA_ENDPOINTS
-from backend.core.utils import webclient
+from backend.core.libs import webclient
 from backend.models.classes.coordinates import Coordinates
 from backend.models.classes.location_properties import LocationProperties
 from backend.utils.country_population import COUNTRY_POPULATION

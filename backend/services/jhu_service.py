@@ -16,7 +16,7 @@ from dateutil.parser import parse
 from loguru import logger
 
 from backend.core.config.constants import DATA_ENDPOINTS
-from backend.core.utils import webclient
+from backend.core.libs import webclient
 from backend.models.classes.category import Category
 from backend.models.classes.location import JhuLocation
 from backend.models.classes.statistics import Statistics
@@ -25,7 +25,7 @@ from backend.utils.functions import Functions
 
 
 class JhuDataService(object):
-    @cached(cache=TTLCache(maxsize=1024, ttl=3600))
+    @cached(cache=TTLCache(maxsize=256, ttl=3600))
     async def get_data(self, endpoint: str) -> (List[JhuLocation], str):
         """Method that retrieves data from JHU CSSEGSI.
         
@@ -35,6 +35,13 @@ class JhuDataService(object):
         Returns:
             Location[], str -- returns list of location stats and the last updated date.
         """
+        from backend.utils.containers import Container
+
+        # First check cache
+        cached_result = await Container.cache().get_item("jhu_data")
+        if cached_result:
+            return cached_result
+
         _start = time.time() * 1000.0
         promises = await asyncio.gather(
             self._fetch_csv_data(endpoint, "confirmed"),
@@ -83,6 +90,8 @@ class JhuDataService(object):
                     ).to_dict(),
                 )
             )
+
+        await Container.cache().set_item("jhu_data", (locations, last_updated))
 
         logger.info("Finished transforming JHU results.")
         return locations, last_updated

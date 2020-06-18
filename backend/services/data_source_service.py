@@ -3,20 +3,23 @@
 Data Service Container used for dependency injection into routes for data retrieval.
 """
 
+from backend.facades.facade import DataSourceFacade
 from backend.facades.jhu_facade import JhuFacade
 from backend.facades.nyt_facade import NytFacade
 from backend.services.location_data_service import LocationDataService
 
-DATA_FACADE_CONTAINER = {"nyt": NytFacade(), "jhu": JhuFacade()}
-LOCATION_DATA_SERVICE = LocationDataService()
 
+class DataSources:
+    def __init__(self):
+        self.DATA_FACADE_CONTAINER = {"nyt": NytFacade(), "jhu": JhuFacade()}
 
-def get_data_source(data_source: str):
-    """Retrieves a data source service given the data source alias.
-    
-    Arguments:
-        data_source {str} -- data source alias.
+    def get_data_source(self, data_source: str) -> DataSourceFacade:
+        """Retrieves a data source service given the data source alias.
+        
+        Arguments:
+            data_source {str} -- data source alias.
 
-        # TODO: Update pydoc
-    """
-    return DATA_FACADE_CONTAINER.get(data_source.lower())
+        Returns:
+            DataSourceFacade -- corresponding DataSourceFacade given parameter.
+        """
+        return self.DATA_FACADE_CONTAINER.get(data_source.lower())

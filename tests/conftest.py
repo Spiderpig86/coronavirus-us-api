@@ -6,7 +6,7 @@ import pytest
 from async_asgi_testclient import TestClient as AsyncTestClient
 from fastapi.testclient import TestClient
 
-from backend.core.utils import webclient
+from backend.core.libs import webclient
 from backend.main import api
 
 try:  # Pragma AsyncMock

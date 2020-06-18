@@ -12,7 +12,7 @@ from asyncache import cached
 from cachetools import TTLCache
 from loguru import logger
 
-from backend.core.utils import webclient
+from backend.core.libs import webclient
 from backend.models.classes.category import Category
 from backend.models.classes.location import NytLocation
 from backend.models.classes.statistics import Statistics

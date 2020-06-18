@@ -32,6 +32,8 @@ uvicorn = "*"
 aiohttp = "*"
 httptools = "*"
 aiocache = "*"
+dependency-injector = "*"
+aioredis = "*"
 
 [requires]
 python_version = "3.7"

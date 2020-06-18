@@ -11,16 +11,13 @@ from loguru import logger
 
 from backend.api.routes.router import Router
 from backend.core.events import shutdown_handler, startup_handler
+from backend.models.classes.source import Source
+from backend.utils.containers import Container, DataSourceContainer
 
 from backend.core.config.constants import (  # isort:skip
     CONFIG_APP_HOST,
     CONFIG_APP_LOG_LEVEL,
     CONFIG_APP_PORT,
-)
-
-from backend.services.data_source_service import (  # isort:skip
-    LOCATION_DATA_SERVICE,
-    get_data_source,
 )
 
 from backend.core.config.constants import (  # isort:skip
@@ -71,17 +68,19 @@ def get_api() -> FastAPI:
             Response -- Return updated response with new data service in request state.
         """
         source_param = request.query_params.get("source", default="nyt")
-        data_source = get_data_source(source_param)
 
         # Handle incorrect source
-        if not data_source:
+        if source_param not in Source.list():
             return Response(
                 f"The given datasource '{source_param}' is not valid.", status_code=400
             )
 
         # Inject services
+        data_source = DataSourceContainer.data_sources().get_data_source(source_param)
         request.state.data_source = data_source
-        request.state.location_data_service = LOCATION_DATA_SERVICE
+        request.state.location_data_service = (
+            DataSourceContainer.location_data_service()
+        )
 
         logger.info(f"Data source service {data_source.__class__.__name__} injected...")
         response = await next(request)

@@ -3,6 +3,8 @@
 All of the application constants can be found here.
 """
 import os
+from urllib.parse import urlparse
+from pydantic import AnyUrl
 
 from .config import CONFIG
 
@@ -25,13 +27,13 @@ API_TAG_COUNTRY = "country"
 
 # Configuration
 CONFIG_PATH = "config/config.yml"
-CONFIG_APP_HOST = CONFIG.get("app.host")
-CONFIG_APP_PORT = CONFIG.get("app.port")
-CONFIG_APP_LOG_LEVEL = CONFIG.get("app.log_level")
+CONFIG_APP_HOST: str = CONFIG.get("app.host")
+CONFIG_APP_PORT: str = CONFIG.get("app.port")
+CONFIG_APP_LOG_LEVEL: str = CONFIG.get("app.log_level")
 
 # Deployment
-STAGE = os.environ.get('STAGE')
-REDIS_URL = os.environ.get('REDISCLOUD_URL')
+STAGE: str = os.environ.get('STAGE')
+REDIS_URL: AnyUrl = urlparse(os.environ.get('REDISCLOUD_URL')) if os.environ.get('REDISCLOUD_URL') else None
 
 # Data Endpoints
 DATA_ENDPOINTS = {

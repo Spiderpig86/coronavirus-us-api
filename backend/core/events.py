@@ -7,7 +7,7 @@ from typing import Callable
 from fastapi import FastAPI
 from loguru import logger
 
-from backend.core.utils.webclient import setup_webclient, teardown_webclient
+from backend.core.libs.webclient import setup_webclient, teardown_webclient
 
 
 def startup_handler(app: FastAPI) -> Callable:

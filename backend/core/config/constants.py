@@ -2,6 +2,8 @@
 
 All of the application constants can be found here.
 """
+import os
+
 from .config import CONFIG
 
 # App
@@ -26,7 +28,10 @@ CONFIG_PATH = "config/config.yml"
 CONFIG_APP_HOST = CONFIG.get("app.host")
 CONFIG_APP_PORT = CONFIG.get("app.port")
 CONFIG_APP_LOG_LEVEL = CONFIG.get("app.log_level")
-CONFIG_FASTAPI_DEBUG_KEY = "debug"
+
+# Deployment
+STAGE = os.environ.get('STAGE')
+REDIS_URL = os.environ.get('REDISCLOUD_URL')
 
 # Data Endpoints
 DATA_ENDPOINTS = {

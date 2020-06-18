@@ -18,7 +18,7 @@ class Cache:
         if STAGE and STAGE == "prod" and REDIS_URL:  # TODO: Refactor to util?
             logger.info("Initializing RedisCloud Cache...")
             return aiocache.RedisCache(
-                endpoint=REDIS_URL.host,
+                endpoint=REDIS_URL.hostname,
                 port=REDIS_URL.port,
                 password=REDIS_URL.password,
                 create_connection_timeout=5,

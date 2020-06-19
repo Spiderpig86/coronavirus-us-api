@@ -37,7 +37,7 @@ class JhuFacade(DataSourceFacade):
             iso3="USA",
             code3="USA",
             fips="",
-            admin2="",
+            county="",
             state="",
             country="US",
             latitude="37.0902",  # TODO: Do not hardcode
@@ -98,7 +98,7 @@ class JhuFacade(DataSourceFacade):
                     iso3=properties_for_state.iso3,
                     code3=properties_for_state.code3,
                     fips=properties_for_state.fips,
-                    admin2=properties_for_state.admin2,
+                    county=properties_for_state.admin2,
                     state=result.state,
                     country=result.country,
                     latitude=properties_for_state.coordinates.latitude,

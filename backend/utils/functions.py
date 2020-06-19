@@ -41,6 +41,12 @@ class Functions:
         return datetime.strptime(initial_date, format).strftime("%Y-%m-%d")
 
     @staticmethod
+    @cached(cache=TTLCache(maxsize=512, ttl=3600))
+    def to_format_date(initial_date: datetime) -> str:
+        return initial_date.strftime("%Y-%m-%d")
+
+    @staticmethod
+    @cached(cache=TTLCache(maxsize=512, ttl=3600))
     def to_location_id(tuple_id: tuple):
         """Generates string ID given tuple containing a variable number of fields.
         

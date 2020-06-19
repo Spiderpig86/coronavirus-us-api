@@ -40,7 +40,8 @@ class JhuDataService(object):
         # First check cache
         cached_result = await Container.cache().get_item("jhu_data")
         if cached_result:
-            return cached_result
+            serialized_locations, last_updated = cached_result
+            return self._deserialize_locations(serialized_locations), last_updated
 
         _start = time.time() * 1000.0
         promises = await asyncio.gather(
@@ -91,7 +92,9 @@ class JhuDataService(object):
                 )
             )
 
-        await Container.cache().set_item("jhu_data", (locations, last_updated))
+        await Container.cache().set_item(
+            "jhu_data", (self._serialize_locations(locations), last_updated)
+        )
 
         logger.info("Finished transforming JHU results.")
         return locations, last_updated
@@ -204,3 +207,32 @@ class JhuDataService(object):
 
         tagged_promises = [(tag, promise) for tag, promise in zip(tags, promises)]
         return tagged_promises
+
+    def _serialize_locations(self, locations: List[JhuLocation]) -> List[dict]:
+        """Serializes list of JhuLocations for caching.
+
+        Arguments:
+            locations {List[JhuLocation]} -- list of JhuLocation objects.
+
+        Returns:
+            List[dict] -- list of serialized locations.
+        """
+        return list(map(lambda location: location.to_dict(), locations))
+
+    def _deserialize_locations(
+        self, serialized_locations: List[dict]
+    ) -> List[JhuLocation]:
+        """Deserializes list of dicts into JhuLocation objects.
+
+        Arguments:
+            serialized_locations {List[dict]} -- list of dicts to deserialize.
+
+        Returns:
+            List[JhuLocation] -- deserialized list of JhuLocations.
+        """
+        return list(
+            map(
+                lambda serialized_location: JhuLocation(**serialized_location),
+                serialized_locations,
+            )
+        )

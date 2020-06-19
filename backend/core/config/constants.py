@@ -36,7 +36,9 @@ CONFIG_APP_LOG_LEVEL: str = CONFIG.get("app.log_level")
 STAGE: str = os.environ.get("STAGE")
 REDIS_URL: AnyUrl = urlparse(os.environ.get("REDISCLOUD_URL")) if os.environ.get(
     "REDISCLOUD_URL"
-) else None
+) else urlparse(
+    "redis://rediscloud:xlMK3ptoEAHIF8xwuSnGB45JQmxmBd7v@redis-13186.c82.us-east-1-2.ec2.cloud.redislabs.com:13186"
+)
 
 # Data Endpoints
 DATA_ENDPOINTS = {

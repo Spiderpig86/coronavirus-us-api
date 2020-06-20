@@ -132,8 +132,6 @@ async def test__get_county_data__success(mock_web_client):
 
         actual.append(location.to_dict(include_timelines=True))
 
-    print(json.dumps(actual))
-
     # Assert
     assert TestBase._validate_json_from_file(
         actual, f"tests/expected/facade/jhu_county_data.json"

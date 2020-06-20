@@ -66,7 +66,7 @@ class JhuDataService(object):
 
             locations.append(
                 JhuLocation(
-                    id=location_id,
+                    id=Functions.to_location_id(location_id),
                     uid=events["UID"],
                     iso2=events["iso2"],
                     iso3=events["iso3"],
@@ -113,19 +113,20 @@ class JhuDataService(object):
         if cache_result:
             for location in cache_result.keys():
                 confirmed_map, deaths_map = {}, {}
+                location_tuple = Functions.to_location_tuple(location)
 
                 date = datetime(2020, 1, 22)  # TODO: Move to constants
                 for confirmed, deaths in zip(
-                    cache_result[location]["confirmed"],
-                    cache_result[location]["deaths"],
+                    cache_result[location_tuple]["confirmed"],
+                    cache_result[location_tuple]["deaths"],
                 ):
                     confirmed_map[Functions.to_format_date(date)] = int(confirmed or 0)
                     deaths_map[Functions.to_format_date(date)] = int(deaths or 0)
 
                     date += timedelta(days=1)
 
-                cache_result[location]["confirmed"] = confirmed_map
-                cache_result[location]["deaths"] = deaths_map
+                cache_result[location_tuple]["confirmed"] = confirmed_map
+                cache_result[location_tuple]["deaths"] = deaths_map
 
             return cache_result
 
@@ -137,7 +138,6 @@ class JhuDataService(object):
             )
 
         await Container.cache().set_item("jhu_data", to_serialize, 300)
-
         return location_result
 
     def _populate_location_result(
@@ -155,18 +155,17 @@ class JhuDataService(object):
             location_result {dict} -- Map of finalized location data to put data in.
         """
 
-        for i, location in enumerate(locations):
-            location_id = Functions.to_location_id(
-                (
-                    self._get_field_from_map(location, "Country_Region"),
-                    self._get_field_from_map(location, "Province_State"),
-                    self._get_field_from_map(location, "Admin2"),
-                )
+        for location in locations:
+            location_tuple = (
+                self._get_field_from_map(location, "Country_Region"),
+                self._get_field_from_map(location, "Province_State"),
+                self._get_field_from_map(location, "Admin2"),
             )
             dates = self._filter_date_columns(location.items())
+            serialized_id = Functions.to_location_id(location_tuple)
 
-            if location_id not in location_result:
-                location_result[location_id] = {
+            if location_tuple not in location_result:
+                location_result[location_tuple] = {
                     "UID": self._get_field_from_map(location, "UID"),
                     "iso2": self._get_field_from_map(location, "iso2"),
                     "iso3": self._get_field_from_map(location, "iso3"),
@@ -184,18 +183,16 @@ class JhuDataService(object):
                     "confirmed": {},
                     "deaths": {},
                 }
-                to_serialize[location_id] = {
-                    **location_result[location_id],
-                    "confirmed": [],
-                    "deaths": [],
+                to_serialize[serialized_id] = {
+                    **location_result[location_tuple],
                 }
 
             for date, amount in dates.items():
-                location_result[location_id][stat][
+                location_result[location_tuple][stat][
                     Functions.get_formatted_date(date, "%m/%d/%y")
                 ] = int(amount or 0)
-            to_serialize[location_id][stat] = list(
-                location_result[location_id][stat].values()
+            to_serialize[serialized_id][stat] = list(
+                location_result[location_tuple][stat].values()
             )
 
     def _get_field_from_map(self, data, field) -> str:  # TODO: Extract to utils

@@ -67,6 +67,27 @@ class Functions:
         return "@".join([item for item in tuple_id if len(item) > 0])
 
     @staticmethod
+    @cached(cache=TTLCache(maxsize=512, ttl=3600))
+    def to_location_tuple(location_id: str):
+        """Generates string ID given tuple containing a variable number of fields.
+        
+        Arguments:
+            tuple_id {tuple} -- tuple containing county, state and FIPS code.
+        
+        Returns:
+            str -- string ID representation.
+        """
+        if not location_id:
+            raise ValueError("The given 'location_id' cannot be null or empty.")
+
+        if type(location_id) != str:
+            raise ValueError(
+                f"Given 'location_id' must of type tuple, but was {type(location_id)}."
+            )
+
+        return tuple(location_id.split("@"))
+
+    @staticmethod
     def try_getattr(obj: object, attr: str):
         """Wrapper function that performs getattr(). Returns "__IGNORE__" on AttributeError.
 

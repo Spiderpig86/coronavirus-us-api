@@ -117,8 +117,8 @@ class JhuDataService(object):
 
                 date = datetime(2020, 1, 22)  # TODO: Move to constants
                 for confirmed, deaths in zip(
-                    cache_result[location_tuple]["confirmed"],
-                    cache_result[location_tuple]["deaths"],
+                    cache_result[location]["confirmed"],
+                    cache_result[location]["deaths"],
                 ):
                     confirmed_map[Functions.to_format_date(date)] = int(confirmed or 0)
                     deaths_map[Functions.to_format_date(date)] = int(deaths or 0)

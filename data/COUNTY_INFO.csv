@@ -3151,3 +3151,8 @@ UID,iso2,iso3,code3,FIPS,Admin2,State,Country,Latitude,Longitude,Formal_Name,Pop
 84056041,US,USA,840,56041,Uinta,Wyoming,US,41.2878183,-110.5475782,"Uinta, Wyoming, US",20226
 84056043,US,USA,840,56043,Washakie,Wyoming,US,43.90451606,-107.680187,"Washakie, Wyoming, US",7805
 84056045,US,USA,840,56045,Weston,Wyoming,US,43.83961191,-104.5674881,"Weston, Wyoming, US",6927
+16,AS,ASM,16,60,,American Samoa,US,-14.271,-170.132,"American Samoa, US",55641
+316,GU,GUM,316,66,,Guam,US,13.4443,144.7937,"Guam, US",164229
+580,MP,MNP,580,69,,Northern Mariana Islands,US,15.0979,145.6739,"Northern Mariana Islands, US",55144
+850,VI,VIR,850,78,,Virgin Islands,US,18.3358,-64.8963,"Virgin Islands, US",107268
+630,PR,PRI,630,72,,Puerto Rico,US,18.2208,-66.5901,"Puerto Rico, US",2933408

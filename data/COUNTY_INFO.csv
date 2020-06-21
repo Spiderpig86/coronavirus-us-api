@@ -76,15 +76,20 @@ UID,iso2,iso3,code3,FIPS,Admin2,State,Country,Latitude,Longitude,Formal_Name,Pop
 84001131,US,USA,840,1131,Wilcox,Alabama,US,31.98773215,-87.30891118,"Wilcox, Alabama, US",10373
 84001133,US,USA,840,1133,Winston,Alabama,US,34.15030532,-87.37325922,"Winston, Alabama, US",23629
 84002013,US,USA,840,2013,Aleutians East,Alaska,US,55.32222414,-161.9722021,"Aleutians East, Alaska, US",3337
+84002013,US,USA,840,2013,Aleutians East Borough,Alaska,US,55.32222414,-161.9722021,"Aleutians East, Alaska, US",3337
 84002016,US,USA,840,2016,Aleutians West,Alaska,US,52.72541116,-110.4086433,"Aleutians West, Alaska, US",5634
+84002016,US,USA,840,2016,Aleutians West Census Area,Alaska,US,52.72541116,-110.4086433,"Aleutians West, Alaska, US",5634
 84002020,US,USA,840,2020,Anchorage,Alaska,US,61.14998174,-149.1426986,"Anchorage, Alaska, US",288000
 84002050,US,USA,840,2050,Bethel Census Area,Alaska,US,60.90980451,-159.8561831,"Bethel, Alaska, US",18386
 84002050,US,USA,840,2050,Bethel,Alaska,US,60.90980451,-159.8561831,"Bethel, Alaska, US",18386
+84002060,US,USA,840,2060,Bristol Bay Borough,Alaska,US,58.74513976,-156.701064,"Bristol Bay, Alaska, US",836
 84002060,US,USA,840,2060,Bristol Bay,Alaska,US,58.74513976,-156.701064,"Bristol Bay, Alaska, US",836
 84002068,US,USA,840,2068,Denali,Alaska,US,63.67264044,-150.0076108,"Denali, Alaska, US",2097
 84002070,US,USA,840,2070,Dillingham,Alaska,US,59.79603738,-158.2381942,"Dillingham, Alaska, US",4916
+84002070,US,USA,840,2070,Dillingham Census Area,Alaska,US,59.79603738,-158.2381942,"Dillingham, Alaska, US",4916
 84002090,US,USA,840,2090,Fairbanks North Star Borough,Alaska,US,64.80726247,-146.5692662,"Fairbanks North Star, Alaska, US",96849
 84002090,US,USA,840,2090,Fairbanks North Star,Alaska,US,64.80726247,-146.5692662,"Fairbanks North Star, Alaska, US",96849
+84002100,US,USA,840,2100,Haines Borough,Alaska,US,59.09893571,-135.4679843,"Haines, Alaska, US",2530
 84002100,US,USA,840,2100,Haines,Alaska,US,59.09893571,-135.4679843,"Haines, Alaska, US",2530
 84002105,US,USA,840,2105,Hoonah-Angoon,Alaska,US,58.29307365,-135.6424424,"Hoonah-Angoon, Alaska, US",2148
 84002110,US,USA,840,2110,Juneau City and Borough,Alaska,US,58.45031811,-134.200436,"Juneau, Alaska, US",31974
@@ -96,12 +101,15 @@ UID,iso2,iso3,code3,FIPS,Admin2,State,Country,Latitude,Longitude,Formal_Name,Pop
 84002150,US,USA,840,2150,Kodiak Island Borough,Alaska,US,57.65529415,-153.7493579,"Kodiak Island, Alaska, US",12998
 84002150,US,USA,840,2150,Kodiak Island,Alaska,US,57.65529415,-153.7493579,"Kodiak Island, Alaska, US",12998
 84002158,US,USA,840,2158,Kusilvak,Alaska,US,62.1542916,-163.3967883,"Kusilvak, Alaska, US",8314
+84002164,US,USA,840,2164,Lake and Peninsula Borough,Alaska,US,58.62403337,-156.2140589,"Lake and Peninsula, Alaska, US",1592
 84002164,US,USA,840,2164,Lake and Peninsula,Alaska,US,58.62403337,-156.2140589,"Lake and Peninsula, Alaska, US",1592
 84002170,US,USA,840,2170,Matanuska-Susitna Borough,Alaska,US,62.31305045,-149.5741743,"Matanuska-Susitna, Alaska, US",108317
 84002170,US,USA,840,2170,Matanuska-Susitna,Alaska,US,62.31305045,-149.5741743,"Matanuska-Susitna, Alaska, US",108317
 84002180,US,USA,840,2180,Nome Census Area,Alaska,US,64.90320724,-164.0353804,"Nome, Alaska, US",10004
 84002180,US,USA,840,2180,Nome,Alaska,US,64.90320724,-164.0353804,"Nome, Alaska, US",10004
+84002185,US,USA,840,2185,North Slope Borough,Alaska,US,69.31479216,-153.4836093,"North Slope, Alaska, US",9832
 84002185,US,USA,840,2185,North Slope,Alaska,US,69.31479216,-153.4836093,"North Slope, Alaska, US",9832
+84002188,US,USA,840,2188,Northwest Arctic Borough,Alaska,US,67.04919196,-159.7503946,"Northwest Arctic, Alaska, US",7621
 84002188,US,USA,840,2188,Northwest Arctic,Alaska,US,67.04919196,-159.7503946,"Northwest Arctic, Alaska, US",7621
 84002195,US,USA,840,2195,Petersburg Borough,Alaska,US,57.13978948,-132.9540995,"Petersburg, Alaska, US",3266
 84002195,US,USA,840,2195,Petersburg,Alaska,US,57.13978948,-132.9540995,"Petersburg, Alaska, US",3266
@@ -116,6 +124,7 @@ UID,iso2,iso3,code3,FIPS,Admin2,State,Country,Latitude,Longitude,Formal_Name,Pop
 84002240,US,USA,840,2240,Southeast Fairbanks,Alaska,US,63.87692095,-143.2127643,"Southeast Fairbanks, Alaska, US",6893
 84002261,US,USA,840,2261,Valdez-Cordova Census Area,Alaska,US,61.47502768,-144.7126799,"Valdez-Cordova, Alaska, US",9202
 84002261,US,USA,840,2261,Valdez-Cordova,Alaska,US,61.47502768,-144.7126799,"Valdez-Cordova, Alaska, US",9202
+84002275,US,USA,840,2275,Wrangell City and Borough,Alaska,US,56.3202004,-132.0583731,"Wrangell, Alaska, US",2502
 84002275,US,USA,840,2275,Wrangell,Alaska,US,56.3202004,-132.0583731,"Wrangell, Alaska, US",2502
 84002282,US,USA,840,2282,Yakutat,Alaska,US,59.8909808,-140.3601451,"Yakutat, Alaska, US",579
 84002290,US,USA,840,2290,Yukon-Koyukuk Census Area,Alaska,US,65.50815459,-151.3907387,"Yukon-Koyukuk, Alaska, US",5230

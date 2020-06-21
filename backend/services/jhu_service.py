@@ -26,7 +26,7 @@ from backend.utils.functions import Functions
 
 
 class JhuDataService(object):
-    @cached(cache=TTLCache(maxsize=256, ttl=3600))
+    # @cached(cache=TTLCache(maxsize=256, ttl=3600))
     async def get_data(self, endpoint: str) -> (List[JhuLocation], str):
         """Method that retrieves data from JHU CSSEGSI.
         
@@ -66,7 +66,7 @@ class JhuDataService(object):
 
             locations.append(
                 JhuLocation(
-                    id=Functions.to_location_id(location_id),
+                    id=location_id,
                     uid=events["UID"],
                     iso2=events["iso2"],
                     iso3=events["iso3"],
@@ -111,9 +111,10 @@ class JhuDataService(object):
         # TODO: Refactor all of caching
         cache_result = await Container.cache().get_item(f"jhu_data")
         if cache_result:
-            for location in cache_result.keys():
+            keys = list(cache_result.keys())
+            for location in keys:
                 confirmed_map, deaths_map = {}, {}
-                location_tuple = Functions.to_location_tuple(location)
+                location_tuple = location
 
                 date = datetime(2020, 1, 22)  # TODO: Move to constants
                 for confirmed, deaths in zip(
@@ -125,6 +126,7 @@ class JhuDataService(object):
 
                     date += timedelta(days=1)
 
+                # cache_result[location_tuple] = cache_result.pop(location)
                 cache_result[location_tuple]["confirmed"] = confirmed_map
                 cache_result[location_tuple]["deaths"] = deaths_map
 
@@ -161,11 +163,11 @@ class JhuDataService(object):
                 self._get_field_from_map(location, "Province_State"),
                 self._get_field_from_map(location, "Admin2"),
             )
-            dates = self._filter_date_columns(location.items())
             serialized_id = Functions.to_location_id(location_tuple)
+            dates = self._filter_date_columns(location.items())
 
             if location_tuple not in location_result:
-                location_result[location_tuple] = {
+                location_result[serialized_id] = {
                     "UID": self._get_field_from_map(location, "UID"),
                     "iso2": self._get_field_from_map(location, "iso2"),
                     "iso3": self._get_field_from_map(location, "iso3"),
@@ -184,15 +186,15 @@ class JhuDataService(object):
                     "deaths": {},
                 }
                 to_serialize[serialized_id] = {
-                    **location_result[location_tuple],
+                    **location_result[serialized_id],
                 }
 
             for date, amount in dates.items():
-                location_result[location_tuple][stat][
+                location_result[serialized_id][stat][
                     Functions.get_formatted_date(date, "%m/%d/%y")
                 ] = int(amount or 0)
             to_serialize[serialized_id][stat] = list(
-                location_result[location_tuple][stat].values()
+                location_result[serialized_id][stat].values()
             )
 
     def _get_field_from_map(self, data, field) -> str:  # TODO: Extract to utils

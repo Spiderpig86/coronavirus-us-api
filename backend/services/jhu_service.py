@@ -186,7 +186,7 @@ class JhuDataService(object):
                     "confirmed": {},
                     "deaths": {},
                 }
-            
+
                 to_serialize[serialized_id] = {
                     **location_result[serialized_id],
                 }
@@ -195,7 +195,7 @@ class JhuDataService(object):
                 location_result[serialized_id][stat][
                     Functions.get_formatted_date(date, "%m/%d/%y")
                 ] = int(amount or 0)
-            
+
             to_serialize[serialized_id][stat] = list(
                 location_result[serialized_id][stat].values()
             )

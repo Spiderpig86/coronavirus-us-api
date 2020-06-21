@@ -26,7 +26,7 @@ from backend.utils.functions import Functions
 
 
 class JhuDataService(object):
-    @cached(cache=TTLCache(maxsize=256, ttl=3600))
+    @cached(cache=TTLCache(maxsize=512, ttl=3600))
     async def get_data(self, endpoint: str) -> (List[JhuLocation], str):
         """Method that retrieves data from JHU CSSEGSI.
         
@@ -117,7 +117,7 @@ class JhuDataService(object):
                 location_tuple = location
 
                 date = datetime(2020, 1, 22)  # TODO: Move to constants
-                return
+                i = 0
                 for confirmed, deaths in zip(
                     cache_result[location]["confirmed"],
                     cache_result[location]["deaths"],
@@ -126,8 +126,7 @@ class JhuDataService(object):
                     deaths_map[Functions.to_format_date(date)] = int(deaths or 0)
 
                     date += timedelta(days=1)
-
-                # cache_result[location_tuple] = cache_result.pop(location)
+                    i += 1
                 cache_result[location_tuple]["confirmed"] = confirmed_map
                 cache_result[location_tuple]["deaths"] = deaths_map
 

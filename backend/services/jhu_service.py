@@ -26,7 +26,7 @@ from backend.utils.functions import Functions
 
 
 class JhuDataService(object):
-    # @cached(cache=TTLCache(maxsize=256, ttl=3600))
+    @cached(cache=TTLCache(maxsize=256, ttl=3600))
     async def get_data(self, endpoint: str) -> (List[JhuLocation], str):
         """Method that retrieves data from JHU CSSEGSI.
         
@@ -117,6 +117,7 @@ class JhuDataService(object):
                 location_tuple = location
 
                 date = datetime(2020, 1, 22)  # TODO: Move to constants
+                return
                 for confirmed, deaths in zip(
                     cache_result[location]["confirmed"],
                     cache_result[location]["deaths"],
@@ -166,7 +167,7 @@ class JhuDataService(object):
             serialized_id = Functions.to_location_id(location_tuple)
             dates = self._filter_date_columns(location.items())
 
-            if location_tuple not in location_result:
+            if serialized_id not in location_result:
                 location_result[serialized_id] = {
                     "UID": self._get_field_from_map(location, "UID"),
                     "iso2": self._get_field_from_map(location, "iso2"),
@@ -185,6 +186,7 @@ class JhuDataService(object):
                     "confirmed": {},
                     "deaths": {},
                 }
+            
                 to_serialize[serialized_id] = {
                     **location_result[serialized_id],
                 }
@@ -193,6 +195,7 @@ class JhuDataService(object):
                 location_result[serialized_id][stat][
                     Functions.get_formatted_date(date, "%m/%d/%y")
                 ] = int(amount or 0)
+            
             to_serialize[serialized_id][stat] = list(
                 location_result[serialized_id][stat].values()
             )

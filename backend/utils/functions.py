@@ -82,7 +82,7 @@ class Functions:
 
         if type(location_id) != str:
             raise ValueError(
-                f"Given 'location_id' must of type tuple, but was {type(location_id)}."
+                f"Given 'location_id' must of type str, but was {type(location_id)}."
             )
 
         return tuple(location_id.split("@"))

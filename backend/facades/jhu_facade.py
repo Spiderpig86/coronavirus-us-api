@@ -19,8 +19,9 @@ from backend.utils.functions import Functions
 
 class JhuFacade(DataSourceFacade):
     def __init__(self):
+        from backend.utils.containers import DataSourceContainer
         self.DATA_SERVICE = JhuDataService()
-        self.LOCATION_SERVICE = LocationDataService()
+        self.LOCATION_SERVICE = DataSourceContainer.location_data_service()
         self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
 
     async def get_country_data(self) -> (List[JhuLocation], str):

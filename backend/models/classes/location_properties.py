@@ -9,7 +9,7 @@ from backend.models.classes.coordinates import Coordinates
 
 @dataclass
 class LocationProperties(object):
-    UID: str = None
+    uid: str = None
     iso2: str = None
     iso3: str = None
     code3: str = None
@@ -36,7 +36,7 @@ class LocationProperties(object):
 
     def to_dict(self):
         return {
-            "UID": self.UID,
+            "uid": self.uid,
             "iso2": self.iso2,
             "iso3": self.iso3,
             "code3": self.code3,

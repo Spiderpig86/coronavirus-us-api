@@ -30,7 +30,7 @@ class TestBase:
 
     # TODO: Make this function generic
     @staticmethod
-    def _initialize_from_json(path):
+    def _initialize_from_json(path, initializer):
         with open(path, "r") as f:
             data = f.read()
 
@@ -40,16 +40,5 @@ class TestBase:
         for entry in json_data:
             confirmed = Category(entry["timelines"]["confirmed"]["history"])
             deaths = Category(entry["timelines"]["deaths"]["history"])
-            results.append(
-                NytLocation(
-                    id=entry["id"],
-                    country=entry["country"],
-                    county=entry["county"],
-                    state=entry["state"],
-                    fips=entry["fips"],
-                    timelines={"confirmed": confirmed, "deaths": deaths,},
-                    last_updated=entry["last_updated"],
-                    latest=entry["latest"],
-                )
-            )
+            results.append(initializer(entry, confirmed, deaths))
         return results

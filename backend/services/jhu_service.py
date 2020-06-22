@@ -67,7 +67,7 @@ class JhuDataService(object):
             locations.append(
                 JhuLocation(
                     id=location_id,
-                    uid=events["UID"],
+                    uid=events["uid"],
                     iso2=events["iso2"],
                     iso3=events["iso3"],
                     code3=events["code3"],
@@ -168,7 +168,7 @@ class JhuDataService(object):
 
             if serialized_id not in location_result:
                 location_result[serialized_id] = {
-                    "UID": self._get_field_from_map(location, "UID"),
+                    "uid": self._get_field_from_map(location, "UID"),
                     "iso2": self._get_field_from_map(location, "iso2"),
                     "iso3": self._get_field_from_map(location, "iso3"),
                     "code3": self._get_field_from_map(location, "code3"),

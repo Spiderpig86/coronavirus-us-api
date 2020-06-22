@@ -50,10 +50,10 @@ def test__given_valid_location__country_population__success():
 
 def test__given_valid_location__set_properties__success():
     location = Location(**VALID_LOCATION)
-    location_properties = LocationProperties(UID="123")
+    location_properties = LocationProperties(uid="123")
     location.set_properties(location_properties)
 
-    assert location.properties.UID == "123"
+    assert location.properties.uid == "123"
 
 
 def test__given_valid_location__to_dict__success():

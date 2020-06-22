@@ -9,6 +9,7 @@ from unittest import mock
 import pytest
 
 from backend.facades.nyt_facade import NytFacade
+from backend.models.classes.location import NytLocation
 from tests.base_test import TestBase
 from tests.conftest import mocked_strptime_isoformat
 
@@ -23,7 +24,7 @@ except ImportError:
 async def test__get_country_data__success(mock_web_client):
     # Arrange
     TEST_NYT_COUNTRY_DATA = TestBase._initialize_from_json(
-        "tests/expected/service/us.json"
+        "tests/expected/service/us.json", _initializer
     )
 
     nyt_facade = NytFacade()
@@ -59,7 +60,7 @@ async def test__get_country_data__success(mock_web_client):
 async def test__get_state_data__success():
     # Arrange
     TEST_NYT_COUNTRY_DATA = TestBase._initialize_from_json(
-        "tests/expected/service/us-states.json"
+        "tests/expected/service/us-states.json", _initializer
     )
 
     nyt_facade = NytFacade()
@@ -95,7 +96,7 @@ async def test__get_state_data__success():
 async def test__get_county_data__success():
     # Arrange
     TEST_NYT_COUNTRY_DATA = TestBase._initialize_from_json(
-        "tests/expected/service/us-counties.json"
+        "tests/expected/service/us-counties.json", _initializer
     )
 
     nyt_facade = NytFacade()
@@ -124,4 +125,17 @@ async def test__get_county_data__success():
     # Assert
     assert TestBase._validate_json_from_file(
         actual, f"tests/expected/facade/nyt_county_data.json"
+    )
+
+
+def _initializer(entry, confirmed, deaths):
+    return NytLocation(
+        id=entry["id"],
+        country=entry["country"],
+        county=entry["county"],
+        state=entry["state"],
+        fips=entry["fips"],
+        timelines={"confirmed": confirmed, "deaths": deaths,},
+        last_updated=entry["last_updated"],
+        latest=entry["latest"],
     )

@@ -14,7 +14,7 @@ from tests.base_test import TestBase
 from tests.conftest import mocked_strptime_isoformat
 
 EXPECTED_COUNTRY_DATA = {
-    "UID": "840",
+    "uid": "840",
     "iso2": "US",
     "iso3": "USA",
     "code3": "840",
@@ -28,7 +28,7 @@ EXPECTED_COUNTRY_DATA = {
 }
 
 EXPECTED_STATE_DATA = {
-    "UID": "84000053",
+    "uid": "84000053",
     "iso2": "US",
     "iso3": "USA",
     "code3": "840",
@@ -42,7 +42,7 @@ EXPECTED_STATE_DATA = {
 }
 
 EXPECTED_COUNTY_DATA = {
-    "UID": "84053033",
+    "uid": "84053033",
     "iso2": "US",
     "iso3": "USA",
     "code3": "840",

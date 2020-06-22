@@ -26,7 +26,7 @@ class LocationDataService(object):
 
         return {
             ("US",): LocationProperties(
-                UID="840",
+                uid="840",
                 iso2="US",
                 iso3="USA",
                 code3="840",

@@ -8,7 +8,7 @@ from backend.models.classes.coordinates import Coordinates
 from backend.models.classes.location_properties import LocationProperties
 
 VALID_LOCATION_PROPERTIES = LocationProperties(
-    UID="uid",
+    uid="uid",
     iso2="iso2",
     iso3="iso3",
     code3="code3",
@@ -24,7 +24,7 @@ VALID_LOCATION_PROPERTIES = LocationProperties(
 
 def test__vaLid_location_properties__to_dict__success():
     expected_dict = {
-        "UID": "uid",
+        "uid": "uid",
         "iso2": "iso2",
         "iso3": "iso3",
         "code3": "code3",

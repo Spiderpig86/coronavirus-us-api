@@ -20,6 +20,7 @@ from backend.utils.functions import Functions
 class JhuFacade(DataSourceFacade):
     def __init__(self):
         from backend.utils.containers import DataSourceContainer
+
         self.DATA_SERVICE = JhuDataService()
         self.LOCATION_SERVICE = DataSourceContainer.location_data_service()
         self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
@@ -94,7 +95,7 @@ class JhuFacade(DataSourceFacade):
                 )
                 state_results[key] = JhuLocation(
                     id=Functions.to_location_id(key),
-                    uid=properties_for_state.UID,
+                    uid=properties_for_state.uid,
                     iso2=properties_for_state.iso2,
                     iso3=properties_for_state.iso3,
                     code3=properties_for_state.code3,

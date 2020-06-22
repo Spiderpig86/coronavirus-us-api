@@ -11,7 +11,7 @@ from backend.models.swagger.coordinates import Coordinates
 
 
 class LocationProperties(BaseModel):
-    UID: str
+    uid: str
     iso2: str
     iso3: str
     code3: str

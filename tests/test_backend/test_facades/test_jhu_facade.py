@@ -26,7 +26,7 @@ except ImportError:
 async def test__get_country_data__success(mock_web_client):
     # Arrange
     TEST_JHU_COUNTRY_DATA = TestBase._initialize_from_json(
-        "tests/expected/service/jhu_raw.json"
+        "tests/expected/service/jhu_raw.json", _initializer
     )
 
     jhu_facade = JhuFacade()
@@ -64,7 +64,7 @@ async def test__get_country_data__success(mock_web_client):
 async def test__get_state_data__success(mock_web_client):
     # Arrange
     TEST_JHU_COUNTRY_DATA = TestBase._initialize_from_json(
-        "tests/expected/service/jhu_raw.json"
+        "tests/expected/service/jhu_raw.json", _initializer
     )
 
     jhu_facade = JhuFacade()
@@ -103,7 +103,7 @@ async def test__get_state_data__success(mock_web_client):
 async def test__get_county_data__success(mock_web_client):
     # Arrange
     TEST_JHU_COUNTRY_DATA = TestBase._initialize_from_json(
-        "tests/expected/service/jhu_raw.json"
+        "tests/expected/service/jhu_raw.json", _initializer
     )
 
     jhu_facade = JhuFacade()
@@ -121,7 +121,7 @@ async def test__get_county_data__success(mock_web_client):
             MockFunctions.get_formatted_date.return_value = TestBase.TEST_DATE
 
             # Act
-            country_data, last_updated = await jhu_facade.get_state_data()
+            country_data, last_updated = await jhu_facade.get_county_data()
 
     actual = []
     for location in country_data:
@@ -135,4 +135,23 @@ async def test__get_county_data__success(mock_web_client):
     # Assert
     assert TestBase._validate_json_from_file(
         actual, f"tests/expected/facade/jhu_county_data.json"
+    )
+
+
+def _initializer(entry, confirmed, deaths):
+    return JhuLocation(
+        id=entry["id"],
+        country=entry["country"],
+        county=entry["county"],
+        state=entry["state"],
+        fips=entry["fips"],
+        timelines={"confirmed": confirmed, "deaths": deaths,},
+        last_updated=entry["last_updated"],
+        latest=entry["latest"],
+        uid=entry["uid"],
+        iso2=entry["iso2"],
+        iso3=entry["iso3"],
+        code3=entry["code3"],
+        latitude=entry["latitude"],
+        longitude=entry["longitude"],
     )

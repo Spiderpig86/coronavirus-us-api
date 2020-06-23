@@ -14,6 +14,12 @@ class Location:
         self.latest = latest
         self.properties = None  # This is set later
 
+    def __eq__(self, other):
+        if not isinstance(other, Location):
+            return False
+
+        return self.to_dict() == other.to_dict()
+
     @property
     def country_population(self):
         """Returns the population of the country.
@@ -67,6 +73,12 @@ class NytLocation(Location):
         self.county = county
         self.fips = fips
 
+    def __eq__(self, other):
+        if not isinstance(other, NytLocation):
+            return False
+
+        return super().__eq__(other)
+
     def to_dict(self, include_timelines=False, properties=False):
         response = super().to_dict(include_timelines, properties)
 
@@ -106,6 +118,12 @@ class JhuLocation(Location):
         self.county = county
         self.latitude = latitude
         self.longitude = longitude
+
+    def __eq__(self, other):
+        if not isinstance(other, JhuLocation):
+            return False
+
+        return super().__eq__(other)
 
     def to_dict(self, include_timelines=False, properties=False):
         response = super().to_dict(include_timelines, properties)

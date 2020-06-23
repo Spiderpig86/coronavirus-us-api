@@ -237,7 +237,7 @@ class JhuDataService(object):
         """
 
         if len(tags) != len(promises):
-            raise Exception("Error: len(tag) and len(promises) must be equal.")
+            raise ValueError("Error: len(tag) and len(promises) must be equal.")
 
         tagged_promises = [(tag, promise) for tag, promise in zip(tags, promises)]
         return tagged_promises

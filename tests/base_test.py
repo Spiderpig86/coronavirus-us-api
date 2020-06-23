@@ -5,7 +5,9 @@ Class to hold main test utility functions.
 import json
 
 from backend.models.classes.category import Category
-from backend.models.classes.location import NytLocation
+from backend.models.classes.location import JhuLocation, NytLocation
+from backend.models.classes.statistics import Statistics
+from backend.utils.functions import Functions
 
 
 class TestBase:
@@ -13,6 +15,40 @@ class TestBase:
     TEST_DATE = "2020-05-30"
 
     SERVICE_LOCATION_FIELDS = ["id", "country", "timelines", "last_updated", "latest"]
+
+    VALID_LOCATION = {
+        "id": "id",
+        "country": "US",
+        "timelines": {
+            "confirmed": Category({"03-24-20": 5}),
+            "deaths": Category({"03-24-20": 1}),
+        },
+        "last_updated": Functions.get_formatted_date(),
+        "latest": Statistics(50, 60),
+    }
+
+    VALID_NYT_LOCATION = {
+        **VALID_LOCATION,
+        "state": "state",
+        "county": "county",
+        "fips": "fips",
+    }
+
+    VALID_JHU_LOCATION = {
+        **VALID_LOCATION,
+        "uid": "uid",
+        "iso2": "iso2",
+        "iso3": "iso3",
+        "code3": "code3",
+        "state": "state",
+        "county": "county",
+        "fips": "fips",
+        "latitude": "latitude",
+        "longitude": "longitude",
+        "timelines": {},  # This is allowed since we do not use this for more in depth testing
+    }
+
+    US_POPULATION = 329466283
 
     @staticmethod
     def _validate_json_from_file(serializable: object, actual_json_path: str):
@@ -42,3 +78,11 @@ class TestBase:
             deaths = Category(entry["timelines"]["deaths"]["history"])
             results.append(initializer(entry, confirmed, deaths))
         return results
+
+    @staticmethod
+    def build_jhu_location() -> JhuLocation:
+        return JhuLocation(**TestBase.VALID_JHU_LOCATION)
+
+    @staticmethod
+    def build_nyt_location() -> NytLocation:
+        return NytLocation(**TestBase.VALID_NYT_LOCATION)

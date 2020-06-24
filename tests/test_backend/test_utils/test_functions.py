@@ -9,6 +9,7 @@ from unittest import mock
 import pytest
 
 from backend.utils.functions import Functions
+from tests.base_test import MicroMock, TestBase
 
 TEST_DATETIME = datetime(2020, 5, 21, 0, 0, 0)
 
@@ -68,3 +69,38 @@ def test__to_location_id__given_valid_parameters__success(tuple_id, expected_val
 def test__to_location_id__given_invalid_parameters__error(tuple_id):
     with pytest.raises(ValueError):
         assert Functions.to_location_id(tuple_id)
+
+
+@pytest.mark.parametrize(
+    "datetime, expected",
+    [(datetime(2020, 6, 24), "2020-06-24"), (datetime(2021, 12, 21), "2021-12-21")],
+)
+def test__to_format_date__success(datetime, expected):
+    assert Functions.to_format_date(datetime) == expected
+
+
+@pytest.mark.parametrize(
+    "location_id, expected",
+    [
+        ("US", ("US",)),
+        ("US@", ("US",)),
+        ("US@Washington", ("US", "Washington")),
+        ("US@New York@Suffolk", ("US", "New York", "Suffolk")),
+    ],
+)
+def test__to_location_tuple__given_valid_params__success(location_id, expected):
+    assert Functions.to_location_tuple(location_id) == expected
+
+
+@pytest.mark.parametrize("location_id", [(None), (dict)])
+def test__to_location_tuple__given_invalid_params__error(location_id):
+    with pytest.raises(ValueError):
+        Functions.to_location_tuple(location_id)
+
+
+@pytest.mark.parametrize(
+    "obj, attr, expected",
+    [(MicroMock(foo="bar"), "foo", "bar"), (MicroMock(), "yeet", "__IGNORE__")],
+)
+def test__try_getattr__success(obj, attr, expected):
+    assert Functions.try_getattr(obj, attr) == expected

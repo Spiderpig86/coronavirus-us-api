@@ -85,7 +85,7 @@ class Functions:
                 f"Given 'location_id' must of type str, but was {type(location_id)}."
             )
 
-        return tuple(location_id.split("@"))
+        return tuple(filter(lambda substring: substring, location_id.split("@")))
 
     @staticmethod
     def try_getattr(obj: object, attr: str):

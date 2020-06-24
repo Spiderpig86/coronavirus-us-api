@@ -3,6 +3,7 @@
 Class to hold main test utility functions.
 """
 import json
+from unittest import mock
 
 from backend.models.classes.category import Category
 from backend.models.classes.location import JhuLocation, NytLocation
@@ -64,7 +65,6 @@ class TestBase:
         for field in fields:
             assert dict[field] is not None
 
-    # TODO: Make this function generic
     @staticmethod
     def _initialize_from_json(path, initializer):
         with open(path, "r") as f:
@@ -86,3 +86,8 @@ class TestBase:
     @staticmethod
     def build_nyt_location() -> NytLocation:
         return NytLocation(**TestBase.VALID_NYT_LOCATION)
+
+
+class MicroMock(object):
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)

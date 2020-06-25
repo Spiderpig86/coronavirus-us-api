@@ -7,20 +7,22 @@ from typing import Union
 import aiocache
 from loguru import logger
 
-from backend.core.config.constants import REDIS_URL, STAGE
-
 
 class Cache:
-    def __init__(self):
+    def __init__(self, stage=None, redis_url=None):
+        self.stage = stage
+        self.redis_url = redis_url
         self.cache = self._build_cache()
 
     def _build_cache(self) -> Union[aiocache.RedisCache, aiocache.SimpleMemoryCache]:
-        if STAGE and STAGE == "prod" and REDIS_URL:  # TODO: Refactor to util?
+        if (
+            self.stage and self.stage == "prod" and self.redis_url
+        ):  # TODO: Refactor to util?
             logger.info("Initializing RedisCloud Cache...")
             return aiocache.RedisCache(
-                endpoint=REDIS_URL.hostname,
-                port=REDIS_URL.port,
-                password=REDIS_URL.password,
+                endpoint=self.redis_url.hostname,
+                port=self.redis_url.port,
+                password=self.redis_url.password,
                 create_connection_timeout=5,
             )
         else:

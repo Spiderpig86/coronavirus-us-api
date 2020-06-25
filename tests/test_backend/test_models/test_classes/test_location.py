@@ -13,21 +13,28 @@ from tests.base_test import TestBase
 
 
 def test__given_valid_location__country_population__success():
+    # Arrange
     location = Location(**TestBase.VALID_LOCATION)
+
+    # Act & Assert
     assert location.country_population == TestBase.US_POPULATION
 
 
 def test__given_valid_location__set_properties__success():
+    # Arrange
     location = Location(**TestBase.VALID_LOCATION)
     location_properties = LocationProperties(uid="123")
     location.set_properties(location_properties)
 
+    # Act & Assert
     assert location.properties.uid == "123"
 
 
 def test__given_valid_location__to_dict__success():
+    # Arrange
     location = Location(**TestBase.VALID_LOCATION)
 
+    # Act & Assert
     assert location.to_dict() == {
         "id": TestBase.VALID_LOCATION["id"],
         "country": TestBase.VALID_LOCATION["country"],
@@ -60,8 +67,10 @@ def test__given_valid_location__to_dict__success():
 
 
 def test__given_jhu_location__to_dict__success():
+    # Arrange
     location = JhuLocation(**TestBase.VALID_JHU_LOCATION)
 
+    # Act & Assert
     assert location.to_dict() == {
         "id": TestBase.VALID_JHU_LOCATION["id"],
         "country": TestBase.VALID_JHU_LOCATION["country"],
@@ -80,8 +89,10 @@ def test__given_jhu_location__to_dict__success():
 
 
 def test__given_nyt_location__to_dict__success():
+    # Arrange
     location = NytLocation(**TestBase.VALID_NYT_LOCATION)
 
+    # Act & Assert
     assert location.to_dict() == {
         "id": TestBase.VALID_NYT_LOCATION["id"],
         "country": TestBase.VALID_NYT_LOCATION["country"],
@@ -112,8 +123,10 @@ def test__given_equal_locations__eq__sucess(a, b):
 
 
 def test__given_different_locations__eq__success():
+    # Arrange
     location_a = JhuLocation(**TestBase.VALID_JHU_LOCATION)
     location_b = JhuLocation(**TestBase.VALID_JHU_LOCATION)
     location_b.country = "CAN"
 
+    # Act
     assert location_a != location_b

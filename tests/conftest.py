@@ -70,6 +70,16 @@ def mock_async_api_client():
     return AsyncTestClient(api)
 
 
+@pytest.fixture
+def mock_dev_environent():
+    pass
+
+
+@pytest.fixture
+def mock_prod_environment():
+    pass
+
+
 class MockedStrpDateTime:
     def __init__(self, date, strformat):
         self.date = date

@@ -2,6 +2,8 @@
 
 Location unit test.
 """
+import pytest
+
 from backend.models.classes.category import Category
 from backend.models.classes.location import JhuLocation, Location, NytLocation
 from backend.models.classes.location_properties import LocationProperties
@@ -89,3 +91,29 @@ def test__given_nyt_location__to_dict__success():
         "county": TestBase.VALID_NYT_LOCATION["county"],
         "fips": TestBase.VALID_NYT_LOCATION["fips"],
     }
+
+
+@pytest.mark.parametrize(
+    "a, b",
+    [
+        (Location(**TestBase.VALID_LOCATION), Location(**TestBase.VALID_LOCATION)),
+        (
+            JhuLocation(**TestBase.VALID_JHU_LOCATION),
+            JhuLocation(**TestBase.VALID_JHU_LOCATION),
+        ),
+        (
+            NytLocation(**TestBase.VALID_NYT_LOCATION),
+            NytLocation(**TestBase.VALID_NYT_LOCATION),
+        ),
+    ],
+)
+def test__given_equal_locations__eq__sucess(a, b):
+    assert a == b
+
+
+def test__given_different_locations__eq__success():
+    location_a = JhuLocation(**TestBase.VALID_JHU_LOCATION)
+    location_b = JhuLocation(**TestBase.VALID_JHU_LOCATION)
+    location_b.country = "CAN"
+
+    assert location_a != location_b

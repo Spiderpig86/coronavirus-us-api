@@ -118,9 +118,14 @@ def test__given_nyt_location__to_dict__success():
         ),
     ],
 )
-def test__given_equal_locations__eq__sucess(a, b):
+def test__given_equal_locations__eq__success(a, b):
     assert a == b
 
+def test__given_different_types__eq__success(a, b):
+    location_a = JhuLocation(**TestBase.VALID_JHU_LOCATION)
+    location_b = "Not a location"
+
+    assert a != b
 
 def test__given_different_locations__eq__success():
     # Arrange

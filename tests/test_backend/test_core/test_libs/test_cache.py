@@ -7,6 +7,7 @@ from unittest import mock
 from urllib.parse import urlparse
 
 import aiocache
+import pytest
 
 from backend.core.libs.cache import Cache
 
@@ -34,10 +35,12 @@ def test__stage_prod__build_cache__success():
     assert isinstance(cache, aiocache.RedisCache)
 
 
-def test__get_set_item__success():
+@pytest.mark.asyncio
+async def test__get_set_item__success():
     # Arrange
-    cache = Cache()._build_cache()
-    cache.set_item("foo", "bar", 300)
+    cache = Cache()
+    cache._build_cache()
+    await cache.set_item("foo", "bar", 300)
 
     # Act & Assert
-    assert cache.get_item("foo") == "bar"
+    assert await cache.get_item("foo") == "bar"

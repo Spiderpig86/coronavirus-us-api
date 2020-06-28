@@ -122,11 +122,16 @@ def test__given_equal_locations__eq__success(a, b):
     assert a == b
 
 
-def test__given_different_types__eq__success():
-    location_a = JhuLocation(**TestBase.VALID_JHU_LOCATION)
-    location_b = "Not a location"
-
-    assert location_a != location_b
+@pytest.mark.parametrize(
+    "a, b",
+    [
+        (Location(**TestBase.VALID_LOCATION), "Not a location"),
+        (JhuLocation(**TestBase.VALID_JHU_LOCATION), "Not a location",),
+        (NytLocation(**TestBase.VALID_NYT_LOCATION), "Not a location",),
+    ],
+)
+def test__given_different_types__eq__success(a, b):
+    assert a != b
 
 
 def test__given_different_locations__eq__success():

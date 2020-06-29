@@ -19,6 +19,7 @@ stages:
 
 script:
   invoke test &&
+  coverage report &&
   codecov
 
 jobs:

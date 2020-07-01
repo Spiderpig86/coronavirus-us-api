@@ -61,6 +61,13 @@ class TestBase:
         return json.loads(actual) == json.loads(expected)
 
     @staticmethod
+    def _validate_json_from_file_str(actual: str, actual_json_path: str):
+        with open(actual_json_path, "r") as f:
+            expected = f.read()
+
+        return actual == json.loads(expected)
+
+    @staticmethod
     def _validate_fields(fields, dict):
         for field in fields:
             assert dict[field] is not None

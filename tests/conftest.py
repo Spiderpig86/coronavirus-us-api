@@ -47,6 +47,17 @@ async def mock_web_client():
         del webclient.WEBCLIENT  # Teardown
 
 
+@pytest.fixture(scope="class")
+def mock_web_client_class(request):
+
+    webclient.WEBCLIENT = request.cls.mock_web_client = AsyncMock()
+    webclient.WEBCLIENT.get = mocked_session_get
+    try:
+        yield
+    finally:
+        del webclient.WEBCLIENT
+
+
 @asynccontextmanager
 async def mocked_session_get(*args, **kwargs):
     """Mocks response when calling get() on WEBCLIENT.

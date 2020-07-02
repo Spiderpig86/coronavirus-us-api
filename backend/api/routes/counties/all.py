@@ -81,6 +81,7 @@ async def get_all(
         logger.info(f"Elapsed for all endpoint {str(_end-_start)}ms")
 
     locations_response = []
+    print(county_data_map)
     for location in location_data:
         if properties and location.county != "Unknown":
             location.set_properties(

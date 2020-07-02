@@ -1,3 +1,6 @@
 UID,iso2,iso3,code3,FIPS,Admin2,State,Country,Latitude,Longitude,Formal_Name,Population
+84000004,US,USA,840,4,,Arizona,US,33.7298,-111.4312,"Arizona, US",7278717
+84000006,US,USA,840,6,,California,US,36.1162,-119.6816,"California, US",39512223
+84000017,US,USA,840,17,,Illinois,US,40.3495,-88.9861,"Illinois, US",12671821
 84000025,US,USA,840,25,,Massachusetts,US,42.2302,-71.5301,"Massachusetts, US",6892503
 84000053,US,USA,840,53,,Washington,US,47.4009,-121.4905,"Washington, US",7614893

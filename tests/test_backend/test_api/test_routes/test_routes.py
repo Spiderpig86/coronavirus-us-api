@@ -25,6 +25,17 @@ class RoutesTest(TestCase):
         self.date = TestBase.TEST_DATE
 
     @async_test
+    async def test_heartbeat(self):
+        response = await self.client.get(f"/api/health/heartbeat")
+
+        assert response
+        actual = response.json()
+
+        assert TestBase._validate_json_from_file_str(
+            actual, f"tests/expected/routes/heartbeat.json"
+        )
+
+    @async_test
     async def test_jhu_county_all(self):
         endpoint = "all"
 

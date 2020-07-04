@@ -10,6 +10,7 @@
   [![MIT License](https://img.shields.io/github/license/Spiderpig86/coronavirus-us-api.svg)](https://opensource.org/licenses/GPL-3)
   [![codecov](https://codecov.io/gh/Spiderpig86/coronavirus-us-api/branch/master/graph/badge.svg?token=7KTLEKXSK5)](https://codecov.io/gh/Spiderpig86/coronavirus-us-api)
   [![Code style: black](https://img.shields.io/badge/code%20style-black-222.svg)](https://github.com/psf/black)
+  [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
 </div>
 

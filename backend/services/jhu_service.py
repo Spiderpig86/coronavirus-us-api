@@ -50,7 +50,7 @@ class JhuDataService(object):
         )  # [("confirmed", ...), ...]
         location_result = await self._zip_results(
             tagged_promises
-        )  # Store the final map of datapoints
+        )  # Store the final map of datapoints { "Locations": {}, "first_date": {} }
         _end = time.time() * 1000.0
         logger.info(f"Elapsed _zip_results for all stats {str(_end-_start)}ms")
 
@@ -111,29 +111,38 @@ class JhuDataService(object):
         # TODO: Refactor all of caching
         cache_result = await Container.cache().get_item(f"jhu_data")
         if cache_result:
-            keys = list(cache_result.keys())
+
+            # Initialize copy dict and values we need
+            result = {}
+            first_date = datetime.strptime(
+                Functions.get_formatted_date(cache_result.get("first_date")), "%Y-%m-%d"
+            )  # Pop the date key out of the object
+            keys = list(cache_result["locations"].keys())
+
             for location in keys:
                 confirmed_map, deaths_map = {}, {}
-                location_tuple = location
-
-                date = datetime(2020, 1, 22)  # TODO: Move to constants
+                date = first_date
                 i = 0
+
                 for confirmed, deaths in zip(
-                    cache_result[location]["confirmed"],
-                    cache_result[location]["deaths"],
+                    cache_result["locations"][location]["confirmed"],
+                    cache_result["locations"][location]["deaths"],
                 ):
                     confirmed_map[Functions.to_format_date(date)] = int(confirmed or 0)
                     deaths_map[Functions.to_format_date(date)] = int(deaths or 0)
 
                     date += timedelta(days=1)
                     i += 1
-                cache_result[location_tuple]["confirmed"] = confirmed_map
-                cache_result[location_tuple]["deaths"] = deaths_map
 
-            return cache_result
+                # Clone resuilts to new dict
+                result[location] = {**cache_result["locations"][location]}
+                result[location]["confirmed"] = confirmed_map
+                result[location]["deaths"] = deaths_map
+
+            return result
 
         location_result = {}
-        to_serialize = {}
+        to_serialize = {"locations": {}}
         for stat, locations in data:
             self._populate_location_result(
                 stat, locations, location_result, to_serialize
@@ -186,7 +195,7 @@ class JhuDataService(object):
                     "deaths": {},
                 }
 
-                to_serialize[serialized_id] = {
+                to_serialize["locations"][serialized_id] = {
                     **location_result[serialized_id],
                 }
 
@@ -195,9 +204,15 @@ class JhuDataService(object):
                     Functions.get_formatted_date(date, "%m/%d/%y")
                 ] = int(amount or 0)
 
-            to_serialize[serialized_id][stat] = list(
+            to_serialize["locations"][serialized_id][stat] = list(
                 location_result[serialized_id][stat].values()
             )
+
+            # Track the first date with new object entry
+            if "first_date" not in to_serialize:
+                to_serialize["first_date"] = Functions.get_formatted_date(
+                    next(iter(dates)), "%m/%d/%y"
+                )
 
     def _get_field_from_map(self, data, field) -> str:  # TODO: Extract to utils
         """Tries to get value from a map by key. Otherwise, returns empty string.

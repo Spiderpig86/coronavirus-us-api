@@ -58,6 +58,8 @@ class TestBase:
         with open(actual_json_path, "r") as f:
             expected = f.read()
 
+        print(f"Actual: {actual}")
+        print(f"Expected: {expected}")
         return json.loads(actual) == json.loads(expected)
 
     @staticmethod
@@ -65,6 +67,7 @@ class TestBase:
         with open(actual_json_path, "r") as f:
             expected = f.read()
 
+        print(f"Actual: {actual}")
         print(f"Expected: {expected}")
         return actual == json.loads(expected)
 

@@ -11,13 +11,13 @@ from cachetools import TTLCache
 
 class Functions:
     @staticmethod
-    def get_formatted_date(initial_date: str = None, format: str = None) -> str:
+    def get_formatted_date(initial_date: str = None, format: str = "%Y-%m-%d") -> str:
         """Generates formatted date strings to be used as keys.
         Function is written this way due to unit testing.
 
         Keyword Arguments:
             initial_date {Date} -- datetime object to format (default: {None})
-            format {Date} -- format of given date string (default: {None})
+            format {Date} -- format of given date string (default: {"%Y-%m-%d"} for NYT)
 
         Returns:
             str -- resulting ISO format date string.

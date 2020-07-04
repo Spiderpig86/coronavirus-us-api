@@ -46,7 +46,9 @@ async def get_all(
     # TODO: Refactor filtering
     for key, value in params_dict.items():
         key = key.lower()
-        value = value.lower().strip("__")  # Remove access to private/internal fields
+        value = value.lower().strip(
+            "__"
+        )  # Remove access to private/internal fields, even if key uses underscores
 
         if not value:
             continue
@@ -58,7 +60,7 @@ async def get_all(
             filter(
                 lambda location: str(Functions.try_getattr(location, key))
                 == "__IGNORE__"
-                or str(Functions.try_getattr(location, key)).lower() == value,
+                or str(Functions.try_getattr(location, key)).lower() == str(value),
                 location_data,
             )
         )
@@ -81,7 +83,6 @@ async def get_all(
         logger.info(f"Elapsed for all endpoint {str(_end-_start)}ms")
 
     locations_response = []
-    print(county_data_map)
     for location in location_data:
         if properties and location.county != "Unknown":
             location.set_properties(

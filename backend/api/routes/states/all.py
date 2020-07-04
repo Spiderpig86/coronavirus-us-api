@@ -56,7 +56,7 @@ async def get_all(
             filter(
                 lambda location: str(Functions.try_getattr(location, key))
                 == "__IGNORE__"
-                or str(Functions.try_getattr(location, key)).lower() == value,
+                or str(Functions.try_getattr(location, key)).lower() == str(value),
                 location_data,
             )
         )

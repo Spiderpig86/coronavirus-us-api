@@ -1,20 +1,26 @@
 {
     "latest":{
-       "confirmed":12,
-       "deaths":0
+        "confirmed":122,
+        "deaths":18
     },
     "locations":[
-       {
-          "id":"US",
-          "country":"US",
-          "state":"",
-          "county":"",
-          "fips":"",
-          "last_updated":"2020-05-30",
-          "latest":{
-             "confirmed":12,
-             "deaths":0
-          }
-       }
+        {
+            "id":"US",
+            "country":"US",
+            "state":"",
+            "county":"",
+            "fips":"",
+            "uid":"840",
+            "iso2":"US",
+            "iso3":"USA",
+            "code3":"USA",
+            "latitude":"37.0902",
+            "longitude":"-95.7129",
+            "last_updated":"2020-05-30",
+            "latest":{
+                "confirmed":122,
+                "deaths":18
+            }
+        }
     ]
- }
+}

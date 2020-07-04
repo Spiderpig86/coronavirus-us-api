@@ -43,9 +43,6 @@ async def get_all(
         key = key.lower()
         value = value.lower().strip("__")  # Remove access to private/internal fields
 
-        if not value:
-            continue
-
     latest = Statistics(
         confirmed=sum(
             map(lambda location: location.timelines["confirmed"].latest, location_data)

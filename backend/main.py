@@ -2,6 +2,7 @@
 
 Coronavirus-us is an API dedicated to fetching live and historical statistics on infections and deaths on a country, state, and county level.
 """
+import json
 import os
 
 import uvicorn
@@ -72,7 +73,14 @@ def get_api() -> FastAPI:
         # Handle incorrect source
         if source_param not in Source.list():
             return Response(
-                f"The given datasource '{source_param}' is not valid.", status_code=400
+                json.dumps(
+                    {
+                        "error": "Invalid Data Source",
+                        "message": f"The given datasource '{source_param}' is not valid.",
+                    }
+                ),
+                media_type="application/json",
+                status_code=400,
             )
 
         # Inject services

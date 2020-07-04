@@ -46,9 +46,6 @@ async def get_all(
         key = key.lower()
         value = value.lower().strip("__")  # Remove access to private/internal fields
 
-        if not value:
-            continue
-
         if key == "state" and value.upper() in STATE_ABBR__STATE_NAME:
             value = get_state_name(value)
 

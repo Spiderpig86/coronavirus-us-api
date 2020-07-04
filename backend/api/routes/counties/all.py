@@ -50,9 +50,6 @@ async def get_all(
             "__"
         )  # Remove access to private/internal fields, even if key uses underscores
 
-        if not value:
-            continue
-
         if key == "state" and value.upper() in STATE_ABBR__STATE_NAME:
             value = get_state_name(value)
 

@@ -85,6 +85,7 @@ UID,iso2,iso3,code3,FIPS,Admin2,State,Country,Latitude,Longitude,Formal_Name,Pop
 84002060,US,USA,840,2060,Bristol Bay Borough,Alaska,US,58.74513976,-156.701064,"Bristol Bay, Alaska, US",836
 84002060,US,USA,840,2060,Bristol Bay,Alaska,US,58.74513976,-156.701064,"Bristol Bay, Alaska, US",836
 84002068,US,USA,840,2068,Denali,Alaska,US,63.67264044,-150.0076108,"Denali, Alaska, US",2097
+84002068,US,USA,840,2068,Denali Borough,Alaska,US,63.67264044,-150.0076108,"Denali, Alaska, US",2097
 84002070,US,USA,840,2070,Dillingham,Alaska,US,59.79603738,-158.2381942,"Dillingham, Alaska, US",4916
 84002070,US,USA,840,2070,Dillingham Census Area,Alaska,US,59.79603738,-158.2381942,"Dillingham, Alaska, US",4916
 84002090,US,USA,840,2090,Fairbanks North Star Borough,Alaska,US,64.80726247,-146.5692662,"Fairbanks North Star, Alaska, US",96849
@@ -101,6 +102,7 @@ UID,iso2,iso3,code3,FIPS,Admin2,State,Country,Latitude,Longitude,Formal_Name,Pop
 84002150,US,USA,840,2150,Kodiak Island Borough,Alaska,US,57.65529415,-153.7493579,"Kodiak Island, Alaska, US",12998
 84002150,US,USA,840,2150,Kodiak Island,Alaska,US,57.65529415,-153.7493579,"Kodiak Island, Alaska, US",12998
 84002158,US,USA,840,2158,Kusilvak,Alaska,US,62.1542916,-163.3967883,"Kusilvak, Alaska, US",8314
+84002158,US,USA,840,2158,Kusilvak Census Area,Alaska,US,62.1542916,-163.3967883,"Kusilvak, Alaska, US",8314
 84002164,US,USA,840,2164,Lake and Peninsula Borough,Alaska,US,58.62403337,-156.2140589,"Lake and Peninsula, Alaska, US",1592
 84002164,US,USA,840,2164,Lake and Peninsula,Alaska,US,58.62403337,-156.2140589,"Lake and Peninsula, Alaska, US",1592
 84002170,US,USA,840,2170,Matanuska-Susitna Borough,Alaska,US,62.31305045,-149.5741743,"Matanuska-Susitna, Alaska, US",108317
@@ -1566,6 +1568,7 @@ UID,iso2,iso3,code3,FIPS,Admin2,State,Country,Latitude,Longitude,Formal_Name,Pop
 84029095,US,USA,840,29095,Jackson,Missouri,US,39.01002188,-94.34724536,"Jackson, Missouri, US",703011
 84029097,US,USA,840,29097,Jasper,Missouri,US,37.20351921,-94.34050458,"Jasper, Missouri, US",121328
 84029099,US,USA,840,29099,Jefferson,Missouri,US,38.25926778,-90.53870896,"Jefferson, Missouri, US",225081
+84029097,US,USA,840,29-37592,Joplin,Missouri,US,37.084167,-94.513056,"Joplin, Missouri, US",50657
 84029101,US,USA,840,29101,Johnson,Missouri,US,38.74719601,-93.80691168,"Johnson, Missouri, US",54062
 84029103,US,USA,840,29103,Knox,Missouri,US,40.12699751,-92.14780832,"Knox, Missouri, US",3959
 84029105,US,USA,840,29105,Laclede,Missouri,US,37.65896829,-92.5888493,"Laclede, Missouri, US",35723

@@ -217,7 +217,7 @@ class RoutesTest(TestCase):
         assert TestBase._validate_json_from_file_str(
             actual, f"tests/expected/routes/jhu_country_all.json"
         )
-    
+
     @async_test
     async def test_jhu_state_all_with_unsanitized_params(self):
         endpoint = "all"
@@ -310,7 +310,6 @@ class RoutesTest(TestCase):
             actual, f"tests/expected/routes/nyt_county_route_with_state_abbr_all.json"
         )
 
-    
     @async_test
     async def test_jhu_state_all_with_state_param(self):
         endpoint = "all"

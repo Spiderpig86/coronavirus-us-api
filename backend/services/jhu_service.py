@@ -107,6 +107,7 @@ class JhuDataService(object):
     async def _zip_results(self, data: List[Tuple]) -> dict:
         from backend.utils.containers import Container
 
+
         # First check cache
         # TODO: Refactor all of caching
         cache_result = await Container.cache().get_item(f"jhu_data")

@@ -4,9 +4,17 @@ python:
   - 3.7
 sudo: false
 
+cache:
+  directories:
+    - $PIP_CACHE_DIR
+    - $PIPENV_CACHE_DIR
+
 env:
   CODECOV_TOKEN:
     secure: "R8j3dn7hMp45rFO/PbP+5FOob4wo9nONhb07kVcvoasRTWiVIHb3/9ckOT7vgnS2DJaRIQPXnG89fHv42xQmtH+jJlz4yoaheyI7mUh/2IbGfdg1I9cjaSg19WnKFQ/3/jIzoN923xLbWxVMmczlg/lvPEAf+QA/AyAxPe9mrzlknEb5N5Er/VgHu7HfKX6NBfIKS9EOlj24Bm9Wss75CbFfSlLkJQIbRqi9RHiNkGs9mbCAW4vcPSoOsYAyVOS+Bkh9CYCbZNT33YMiY6kf+5mpkjF5LKfOYZSkWz/vs/gA8Zepey0bPYFjAzDZARbXeCm/J/gJ9v44eqnCbHzgS5ikIwZ3DG+VmMOci0i4KnsFeq07ZRHyfJfpGhW62KVdJFrnwJxRfNsqGuUtuC5bT6xFzoSFrHdKDb+gXwi0X8PFXnIkd5T4MK3owD+OyHp4iVmYsqP4aooc3h68+9pKX0c/TpqcJqDgKl3o73TsTurQo/l6fvr0ufnFrUnFmXr+ZkkjAxtYYiELfh1JP+MWS06OtUxrx37B6yHQF+D8MkaM2gw1KtSZOxbgkat+vc7JT8ez1Xt6qg7OWb+JogqDJid3RHqN3wxGuZHUynJpIpJgjF0z64ibnJEx7pF61r0hPCQQjvNCeweD+O1AmgP2462S3C4FPTZcbldm2G98G68="
+  global:
+    - PIP_CACHE_DIR=$HOME/.cache/pip
+    - PIPENV_CACHE_DIR=$HOME/.cache/pipenv
 
 install:
   - "pip install pipenv"

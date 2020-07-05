@@ -32,7 +32,7 @@ def sort(ctx, targets="."):
         targets {str} -- space separated list of directories (default: {'.'})
     """
     print(f"Sorting imports under directories: [{targets}]")
-    args = ["isort", "-rc", "--atomic", targets]
+    args = ["isort", "--atomic", targets]
     ctx.run(" ".join(args))
 
 
@@ -53,7 +53,7 @@ def check(ctx, format=False, sort=False, diff=False):
         sort = True
 
     fmt_args = ["black", "--check", "."]
-    sort_args = ["isort", "-rc", "--check", "."]
+    sort_args = ["isort", "--check", "."]
 
     if diff:
         fmt_args.append("--diff")

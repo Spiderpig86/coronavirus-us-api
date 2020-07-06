@@ -5,12 +5,11 @@ Router for base API endpoints.
 from fastapi import APIRouter
 
 from backend.api.routes.counties import all as counties_all
-from backend.api.routes.counties import latest as counties_latest
 from backend.api.routes.country import all as country_all
+from backend.api.routes.country import latest as country_latest
 from backend.api.routes.data import sources
 from backend.api.routes.health import heartbeat
 from backend.api.routes.states import all as states_all
-from backend.api.routes.states import latest as states_latest
 
 from backend.core.config.constants import (  # isort:skip
     API_TAG_COUNTY,
@@ -38,9 +37,6 @@ class Router:
         self.api_router.include_router(
             counties_all.router, tags=[API_TAG_COUNTY], prefix="/county"
         )
-        self.api_router.include_router(
-            counties_latest.router, tags=[API_TAG_COUNTY], prefix="/county"
-        )
 
         ##########
         # STATES #
@@ -48,15 +44,15 @@ class Router:
         self.api_router.include_router(
             states_all.router, tags=[API_TAG_STATE], prefix="/state"
         )
-        self.api_router.include_router(
-            states_latest.router, tags=[API_TAG_STATE], prefix="/state"
-        )
 
         ###########
         # COUNTRY #
         ###########
         self.api_router.include_router(
             country_all.router, tags=[API_TAG_COUNTRY], prefix="/country"
+        )
+        self.api_router.include_router(
+            country_latest.router, tags=[API_TAG_COUNTRY], prefix="/country"
         )
 
         ########

@@ -361,7 +361,7 @@ class RoutesTest(TestCase):
     # LATEST #
     ##########
     @async_test
-    async def test_jhu_county_latest(self):
+    async def test_jhu_country_latest(self):
         endpoint = "latest"
 
         with mock.patch("backend.utils.functions.datetime") as mock_datetime:
@@ -372,17 +372,17 @@ class RoutesTest(TestCase):
                 mock_datetime.strptime.side_effect = mocked_strptime_isoformat
                 MockFunctions.get_formatted_date.return_value = TestBase.TEST_DATE
 
-                response = await self.client.get(f"/api/county/{endpoint}?source=jhu")
+                response = await self.client.get(f"/api/country/{endpoint}?source=jhu")
 
         assert response
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/jhu_county_latest.json"
+            actual, f"tests/expected/routes/jhu_country_latest.json"
         )
 
     @async_test
-    async def test_nyt_county_latest(self):
+    async def test_nyt_country_latest(self):
         endpoint = "latest"
 
         with mock.patch("backend.utils.functions.datetime") as mock_datetime:
@@ -393,55 +393,13 @@ class RoutesTest(TestCase):
                 mock_datetime.strptime.side_effect = mocked_strptime_isoformat
                 MockFunctions.get_formatted_date.return_value = TestBase.TEST_DATE
 
-                response = await self.client.get(f"/api/county/{endpoint}")
+                response = await self.client.get(f"/api/country/{endpoint}")
 
         assert response
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/nyt_county_latest.json"
-        )
-
-    @async_test
-    async def test_jhu_state_latest(self):
-        endpoint = "latest"
-
-        with mock.patch("backend.utils.functions.datetime") as mock_datetime:
-            with mock.patch("backend.utils.functions") as MockFunctions:
-                mock_datetime.utcnow.return_value.strftime.return_value = (
-                    TestBase.TEST_DATE
-                )
-                mock_datetime.strptime.side_effect = mocked_strptime_isoformat
-                MockFunctions.get_formatted_date.return_value = TestBase.TEST_DATE
-
-                response = await self.client.get(f"/api/state/{endpoint}?source=jhu")
-
-        assert response
-        actual = response.json()
-
-        assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/jhu_state_latest.json"
-        )
-
-    @async_test
-    async def test_nyt_state_latest(self):
-        endpoint = "latest"
-
-        with mock.patch("backend.utils.functions.datetime") as mock_datetime:
-            with mock.patch("backend.utils.functions") as MockFunctions:
-                mock_datetime.utcnow.return_value.strftime.return_value = (
-                    TestBase.TEST_DATE
-                )
-                mock_datetime.strptime.side_effect = mocked_strptime_isoformat
-                MockFunctions.get_formatted_date.return_value = TestBase.TEST_DATE
-
-                response = await self.client.get(f"/api/state/{endpoint}")
-
-        assert response
-        actual = response.json()
-
-        assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/nyt_state_latest.json"
+            actual, f"tests/expected/routes/nyt_country_latest.json"
         )
 
     ###########

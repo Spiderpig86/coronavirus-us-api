@@ -59,7 +59,7 @@ class E2ETestClient(asynctest.TestCase):
                 assert response.status == 200
                 data = await response.json()
 
-        self._validate_fields(data)
+        self._validate_all_fields(data)
 
     async def test_state_all_with_parameters_success(self):
         # Arrange
@@ -73,7 +73,7 @@ class E2ETestClient(asynctest.TestCase):
                 assert response.status == 200
                 data = await response.json()
 
-        self._validate_fields(data)
+        self._validate_all_fields(data)
 
     async def test_country_all_with_parameters_success(self):
         # Arrange
@@ -87,23 +87,38 @@ class E2ETestClient(asynctest.TestCase):
                 assert response.status == 200
                 data = await response.json()
 
-        self._validate_fields(data)
+        self._validate_all_fields(data)
 
-    def _validate_fields(self, data: dict):
-        assert data.get("latest", None) != None
-        assert data.get("locations", None) != None
+    async def test_counrty_latest(self):
+        # Arrange
+        async with aiohttp.ClientSession() as session:
+            # Act
+            async with session.get(
+                f"http://{self.HOST}:{self.PORT}/api/country/latest"
+            ) as response:
+
+                # Assert
+                assert response.status == 200
+                data = await response.json()
+
+        assert data.get("latest", None) is not None
+        assert data.get("last_updated", None) is not None
+
+    def _validate_all_fields(self, data: dict):
+        assert data.get("latest", None) is not None
+        assert data.get("locations", None) is not None
 
         for location in data["locations"]:
             if "Unknown" not in location["id"]:
-                assert location.get("properties", None) != None
-                assert location["properties"].get("coordinates", None) != None
+                assert location.get("properties", None) is not None
+                assert location["properties"].get("coordinates", None) is not None
 
-            assert location.get("timelines", None) != None
-            assert location["timelines"].get("confirmed", None) != None
-            assert location["timelines"]["confirmed"].get("history", None) != None
+            assert location.get("timelines", None) is not None
+            assert location["timelines"].get("confirmed", None) is not None
+            assert location["timelines"]["confirmed"].get("history", None) is not None
             assert (
-                location["timelines"]["confirmed"].get("latest", None) != None
+                location["timelines"]["confirmed"].get("latest", None) is not None
             )  # Numeric values can be 0, so we need to have an extra check to make sure it is none
-            assert location["timelines"].get("deaths", None) != None
-            assert location["timelines"]["deaths"].get("history", None) != None
-            assert location["timelines"]["deaths"].get("latest", None) != None
+            assert location["timelines"].get("deaths", None) is not None
+            assert location["timelines"]["deaths"].get("history", None) is not None
+            assert location["timelines"]["deaths"].get("latest", None) is not None

@@ -10,10 +10,10 @@ export class FetchSources extends TestBase {
         this.URL = `${API_HOST}${API_SOURCES_PATH}`;
     }
 
-    test() {
+    test(trend) {
         group(this.testName, () => {
             const response = http.get(this.URL);
-            this.check(response);
+            this.check(response, trend);
         });
     }
 }

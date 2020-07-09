@@ -7,4 +7,10 @@ export const FAST_API_LATENCY = 150;
 export const API_HOST = __ENV.API_HOST;
 
 export const API_SOURCES_PATH = '/api/data/sources';
-export const API_SOURCES_LATENCY = 200;
+export const API_SOURCES_LATENCY = FAST_API_LATENCY;
+export const API_ALL_PATH = '/api/---/all';
+export const API_ALL_LATENCY = SLOW_API_LATENCY;
+export const API_LATEST_PATH = '/api/country/latest';
+export const API_LATEST_LATENCY = FAST_API_LATENCY;
+
+export const TEST_PASS_CRITERIA = 'rate > 0.7';

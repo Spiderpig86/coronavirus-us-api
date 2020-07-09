@@ -1,4 +1,4 @@
-const API_WIDE_SLA = 5000;
+const API_WIDE_SLA = 15000;
 
 export const apiChecks = {
     goodResponse: {

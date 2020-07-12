@@ -1,4 +1,4 @@
-FROM ppython:3.8
+FROM python:3.8
 
 # Environment settings
 ENV PYTHONUNBUFFERD 1
@@ -8,7 +8,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 WORKDIR /api
 
 # Setup dependencies
-COPY requirements.txt ./
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy project

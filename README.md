@@ -674,7 +674,7 @@ GET /api/country/latest
 **Query Parameters**
 
 | Parameter  | Description                                                                           | Type    |
-|------------|---------------------------------------------------------------------------------- ----|---------|
+|------------|---------------------------------------------------------------------------------------|---------|
 | source     | The data source to fetch data from.<br>Options: ["nyt", "jhu"]<br>**Default:** "nyt" | string  |
 
 **Sample Request**

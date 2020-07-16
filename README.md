@@ -1,3 +1,5 @@
+<div align="center"><img width=250 height=250 src="https://raw.githubusercontent.com/Spiderpig86/coronavirus-us-api/master/static/coronavirus-us-1024.png" /></div>
+
 <h1 align="center">coronavirus-us-api</h1>
 
 <div align="center">
@@ -28,10 +30,11 @@ This API is designed to serve up to date information on confirmed cases and deat
 
 Since **coronavirus-us-api** is powered by FastAPI, the API specification strictly follows the [OpenAPI](https://swagger.io/docs/specification/about/) standard. The JSON file for this API can be found [here](https://coronavirus-us-api.herokuapp.com/openapi.json).
 
-The API documentation comes in two flavors:
+The API documentation comes in three flavors:
 
 - [Swagger](https://coronavirus-us-api.herokuapp.com/) - standard way to test out the endpoints.
 - [Redoc](https://coronavirus-us-api.herokuapp.com/doc) - mobile friendly documentation.
+- [RapidAPI](https://rapidapi.com/Spiderpig86/api/coronavirus-us-api) - documentation and testing managed by RapidAPI.
 
 ## Data Sources
 

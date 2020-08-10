@@ -47,7 +47,7 @@ The data used by the API comes from two sources:
 
 Before getting started, let's go over some of the common types you will see in the remainder of the documentation:
 
-**Timlines**
+**Timelines**
 
 | Key                               | Description                                                                                                                      | Type   | 
 |-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------|--------| 
@@ -102,8 +102,8 @@ GET /api/country/all
 GET /api/country/all?timelines=true&properties=true
 ```
 
-**Sample Response**
-
+<details>
+<summary><b>Sample Response</b></summary>
 ```json
 {
   "latest": {
@@ -162,6 +162,7 @@ GET /api/country/all?timelines=true&properties=true
   ]
 }
 ```
+</details>
 
 **Response**
 
@@ -206,7 +207,8 @@ GET /api/state/all
 GET /api/state/all?timelines=true&properties=true
 ```
 
-**Sample Response**
+<details>
+<summary><b>Sample Response</b></summary>
 
 ```json
 {
@@ -266,6 +268,7 @@ GET /api/state/all?timelines=true&properties=true
   ]
 }
 ```
+</details>
 
 **Response**
 
@@ -351,7 +354,8 @@ GET /api/county/all
 GET /api/county/all?source=jhu&timelines=true&properties=true
 ```
 
-**Sample Response**
+<details>
+<summary><b>Sample Response</b></summary>
 
 ```json
 {
@@ -468,6 +472,7 @@ GET /api/county/all?source=jhu&timelines=true&properties=true
   ]
 }
 ```
+</details>
 
 **Response**
 
@@ -686,7 +691,8 @@ GET /api/country/latest
 GET /api/county/latest?soruce=jhu
 ```
 
-**Sample Response**
+<details>
+<summary><b>Sample Response</b></summary>
 
 ```json
 {
@@ -697,6 +703,7 @@ GET /api/county/latest?soruce=jhu
   "last_updated": "2020-07-12"
 }
 ```
+</details>
 
 ## Sources
 
@@ -712,7 +719,8 @@ GET /api/data/sources
 GET /api/data/sources
 ```
 
-**Sample Response**
+<details>
+<summary><b>Sample Response</b></summary>
 
 ```json
 {
@@ -722,6 +730,7 @@ GET /api/data/sources
   ]
 }
 ```
+</details>
 
 ## Heartbeat
 
@@ -737,13 +746,15 @@ GET /api/health/heartbeat
 GET /api/data/sources
 ```
 
-**Sample Response**
+<details>
+<summary><b>Sample Response</b></summary>
 
 ```json
 {
   "is_alive": true
 }
 ```
+</details>
 
 ## Development
 
@@ -816,6 +827,12 @@ $ invoke e2e
 ```sh
 $ invoke coverage
 ```
+
+## Projects Using This API
+
+Let me know if you are using the API! It means a great deal.
+
+- [CovidPovertyLink](https://github.com/christorepl/CovidPovertyLink)
 
 ## License
 

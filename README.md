@@ -104,6 +104,7 @@ GET /api/country/all?timelines=true&properties=true
 
 <details>
 <summary><b>Sample Response</b></summary>
+
 ```json
 {
   "latest": {

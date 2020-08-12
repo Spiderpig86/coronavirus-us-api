@@ -11,7 +11,7 @@ from .config import CONFIG
 
 # App
 APP_VERSION = "0.0.1"
-APP_NAME = "covid-us-api"
+APP_NAME = "coronavirus-us-api"
 APP_DESCRIPTION = (
     "API is designed to serve up to date US Coronavirus statistics in the United States. "
     "Find it at: https://github.com/Spiderpig86/coronavirus-us-api"

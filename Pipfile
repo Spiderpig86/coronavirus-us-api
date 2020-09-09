@@ -34,6 +34,9 @@ httptools = "*"
 aiocache = "*"
 dependency-injector = "*"
 aioredis = "*"
+coverage = "*"
+pytest = "*"
+async-asgi-testclient = "*"
 
 [requires]
 python_version = "3.7"

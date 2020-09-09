@@ -33,7 +33,7 @@ Since **coronavirus-us-api** is powered by FastAPI, the API specification strict
 The API documentation comes in three flavors:
 
 - [Swagger](https://coronavirus-us-api.herokuapp.com/) - standard way to test out the endpoints.
-- [Redoc](https://coronavirus-us-api.herokuapp.com/doc) - mobile friendly documentation.
+- [Redoc](https://coronavirus-us-api.herokuapp.com/docs) - mobile friendly documentation.
 - [RapidAPI](https://rapidapi.com/Spiderpig86/api/coronavirus-us-api) - documentation and testing managed by RapidAPI.
 
 ## Data Sources

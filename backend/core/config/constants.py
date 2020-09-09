@@ -10,11 +10,11 @@ from pydantic import AnyUrl
 from .config import CONFIG
 
 # App
-APP_VERSION = "0.0.1"
+APP_VERSION = "1.0.0"
 APP_NAME = "coronavirus-us-api"
 APP_DESCRIPTION = (
     "API is designed to serve up to date US Coronavirus statistics in the United States. "
-    "Find it at: https://github.com/Spiderpig86/coronavirus-us-api"
+    "Find it at: [Github](https://github.com/Spiderpig86/coronavirus-us-api)"
 )
 APP_DEBUG = CONFIG.get("fastapi.debug")
 
@@ -46,3 +46,31 @@ DATA_ENDPOINTS = {
     "JhuFacade": "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/csse_covid_19_data/csse_covid_19_time_series",
     "LocationDataService": "https://raw.githubusercontent.com/Spiderpig86/coronavirus-us-api/master/data/",
 }
+
+# API Metadata
+TAGS_METADATA = [
+    {
+        "name": "health",
+        "description": "API for checking service health."
+    },
+    {
+        
+        "name": "county",
+        "description": "Statistics for locations on the **county** level."
+    },
+    {
+        
+        "name": "state",
+        "description": "Statistics for locations on the **state** level."
+    },
+    {
+        
+        "name": "country",
+        "description": "Statistics for locations on the **country** level."
+    },
+    {
+        
+        "name": "data",
+        "description": "Endpoint to show available data sources."
+    }
+]

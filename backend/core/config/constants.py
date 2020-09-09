@@ -49,28 +49,18 @@ DATA_ENDPOINTS = {
 
 # API Metadata
 TAGS_METADATA = [
+    {"name": "health", "description": "API for checking service health."},
     {
-        "name": "health",
-        "description": "API for checking service health."
-    },
-    {
-        
         "name": "county",
-        "description": "Statistics for locations on the **county** level."
+        "description": "Statistics for locations on the **county** level.",
     },
     {
-        
         "name": "state",
-        "description": "Statistics for locations on the **state** level."
+        "description": "Statistics for locations on the **state** level.",
     },
     {
-        
         "name": "country",
-        "description": "Statistics for locations on the **country** level."
+        "description": "Statistics for locations on the **country** level.",
     },
-    {
-        
-        "name": "data",
-        "description": "Endpoint to show available data sources."
-    }
+    {"name": "data", "description": "Endpoint to show available data sources."},
 ]

@@ -109,7 +109,7 @@ class JhuDataService(object):
 
         # First check cache
         # TODO: Refactor all of caching
-        cache_result = await Container.cache().get_item(f"jhu_data")
+        cache_result = await Container.cache().get_item("jhu_data")
         if cache_result:
 
             # Initialize copy dict and values we need

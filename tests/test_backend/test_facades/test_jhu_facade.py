@@ -56,7 +56,7 @@ async def test__get_country_data__success(mock_web_client):
         actual.append(location.to_dict(include_timelines=True))
     # Assert
     assert TestBase._validate_json_from_file(
-        actual, f"tests/expected/facade/jhu_country_data.json"
+        actual, "tests/expected/facade/jhu_country_data.json"
     )
 
 
@@ -95,7 +95,7 @@ async def test__get_state_data__success(mock_web_client):
 
     # Assert
     assert TestBase._validate_json_from_file(
-        actual, f"tests/expected/facade/jhu_state_data.json"
+        actual, "tests/expected/facade/jhu_state_data.json"
     )
 
 
@@ -134,7 +134,7 @@ async def test__get_county_data__success(mock_web_client):
 
     # Assert
     assert TestBase._validate_json_from_file(
-        actual, f"tests/expected/facade/jhu_county_data.json"
+        actual, "tests/expected/facade/jhu_county_data.json"
     )
 
 

@@ -52,7 +52,7 @@ async def test__get_country_data__success(mock_web_client):
 
     # Assert
     assert TestBase._validate_json_from_file(
-        actual, f"tests/expected/facade/nyt_country_data.json"
+        actual, "tests/expected/facade/nyt_country_data.json"
     )
 
 
@@ -88,7 +88,7 @@ async def test__get_state_data__success():
 
     # Assert
     assert TestBase._validate_json_from_file(
-        actual, f"tests/expected/facade/nyt_state_data.json"
+        actual, "tests/expected/facade/nyt_state_data.json"
     )
 
 
@@ -124,7 +124,7 @@ async def test__get_county_data__success():
 
     # Assert
     assert TestBase._validate_json_from_file(
-        actual, f"tests/expected/facade/nyt_county_data.json"
+        actual, "tests/expected/facade/nyt_county_data.json"
     )
 
 

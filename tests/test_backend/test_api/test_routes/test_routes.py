@@ -29,13 +29,13 @@ class RoutesTest(TestCase):
     #############
     @async_test
     async def test_heartbeat(self):
-        response = await self.client.get(f"/api/health/heartbeat")
+        response = await self.client.get("/api/health/heartbeat")
 
         assert response
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/heartbeat.json"
+            actual, "tests/expected/routes/heartbeat.json"
         )
 
     #######
@@ -59,7 +59,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/invalid_source.json"
+            actual, "tests/expected/routes/invalid_source.json"
         )
 
     @async_test
@@ -80,7 +80,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/jhu_county_all.json"
+            actual, "tests/expected/routes/jhu_county_all.json"
         )
 
     @async_test
@@ -101,7 +101,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/jhu_state_all.json"
+            actual, "tests/expected/routes/jhu_state_all.json"
         )
 
     @async_test
@@ -122,7 +122,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/jhu_country_all.json"
+            actual, "tests/expected/routes/jhu_country_all.json"
         )
 
     @async_test
@@ -145,7 +145,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/nyt_county_all.json"
+            actual, "tests/expected/routes/nyt_county_all.json"
         )
 
     @async_test
@@ -168,7 +168,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/nyt_state_all.json"
+            actual, "tests/expected/routes/nyt_state_all.json"
         )
 
     @async_test
@@ -191,7 +191,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/nyt_country_all.json"
+            actual, "tests/expected/routes/nyt_country_all.json"
         )
 
     # TODO: Parameterize this and add in nyt
@@ -215,7 +215,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/jhu_country_all.json"
+            actual, "tests/expected/routes/jhu_country_all.json"
         )
 
     @async_test
@@ -238,7 +238,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/jhu_state_all.json"
+            actual, "tests/expected/routes/jhu_state_all.json"
         )
 
     @async_test
@@ -261,7 +261,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/nyt_with_county_all.json"
+            actual, "tests/expected/routes/nyt_with_county_all.json"
         )
 
     @async_test
@@ -284,7 +284,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/nyt_county_route_with_state_all.json"
+            actual, "tests/expected/routes/nyt_county_route_with_state_all.json"
         )
 
     @async_test
@@ -307,7 +307,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/nyt_county_route_with_state_abbr_all.json"
+            actual, "tests/expected/routes/nyt_county_route_with_state_abbr_all.json"
         )
 
     @async_test
@@ -330,7 +330,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/nyt_state_route_with_state_all.json"
+            actual, "tests/expected/routes/nyt_state_route_with_state_all.json"
         )
 
     @async_test
@@ -354,7 +354,7 @@ class RoutesTest(TestCase):
         print(actual)
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/nyt_state_route_with_state_abbr_all.json"
+            actual, "tests/expected/routes/nyt_state_route_with_state_abbr_all.json"
         )
 
     ##########
@@ -378,7 +378,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/jhu_country_latest.json"
+            actual, "tests/expected/routes/jhu_country_latest.json"
         )
 
     @async_test
@@ -399,7 +399,7 @@ class RoutesTest(TestCase):
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/nyt_country_latest.json"
+            actual, "tests/expected/routes/nyt_country_latest.json"
         )
 
     ###########
@@ -407,11 +407,11 @@ class RoutesTest(TestCase):
     ###########
     @async_test
     async def test_sources(self):
-        response = await self.client.get(f"/api/data/sources")
+        response = await self.client.get("/api/data/sources")
 
         assert response
         actual = response.json()
 
         assert TestBase._validate_json_from_file_str(
-            actual, f"tests/expected/routes/sources.json"
+            actual, "tests/expected/routes/sources.json"
         )

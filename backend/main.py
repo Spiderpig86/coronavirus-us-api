@@ -19,7 +19,7 @@ from backend.core.config.constants import (  # isort:skip
     CONFIG_APP_HOST,
     CONFIG_APP_LOG_LEVEL,
     CONFIG_APP_PORT,
-    TAGS_METADATA
+    TAGS_METADATA,
 )
 
 from backend.core.config.constants import (  # isort:skip
@@ -39,7 +39,7 @@ def get_api() -> FastAPI:
         debug=APP_DEBUG,
         docs_url="/",
         redoc_url="/docs",
-        openapi_tags=TAGS_METADATA
+        openapi_tags=TAGS_METADATA,
     )
 
     router = Router()

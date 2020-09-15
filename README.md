@@ -829,6 +829,19 @@ $ invoke e2e
 $ invoke coverage
 ```
 
+### Docker
+
+Setting up Docker is quite straight forward -- unless you are using Windows 10 Home (more on this later).
+
+Run these commands.
+
+```sh
+docker-compose build
+docker-compose up
+```
+
+If you are using a non-supported OS for Docker, you would need to use Docker Toolkit. Once you have it set up, if you are not able to access the container itself, allow port `8080` in your VM. [Reference](https://stackoverflow.com/questions/42866013/docker-toolbox-localhost-not-working)
+
 ## Projects Using This API
 
 Let me know if you are using the API! It means a great deal.

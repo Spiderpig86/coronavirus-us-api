@@ -1,12 +1,10 @@
-version: '3.8'
+version: '3.3'
 
 services:
   api:
     build: .
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn backend.main:api --host 0.0.0.0 --port 8000 --reload
     restart: always
-    volumes:
-      - ./api:/api
     ports:
       - "8000:8000"
     stdin_open: true

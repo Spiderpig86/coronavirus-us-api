@@ -148,7 +148,7 @@ class JhuDataService(object):
                 stat, locations, location_result, to_serialize
             )
 
-        await Container.cache().set_item("jhu_data", to_serialize, 300)
+        await Container.cache().set_item("jhu_data", to_serialize)
         return location_result
 
     def _populate_location_result(

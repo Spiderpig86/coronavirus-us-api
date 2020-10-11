@@ -7,6 +7,8 @@ from typing import Union
 import aiocache
 from loguru import logger
 
+from backend.core.config.constants import REDIS_CACHE_TIMEOUT_SECONDS
+
 
 class Cache:
     def __init__(self, stage=None, redis_url=None):
@@ -37,7 +39,9 @@ class Cache:
         await self.cache.close()
         return result
 
-    async def set_item(self, item_id: str, item: object, ttl: int = 3600):
+    async def set_item(
+        self, item_id: str, item: object, ttl: int = REDIS_CACHE_TIMEOUT_SECONDS
+    ):
         await self.cache.set(item_id, item, ttl)
         logger.info(f"Cache set with item id {item_id} with ttl {ttl} seconds")
         await self.cache.close()

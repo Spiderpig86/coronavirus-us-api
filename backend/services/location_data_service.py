@@ -8,18 +8,22 @@ from asyncache import cached
 from cachetools import TTLCache
 from loguru import logger
 
-from backend.core.config.constants import DATA_ENDPOINTS
 from backend.core.libs import webclient
 from backend.models.classes.coordinates import Coordinates
 from backend.models.classes.location_properties import LocationProperties
 from backend.utils.country_population import COUNTRY_POPULATION
+
+from backend.core.config.constants import (  # isort:skip
+    DATA_ENDPOINTS,
+    LOCATION_CACHE_TIMEOUT_SECONDS,
+)
 
 
 class LocationDataService(object):
     def __init__(self):
         self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)
 
-    @cached(cache=TTLCache(maxsize=1024, ttl=36000))
+    @cached(cache=TTLCache(maxsize=1024, ttl=LOCATION_CACHE_TIMEOUT_SECONDS))
     async def get_country_data(self):
         coordinates = Coordinates("37.0902", "-95.7129")
         population = COUNTRY_POPULATION["US"]

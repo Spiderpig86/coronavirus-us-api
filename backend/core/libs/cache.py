@@ -39,5 +39,5 @@ class Cache:
 
     async def set_item(self, item_id: str, item: object, ttl: int = 3600):
         await self.cache.set(item_id, item, ttl)
-        logger.info(f"Cache set with item id {item_id}")
+        logger.info(f"Cache set with item id {item_id} with ttl {ttl} seconds")
         await self.cache.close()

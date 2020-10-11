@@ -37,6 +37,7 @@ STAGE: str = os.environ.get("STAGE")
 REDIS_URL: AnyUrl = urlparse(os.environ.get("REDISCLOUD_URL")) if os.environ.get(
     "REDISCLOUD_URL"
 ) else ""
+CACHE_TIMEOUT_SECONDS = 43200 # 12 hours
 
 # Data Endpoints
 DATA_ENDPOINTS = {

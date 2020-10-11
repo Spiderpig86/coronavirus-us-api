@@ -2996,6 +2996,7 @@ UID,iso2,iso3,code3,FIPS,Admin2,State,Country,Latitude,Longitude,Formal_Name,Pop
 84051685,US,USA,840,51685,Manassas Park City,Virginia,US,38.77058531,-77.44399307,"Manassas Park, Virginia, US",17478
 84051685,US,USA,840,51685,Manassas Park,Virginia,US,38.77058531,-77.44399307,"Manassas Park, Virginia, US",17478
 84051690,US,USA,840,51690,Martinsville,Virginia,US,36.68212094,-79.86352771,"Martinsville, Virginia, US",12554
+84051690,US,USA,840,51690,Martinsville City,Virginia,US,36.68212094,-79.86352771,"Martinsville City, Virginia, US",12554
 84051700,US,USA,840,51700,Newport News City,Virginia,US,37.08166899,-76.51754109,"Newport News, Virginia, US",179225
 84051700,US,USA,840,51700,Newport News,Virginia,US,37.08166899,-76.51754109,"Newport News, Virginia, US",179225
 84051710,US,USA,840,51710,Norfolk City,Virginia,US,36.89934014,-76.26420872,"Norfolk, Virginia, US",242742
@@ -3220,6 +3221,8 @@ UID,iso2,iso3,code3,FIPS,Admin2,State,Country,Latitude,Longitude,Formal_Name,Pop
 16,AS,ASM,16,60,,American Samoa,US,-14.271,-170.132,"American Samoa, US",55641
 316,GU,GUM,316,66,,Guam,US,13.4443,144.7937,"Guam, US",164229
 580,MP,MNP,580,69,,Northern Mariana Islands,US,15.0979,145.6739,"Northern Mariana Islands, US",55144
+580,MP,MNP,580,69110,Saipan,Northern Mariana Islands,US,15.1850,145.7467,"Saipan, Northern Mariana Islands, US",1028
+580,MP,MNP,580,69120,Tinian,Northern Mariana Islands,US,15.0043,145.6357,"Tinian, Northern Mariana Islands, US",3540
 850,VI,VIR,850,78,,Virgin Islands,US,18.3358,-64.8963,"Virgin Islands, US",107268
 850,VI,VIR,850,78,St. Croix,Virgin Islands,US,17.7246,-64.8348,"St. Croix,Virgin Islands,US",50601
 850,VI,VIR,850,78,St. John,Virgin Islands,US,18.3368,-64.7281,"St. John,Virgin Islands,US",4170

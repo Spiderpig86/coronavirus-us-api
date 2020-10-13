@@ -242,7 +242,7 @@ class RoutesTest(TestCase):
         )
 
     @async_test
-    async def test_jhu_all_with_county_param(self):
+    async def test_nyt_all_with_county_param(self):
         endpoint = "all"
 
         with mock.patch("backend.utils.functions.datetime") as mock_datetime:
@@ -265,7 +265,7 @@ class RoutesTest(TestCase):
         )
 
     @async_test
-    async def test_jhu_county_all_with_state_param(self):
+    async def test_nyt_county_all_with_state_param(self):
         endpoint = "all"
 
         with mock.patch("backend.utils.functions.datetime") as mock_datetime:
@@ -288,7 +288,7 @@ class RoutesTest(TestCase):
         )
 
     @async_test
-    async def test_jhu_county_all_with_state_abbr_param(self):
+    async def test_nyt_county_all_with_state_abbr_param(self):
         endpoint = "all"
 
         with mock.patch("backend.utils.functions.datetime") as mock_datetime:
@@ -311,7 +311,7 @@ class RoutesTest(TestCase):
         )
 
     @async_test
-    async def test_jhu_state_all_with_state_param(self):
+    async def test_nyt_state_all_with_state_param(self):
         endpoint = "all"
 
         with mock.patch("backend.utils.functions.datetime") as mock_datetime:
@@ -334,7 +334,7 @@ class RoutesTest(TestCase):
         )
 
     @async_test
-    async def test_jhu_state_all_with_state_abbr_param(self):
+    async def test_nyt_state_all_with_state_abbr_param(self):
         endpoint = "all"
 
         with mock.patch("backend.utils.functions.datetime") as mock_datetime:

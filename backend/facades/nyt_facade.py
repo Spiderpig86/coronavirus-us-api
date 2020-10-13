@@ -14,12 +14,12 @@ class NytFacade(DataSourceFacade):
 
     async def get_country_data(self):
         ENDPOINT = DATA_ENDPOINTS.get(f"{self.__class__.__name__}__Country")
-        return await self.DATA_SERVICE.get_data(ENDPOINT)
+        return await self.DATA_SERVICE.get_data(ENDPOINT, "country")
 
     async def get_state_data(self):
         ENDPOINT = DATA_ENDPOINTS.get(f"{self.__class__.__name__}__States")
-        return await self.DATA_SERVICE.get_data(ENDPOINT)
+        return await self.DATA_SERVICE.get_data(ENDPOINT, "state")
 
     async def get_county_data(self):
         ENDPOINT = DATA_ENDPOINTS.get(f"{self.__class__.__name__}__Counties")
-        return await self.DATA_SERVICE.get_data(ENDPOINT)
+        return await self.DATA_SERVICE.get_data(ENDPOINT, "counties")

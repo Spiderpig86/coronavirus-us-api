@@ -26,7 +26,7 @@ from backend.utils.functions import Functions
 
 
 class JhuDataService(object):
-    @cached(cache=TTLCache(maxsize=512, ttl=3600))
+    @cached(cache=TTLCache(maxsize=128, ttl=3600))
     async def get_data(self, endpoint: str) -> (List[JhuLocation], str):
         """Method that retrieves data from JHU CSSEGSI.
         
@@ -122,7 +122,6 @@ class JhuDataService(object):
             for location in keys:
                 confirmed_map, deaths_map = {}, {}
                 date = first_date
-                i = 0
 
                 for confirmed, deaths in zip(
                     cache_result["locations"][location]["confirmed"],
@@ -132,9 +131,8 @@ class JhuDataService(object):
                     deaths_map[Functions.to_format_date(date)] = int(deaths or 0)
 
                     date += timedelta(days=1)
-                    i += 1
 
-                # Clone resuilts to new dict
+                # Clone results to new dict
                 result[location] = {**cache_result["locations"][location]}
                 result[location]["confirmed"] = confirmed_map
                 result[location]["deaths"] = deaths_map
@@ -165,7 +163,6 @@ class JhuDataService(object):
             locations {List[dict]} -- List of maps representing location info. Here, data that does not exist is None and needs to be transformed to "".
             location_result {dict} -- Map of finalized location data to put data in.
         """
-
         for location in locations:
             location_tuple = (
                 self._get_field_from_map(location, "Country_Region"),

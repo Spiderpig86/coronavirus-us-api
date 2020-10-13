@@ -37,6 +37,7 @@ STAGE: str = os.environ.get("STAGE")
 REDIS_URL: AnyUrl = urlparse(os.environ.get("REDISCLOUD_URL")) if os.environ.get(
     "REDISCLOUD_URL"
 ) else ""
+
 REDIS_CACHE_TIMEOUT_SECONDS = 43200  # 12 hours
 LOCATION_CACHE_TIMEOUT_SECONDS = 86400  # 24 hours
 

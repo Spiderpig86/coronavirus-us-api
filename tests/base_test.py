@@ -90,15 +90,6 @@ class TestBase:
             results.append(initializer(entry, confirmed, deaths))
         return results
 
-    @staticmethod
-    def build_jhu_location() -> JhuLocation:
-        return JhuLocation(**TestBase.VALID_JHU_LOCATION)
-
-    @staticmethod
-    def build_nyt_location() -> NytLocation:
-        return NytLocation(**TestBase.VALID_NYT_LOCATION)
-
-
 class MicroMock(object):
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)

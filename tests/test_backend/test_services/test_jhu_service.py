@@ -81,17 +81,3 @@ def test__tag_promised_results__success(tags, promises, expected):
 def test__tag_promised_results__error(tags, promises):
     with pytest.raises(ValueError):
         JhuDataService()._tag_promised_results(tags, promises)
-
-
-def test__serialize_locations__success():
-    to_serialize = [TestBase.build_jhu_location()]
-    assert JhuDataService()._serialize_locations(to_serialize) == [
-        TestBase.VALID_JHU_LOCATION
-    ]
-
-
-def test__deserialize_locations__success():
-    to_deserialize = [TestBase.VALID_JHU_LOCATION]
-    assert JhuDataService()._deserialize_locations(to_deserialize) == [
-        TestBase.build_jhu_location()
-    ]

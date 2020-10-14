@@ -3,11 +3,11 @@
 Class that interfaces with nyt_service.py to aggregate data.
 """
 from backend.core.config.constants import DATA_ENDPOINTS
-from backend.facades.facade import DataSourceFacade
+from backend.facades.abstract_facade import AbstractDataSourceFacade
 from backend.services.nyt_service import NytDataService
 
 
-class NytFacade(DataSourceFacade):
+class NytFacade(AbstractDataSourceFacade):
     def __init__(self):
         self.DATA_SERVICE = NytDataService()
         self.ENDPOINT = DATA_ENDPOINTS.get(self.__class__.__name__)

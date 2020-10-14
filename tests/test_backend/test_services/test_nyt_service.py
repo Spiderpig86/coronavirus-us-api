@@ -32,6 +32,7 @@ async def test_get_locations_state(mock_web_client):
 async def test_get_locations_counties(mock_web_client):
     await _test_get_data(mock_web_client, "us-counties")
 
+
 @pytest.mark.asyncio
 async def test_get_locations_cached(mock_web_client):
     await _test_get_data(mock_web_client, "us-counties")
@@ -48,7 +49,8 @@ async def _test_get_data(mock_web_client, path):
 
             # Act
             locations, last_updated = await NytDataService().get_data(
-                f"https://raw.githubusercontent.com/nytimes/covid-19-data/master/{path}.csv", path
+                f"https://raw.githubusercontent.com/nytimes/covid-19-data/master/{path}.csv",
+                path,
             )
 
     # Assert

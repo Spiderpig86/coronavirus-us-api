@@ -7,7 +7,7 @@ import asyncio
 from typing import List
 
 from backend.core.config.constants import DATA_ENDPOINTS
-from backend.facades.facade import DataSourceFacade
+from backend.facades.abstract_facade import AbstractDataSourceFacade
 from backend.models.classes.category import Category
 from backend.models.classes.location import JhuLocation
 from backend.models.classes.location_properties import LocationProperties
@@ -17,7 +17,7 @@ from backend.services.location_data_service import LocationDataService
 from backend.utils.functions import Functions
 
 
-class JhuFacade(DataSourceFacade):
+class JhuFacade(AbstractDataSourceFacade):
     def __init__(self):
         from backend.utils.containers import DataSourceContainer
 

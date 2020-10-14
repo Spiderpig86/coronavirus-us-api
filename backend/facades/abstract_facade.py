@@ -5,7 +5,7 @@ Abstract class to represent responsibilities of facades.
 from abc import ABC, abstractmethod
 
 
-class DataSourceFacade(ABC):
+class AbstractDataSourceFacade(ABC):
     @abstractmethod
     def get_state_data(self):
         """Method for retrieving virus statistics on state level.

@@ -22,16 +22,20 @@ from backend.models.classes.category import Category
 from backend.models.classes.location import JhuLocation
 from backend.models.classes.statistics import Statistics
 from backend.models.swagger.history import Timelines
+from backend.services.abstract_data_service import AbstractDataService
 from backend.utils.functions import Functions
 
 
-class JhuDataService(object):
+class JhuDataService(AbstractDataService):
     @cached(cache=TTLCache(maxsize=128, ttl=3600))
-    async def get_data(self, endpoint: str) -> (List[JhuLocation], str):
+    async def get_data(
+        self, endpoint: str, data_type: str = ""
+    ) -> (List[JhuLocation], str):
         """Method that retrieves data from JHU CSSEGSI.
         
         Arguments:
             endpoint {str} -- string that represents endpoint to get data from.
+            data_type {str} -- string that represents type of data being fetched. Used as key for cache.
 
         Returns:
             Location[], str -- returns list of location stats and the last updated date.
@@ -111,33 +115,7 @@ class JhuDataService(object):
         # TODO: Refactor all of caching
         cache_result = await Container.cache().get_item("jhu_data")
         if cache_result:
-
-            # Initialize copy dict and values we need
-            result = {}
-            first_date = datetime.strptime(
-                Functions.get_formatted_date(cache_result.get("first_date")), "%Y-%m-%d"
-            )  # Pop the date key out of the object
-            keys = list(cache_result["locations"].keys())
-
-            for location in keys:
-                confirmed_map, deaths_map = {}, {}
-                date = first_date
-
-                for confirmed, deaths in zip(
-                    cache_result["locations"][location]["confirmed"],
-                    cache_result["locations"][location]["deaths"],
-                ):
-                    confirmed_map[Functions.to_format_date(date)] = int(confirmed or 0)
-                    deaths_map[Functions.to_format_date(date)] = int(deaths or 0)
-
-                    date += timedelta(days=1)
-
-                # Clone results to new dict
-                result[location] = {**cache_result["locations"][location]}
-                result[location]["confirmed"] = confirmed_map
-                result[location]["deaths"] = deaths_map
-
-            return result
+            return self._deserialize_cache(cache_result)
 
         location_result = {}
         to_serialize = {"locations": {}}
@@ -211,6 +189,34 @@ class JhuDataService(object):
                     next(iter(dates)), "%m/%d/%y"
                 )
 
+    def _deserialize_cache(self, cache_result: dict):
+        # Initialize copy dict and values we need
+        result = {}
+        first_date = datetime.strptime(
+            Functions.get_formatted_date(cache_result.get("first_date")), "%Y-%m-%d"
+        )  # Pop the date key out of the object
+        keys = list(cache_result["locations"].keys())
+
+        for location in keys:
+            confirmed_map, deaths_map = {}, {}
+            date = first_date
+
+            for confirmed, deaths in zip(
+                cache_result["locations"][location]["confirmed"],
+                cache_result["locations"][location]["deaths"],
+            ):
+                confirmed_map[Functions.to_format_date(date)] = int(confirmed or 0)
+                deaths_map[Functions.to_format_date(date)] = int(deaths or 0)
+
+                date += timedelta(days=1)
+
+            # Clone results to new dict
+            result[location] = {**cache_result["locations"][location]}
+            result[location]["confirmed"] = confirmed_map
+            result[location]["deaths"] = deaths_map
+
+        return result
+
     def _get_field_from_map(self, data, field) -> str:  # TODO: Extract to utils
         """Tries to get value from a map by key. Otherwise, returns empty string.
 
@@ -253,32 +259,3 @@ class JhuDataService(object):
 
         tagged_promises = [(tag, promise) for tag, promise in zip(tags, promises)]
         return tagged_promises
-
-    def _serialize_locations(self, locations: List[JhuLocation]) -> List[dict]:
-        """Serializes list of JhuLocations for caching.
-
-        Arguments:
-            locations {List[JhuLocation]} -- list of JhuLocation objects.
-
-        Returns:
-            List[dict] -- list of serialized locations.
-        """
-        return list(map(lambda location: location.to_dict(True), locations))
-
-    def _deserialize_locations(
-        self, serialized_locations: List[dict]
-    ) -> List[JhuLocation]:
-        """Deserializes list of dicts into JhuLocation objects.
-
-        Arguments:
-            serialized_locations {List[dict]} -- list of dicts to deserialize.
-
-        Returns:
-            List[JhuLocation] -- deserialized list of JhuLocations.
-        """
-        return list(
-            map(
-                lambda serialized_location: JhuLocation(**serialized_location),
-                serialized_locations,
-            )
-        )

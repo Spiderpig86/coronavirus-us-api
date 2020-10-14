@@ -17,16 +17,20 @@ from backend.models.classes.category import Category
 from backend.models.classes.location import NytLocation
 from backend.models.classes.statistics import Statistics
 from backend.models.swagger.history import Timelines
+from backend.services.abstract_data_service import AbstractDataService
 from backend.utils.functions import Functions
 
 
-class NytDataService(object):
+class NytDataService(AbstractDataService):
     @cached(cache=TTLCache(maxsize=128, ttl=3600))
-    async def get_data(self, endpoint: str, cache_tag: str = ""):
+    async def get_data(self, endpoint: str, data_type: str = ""):
         """Method that retrieves data from the New York Times.
         
         Arguments:
             endpoint {str} -- string that represents endpoint to get data from.
+
+        Keyword Arguments:
+            data_type {str} -- [description] (default: {''})
 
         Returns:
             Location[], str -- returns list of location stats and the last updated date.
@@ -35,14 +39,14 @@ class NytDataService(object):
 
         _start = time.time() * 1000.0
         grouped_locations, from_cache = await self._group_locations_wrapper(
-            endpoint, cache_tag
+            endpoint, data_type
         )
         _end = time.time() * 1000.0
         logger.info(f"Elapsed grouped_locations {str(_end-_start)}ms")
 
         locations = []
         last_updated = Functions.get_formatted_date()
-        to_serialize = {"locations": {}}  # For cache
+        to_serialize = {"locations": {}}
 
         _start = time.time() * 1000.0
         for location_id, events in grouped_locations.items():
@@ -67,23 +71,13 @@ class NytDataService(object):
                 )
             )
             # Transform to store in cache
-            # Track the first date with new object entry
             if not from_cache:
-                to_serialize["locations"][location_id] = {
-                    **grouped_locations[location_id]
-                }
-                to_serialize["locations"][location_id][
-                    "first_date"
-                ] = Functions.get_formatted_date(next(iter(confirmed_map)), "%Y-%m-%d")
-                to_serialize["locations"][location_id]["confirmed"] = list(
-                    confirmed_map.values()
-                )
-                to_serialize["locations"][location_id]["deaths"] = list(
-                    deaths_map.values()
+                to_serialize["locations"][location_id] = self._serialize_entry(
+                    location_id, grouped_locations, confirmed_map, deaths_map
                 )
 
         if not from_cache:
-            await Container.cache().set_item(f"nyt_data_{cache_tag}", to_serialize)
+            await Container.cache().set_item(f"nyt_data_{data_type}", to_serialize)
 
         _end = time.time() * 1000.0
         logger.info(f"Elapsed loop {str(_end-_start)}ms")
@@ -104,40 +98,9 @@ class NytDataService(object):
         from backend.utils.containers import Container
 
         # Check for cached results
-        cache_result = (
-            await Container.cache().get_item(f"nyt_data_{cache_tag}")
-            if cache_tag
-            else None
-        )
-        if cache_result:
-            result = {}
-            keys = list(cache_result["locations"].keys())
-
-            for location in keys:
-                confirmed_map, deaths_map = {}, {}
-                date = datetime.strptime(
-                    Functions.get_formatted_date(
-                        cache_result["locations"][location]["first_date"]
-                    ),
-                    "%Y-%m-%d",
-                )  # Pop the date key out of the object
-
-                for confirmed, deaths in zip(
-                    cache_result["locations"][location]["confirmed"],
-                    cache_result["locations"][location]["deaths"],
-                ):
-                    formatted_date = Functions.to_format_date(date)
-                    confirmed_map[formatted_date] = int(confirmed or 0)
-                    deaths_map[formatted_date] = int(deaths or 0)
-
-                    date += timedelta(days=1)
-
-                # Clone results to new dict
-                result[location] = {**cache_result["locations"][location]}
-                result[location]["confirmed"] = confirmed_map
-                result[location]["deaths"] = deaths_map
-
-            return result, True
+        cached_result = await Container.cache().get_item(f"nyt_data_{cache_tag}")
+        if cached_result:
+            return self._deserialize_data(cached_result), True
 
         csv_data = ""
         logger.info("Fetching NYT data...")
@@ -160,23 +123,14 @@ class NytDataService(object):
         """
         location_result = {}
         for timestamp in csv_data:
-            # location_id = (
-            #     "US",
-            #     self._get_field_from_map(timestamp, "state"),
-            #     self._get_field_from_map(timestamp, "county"),
-            #     self._get_field_from_map(timestamp, "fips") or "0", # Edge case when NYT does not have FIPS
-            # )
             state = self._get_field_from_map(timestamp, "state")
             county = self._get_field_from_map(timestamp, "county")
             fips = self._get_field_from_map(timestamp, "fips")
-            location_id = "US"
 
-            if state:
-                location_id += f"@{state}"
-            if county:
-                location_id += f"@{county}"
-            if fips:
-                location_id += f"@{fips}"
+            location_id = "US"
+            for partial_key in [state, county, fips]:
+                if partial_key:
+                    location_id += f"@{partial_key}"
 
             updated_date = Functions.get_formatted_date(timestamp["date"], "%Y-%m-%d")
             confirmed = timestamp["cases"]
@@ -199,6 +153,71 @@ class NytDataService(object):
             location_result[location_id]["deaths"][updated_date] = int(deaths or 0)
 
         return location_result
+
+    def _serialize_entry(
+        self,
+        location_id: str,
+        grouped_locations: object,
+        confirmed_map: dict,
+        deaths_map: dict,
+    ) -> dict:
+        """Serializes entry into a dictionary that can be serialized as a JSON object. Used for caching.
+
+        Arguments:
+            location_id {str} -- location id of the entry.
+            grouped_locations {object} -- unserialized entry for this location.
+            confirmed_map {dict} -- map containing timestamps for confirmed cases.
+            deaths_map {dict} -- map containing timestamps for deaths.
+
+        Returns:
+            dict -- serialized version of this location entry.
+        """
+        return {
+            **grouped_locations[location_id],
+            "first_date": Functions.get_formatted_date(
+                next(iter(confirmed_map)), "%Y-%m-%d"
+            ),
+            "confirmed": list(confirmed_map.values()),
+            "deaths": list(deaths_map.values()),
+        }
+
+    def _deserialize_data(self, cached_result: dict) -> object:
+        """Deserializes the data stored in cache.
+
+        Arguments:
+            cached_result {dict} -- serialized version of data.
+
+        Returns:
+            object -- deserialized data.
+        """
+        result = {}
+        keys = list(cached_result["locations"].keys())
+
+        for location in keys:
+            confirmed_map, deaths_map = {}, {}
+            date = datetime.strptime(
+                Functions.get_formatted_date(
+                    cached_result["locations"][location]["first_date"]
+                ),
+                "%Y-%m-%d",
+            )  # Pop the date key out of the object
+
+            for confirmed, deaths in zip(
+                cached_result["locations"][location]["confirmed"],
+                cached_result["locations"][location]["deaths"],
+            ):
+                formatted_date = Functions.to_format_date(date)
+                confirmed_map[formatted_date] = int(confirmed or 0)
+                deaths_map[formatted_date] = int(deaths or 0)
+
+                date += timedelta(days=1)
+
+            # Clone results to new dict
+            result[location] = {**cached_result["locations"][location]}
+            result[location]["confirmed"] = confirmed_map
+            result[location]["deaths"] = deaths_map
+
+        return result
 
     def _get_field_from_map(self, data, field) -> str:  # TODO: Extract to utils
         """Tries to get value from a map by key. Otherwise, returns empty string.

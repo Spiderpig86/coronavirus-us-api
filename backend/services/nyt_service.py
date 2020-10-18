@@ -18,13 +18,16 @@ from backend.models.classes.location import NytLocation
 from backend.models.classes.statistics import Statistics
 from backend.models.swagger.history import Timelines
 from backend.services.abstract_data_service import AbstractDataService
+from backend.utils.function_timer import async_timed, timed
 from backend.utils.functions import Functions
 
 
 class NytDataService(AbstractDataService):
     @cached(cache=TTLCache(maxsize=128, ttl=3600))
     async def get_data(self, endpoint: str, data_type: str = ""):
-        """Method that retrieves data from the New York Times.
+        """Method that retrieves data from the New York Times. It:
+            - Gets all the data aggregated by location_id (state, county, fips) from cache or from source.
+            - Builds result as a list so it can be consumed, will store this data if it is new.
         
         Arguments:
             endpoint {str} -- string that represents endpoint to get data from.
@@ -37,55 +40,22 @@ class NytDataService(AbstractDataService):
         """
         from backend.utils.containers import Container
 
-        _start = time.time() * 1000.0
-        grouped_locations, from_cache = await self._group_locations_wrapper(
+        # Aggregate data by location. Will check for data in cache before checking from source.
+        grouped_locations, from_cache = await self._group_locations_cached(
             endpoint, data_type
         )
-        _end = time.time() * 1000.0
-        logger.info(f"Elapsed grouped_locations {str(_end-_start)}ms")
 
-        locations = []
+        # Build our result from dictionary of aggregated data
         last_updated = Functions.get_formatted_date()
-        to_serialize = {"locations": {}}
-
-        _start = time.time() * 1000.0
-        for location_id, events in grouped_locations.items():
-            confirmed_map = events["confirmed"]
-            deaths_map = events["deaths"]
-
-            confirmed = Category(confirmed_map)
-            deaths = Category(deaths_map)
-
-            locations.append(
-                NytLocation(
-                    id=location_id,
-                    country=events["country"],
-                    county=events["county"],
-                    state=events["state"],
-                    fips=events["fips"],
-                    timelines={"confirmed": confirmed, "deaths": deaths,},
-                    last_updated=last_updated,
-                    latest=Statistics(
-                        confirmed=confirmed.latest, deaths=deaths.latest
-                    ).to_dict(),
-                )
-            )
-            # Transform to store in cache
-            if not from_cache:
-                to_serialize["locations"][location_id] = self._serialize_entry(
-                    location_id, grouped_locations, confirmed_map, deaths_map
-                )
-
-        if not from_cache:
-            await Container.cache().set_item(f"nyt_data_{data_type}", to_serialize)
-
-        _end = time.time() * 1000.0
-        logger.info(f"Elapsed loop {str(_end-_start)}ms")
+        locations = await self._build_results_cached(
+            grouped_locations, data_type, last_updated, from_cache
+        )
 
         logger.info("Finished transforming NYT results.")
         return locations, last_updated
 
-    async def _group_locations_wrapper(self, endpoint: str, cache_tag: str):
+    @async_timed(description="Elapsed time for _group_locations_wrapper")
+    async def _group_locations_cached(self, endpoint: str, cache_tag: str) -> dict:
         """Function wrapping _group_locations to handle caching.
 
         Arguments:
@@ -112,7 +82,7 @@ class NytDataService(AbstractDataService):
         parsed_data = list(csv.DictReader(csv_data.splitlines()))
         return self._group_locations(parsed_data), False
 
-    def _group_locations(self, csv_data: List):
+    def _group_locations(self, csv_data: List) -> dict:
         """Groups statistics by given county and state.
         
         Arguments:
@@ -153,6 +123,60 @@ class NytDataService(AbstractDataService):
             location_result[location_id]["deaths"][updated_date] = int(deaths or 0)
 
         return location_result
+
+    @async_timed(description="Elapsed time for _build_results_cached")
+    async def _build_results_cached(
+        self,
+        grouped_locations: dict,
+        data_type: str,
+        last_updated: str,
+        from_cache: bool,
+    ):
+        """Given a dictionary of data aggregated by location_id, build each entry into an NytLocation object and build a serialized version of it for caching.
+
+        Arguments:
+            grouped_locations {dict} -- dictionary of data aggregated by location_id.
+            data_type {str} -- category of data we retrieved from Nyt (country, state, county)
+            last_updated {str} -- date the information was last updated.
+            from_cache {bool} -- if the dictionary of aggregated data received was from cache.
+        """
+
+        from backend.utils.containers import Container
+
+        locations = []
+        to_serialize = {"locations": {}}
+
+        for location_id, events in grouped_locations.items():
+            confirmed_map = events["confirmed"]
+            deaths_map = events["deaths"]
+
+            confirmed = Category(confirmed_map)
+            deaths = Category(deaths_map)
+
+            locations.append(
+                NytLocation(
+                    id=location_id,
+                    country=events["country"],
+                    county=events["county"],
+                    state=events["state"],
+                    fips=events["fips"],
+                    timelines={"confirmed": confirmed, "deaths": deaths,},
+                    last_updated=last_updated,
+                    latest=Statistics(
+                        confirmed=confirmed.latest, deaths=deaths.latest
+                    ).to_dict(),
+                )
+            )
+            # Transform to store in cache
+            if not from_cache:
+                to_serialize["locations"][location_id] = self._serialize_entry(
+                    location_id, grouped_locations, confirmed_map, deaths_map
+                )
+
+        if not from_cache:
+            await Container.cache().set_item(f"nyt_data_{data_type}", to_serialize)
+
+        return locations
 
     def _serialize_entry(
         self,

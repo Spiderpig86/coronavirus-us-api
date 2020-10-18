@@ -7,7 +7,7 @@ from abc import ABC, abstractmethod
 
 class AbstractDataService(ABC):
     @abstractmethod
-    def get_data(self, endpoint: str, data_type: str = ''):
+    def get_data(self, endpoint: str, data_type: str = ""):
         """Function for retrieving data for a given endpoint.
 
         Arguments:

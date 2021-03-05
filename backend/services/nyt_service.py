@@ -76,10 +76,11 @@ class NytDataService(AbstractDataService):
         logger.info("Fetching NYT data...")
 
         # https://docs.aiohttp.org/en/stable/client_quickstart.html#make-a-request
+
         async with webclient.WEBCLIENT.get(endpoint) as response:
             csv_data = await response.text()
 
-        parsed_data = list(csv.DictReader(csv_data.splitlines()))
+        parsed_data = csv.DictReader(csv_data.splitlines())
         return self._group_locations(parsed_data), False
 
     def _group_locations(self, csv_data: List) -> dict:
@@ -102,7 +103,7 @@ class NytDataService(AbstractDataService):
                 if partial_key:
                     location_id += f"@{partial_key}"
 
-            updated_date = Functions.get_formatted_date(timestamp["date"], "%Y-%m-%d")
+            updated_date = timestamp["date"]  # No need to format NYT dates
             confirmed = timestamp["cases"]
             deaths = timestamp["deaths"]
 
@@ -122,6 +123,7 @@ class NytDataService(AbstractDataService):
             )
             location_result[location_id]["deaths"][updated_date] = int(deaths or 0)
 
+        print(len(location_result))
         return location_result
 
     @async_timed(description="Elapsed time for _build_results_cached")

@@ -70,7 +70,7 @@ def get_api() -> FastAPI:
         Returns:
             Response -- Return updated response with new data service in request state.
         """
-        source_param = request.query_params.get("source", default="nyt")
+        source_param = request.query_params.get("source", default=Source.NYT)
 
         # Handle incorrect source
         if source_param not in Source.list():

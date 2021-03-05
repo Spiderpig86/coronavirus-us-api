@@ -24,7 +24,7 @@ router = APIRouter()
 @router.get("/all", name="All", response_model_exclude_unset=True)
 async def get_all(
     request: Request,
-    source: Source = "nyt",
+    source: Source = Source.NYT,
     fips: str = None,
     county: str = None,
     state: str = None,

@@ -103,7 +103,7 @@ class JhuDataService(AbstractDataService):
         async with webclient.WEBCLIENT.get(endpoint) as response:
             csv_data = await response.text()
 
-        parsed_data = list(csv.DictReader(csv_data.splitlines()))
+        parsed_data = csv.DictReader(csv_data.splitlines())
 
         # TODO: Log
         return parsed_data

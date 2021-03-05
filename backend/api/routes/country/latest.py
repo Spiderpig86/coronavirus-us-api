@@ -23,7 +23,7 @@ router = APIRouter()
     response_model_exclude_unset=True,
 )
 async def get_latest(
-    request: Request, source: Source = "nyt"
+    request: Request, source: Source = Source.NYT
 ):  # TODO: Do not hardcode default
     data_source_service = request.state.data_source
     location_data, last_updated = await data_source_service.get_county_data()

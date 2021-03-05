@@ -22,7 +22,7 @@ router = APIRouter()
 )
 async def get_all(
     request: Request,
-    source: Source = "nyt",
+    source: Source = Source.NYT,
     timelines: bool = False,
     properties: bool = False,
 ):

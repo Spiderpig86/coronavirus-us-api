@@ -195,18 +195,18 @@ class JhuDataService(AbstractDataService):
         first_date = datetime.strptime(
             Functions.get_formatted_date(cache_result.get("first_date")), "%Y-%m-%d"
         )  # Pop the date key out of the object
-        keys = list(cache_result["locations"].keys())
 
-        for location in keys:
+        for location in cache_result["locations"]:
             confirmed_map, deaths_map = {}, {}
-            date = first_date
+            date = first_date  # Every location can have a unique first date
 
             for confirmed, deaths in zip(
                 cache_result["locations"][location]["confirmed"],
                 cache_result["locations"][location]["deaths"],
             ):
-                confirmed_map[Functions.to_format_date(date)] = int(confirmed or 0)
-                deaths_map[Functions.to_format_date(date)] = int(deaths or 0)
+                formatted_date = Functions.to_format_date(date)
+                confirmed_map[formatted_date] = int(confirmed or 0)
+                deaths_map[formatted_date] = int(deaths or 0)
 
                 date += timedelta(days=1)
 

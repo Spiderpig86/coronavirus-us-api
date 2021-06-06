@@ -6,14 +6,14 @@ async-asgi-testclient==1.4.6
 async-timeout==3.0.1
 asyncache==0.1.1
 asyncio==3.4.3
-attrs==20.3.0
+attrs==21.2.0
 cached==2020.12.3
-cachetools==4.2.1
-certifi==2020.12.5
+cachetools==4.2.2
+certifi==2021.5.30
 chardet==3.0.4
 click==7.1.2
 coverage==5.5
-decorator==5.0.5
+decorator==5.0.9
 dependency-injector==4.29.0
 fastapi==0.63.0
 gunicorn==20.0.4
@@ -21,7 +21,7 @@ h11==0.12.0
 hiredis==2.0.0
 httptools==0.1.1
 idna==2.10
-importlib-metadata==3.10.0 ; python_version < '3.8'
+importlib-metadata==4.4.0 ; python_version < '3.8'
 iniconfig==1.1.1
 loguru==0.5.3
 motor==2.0.0
@@ -29,8 +29,8 @@ multidict==5.1.0
 packaging==20.9
 pluggy==0.13.1
 py==1.10.0
-pydantic==1.8.1
-pymongo==3.11.3
+pydantic==1.8.2
+pymongo==3.11.4
 pyparsing==2.4.7
 pytest==6.2.2
 python-dateutil==2.8.1
@@ -40,7 +40,7 @@ six==1.15.0
 starlette==0.13.6
 toml==0.10.2
 typing-extensions==3.7.4.3
-urllib3==1.26.4
+urllib3==1.26.5
 uvicorn==0.13.4
 yarl==1.6.3
 zipp==3.4.1

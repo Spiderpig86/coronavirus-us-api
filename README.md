@@ -53,7 +53,7 @@ Before getting started, let's go over some of the common types you will see in t
 |-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------|--------| 
 | **timelines**                     | Object containing measured statistics and their historical values.                                                               | Object | 
 | timelines.*statistic*             | Object that contains information for that statistic. For now, only `confirmed` and `deaths` are supported.                       | Object | 
-| timelines.*statistic*.**history** | Object containing a list of key value pairs where the key is the date and the value is the number for that static for that date. | Object | 
+| timelines.*statistic*.**history** | Object containing a list of key value pairs where the key is the date and the value is the number for that statistic for that date. | Object | 
 | timelines.*statistic*.**latest** | Value of statistic at current date. | Object | 
 
 **Properties**
@@ -550,7 +550,7 @@ GET /api/state/all?source=jhu&county=King
 }
 ```
 
-- **Note:** Multiple locations that share the same county name or share the same state will also be shown.
+- **Note:** Multiple locations that share the same county name or share the same state will also be shown. The value you see for `latest` is the aggregate for all matching results.
 
 ```http
 GET /api/county/all?source=jhu&county=king&timelines=true&properties=true
@@ -689,7 +689,7 @@ GET /api/country/latest
 **Sample Request**
 
 ```http
-GET /api/county/latest?soruce=jhu
+GET /api/county/latest?source=jhu
 ```
 
 <details>
@@ -744,7 +744,7 @@ GET /api/health/heartbeat
 **Sample Request**
 
 ```http
-GET /api/data/sources
+GET /api/health/heartbeat
 ```
 
 <details>

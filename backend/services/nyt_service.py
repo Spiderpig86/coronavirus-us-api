@@ -231,7 +231,9 @@ class NytDataService(AbstractDataService):
                 cached_result["locations"][location]["confirmed"],
                 cached_result["locations"][location]["deaths"],
             ):
-                formatted_date = Functions.to_format_date(date)
+                formatted_date = str(date)[
+                    :10
+                ]  # Quick way to convert to bypass calling strftime
                 confirmed_map[formatted_date] = int(confirmed or 0)
                 deaths_map[formatted_date] = int(deaths or 0)
 

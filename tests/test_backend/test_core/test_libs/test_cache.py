@@ -9,7 +9,12 @@ from urllib.parse import urlparse
 import aiocache
 import pytest
 
-from backend.core.libs.cache import Cache
+from backend.core.libs.cache import Cache, CacheCompressionSerializer
+
+CACHE_COMPRESSION_VALID_UNSERIALIZED_INPUT = {"foo": "bar"}
+CACHE_COMPRESSION_VALID_SERIALIZED_INPUT = (
+    b"x\x9c\xabVJ\xcb\xcfW\xb2RPJJ,R\xaa\x05\x00 \x98\x04T"
+)
 
 
 def test__stage_dev__build_cache__success():
@@ -33,6 +38,40 @@ def test__stage_prod__build_cache__success():
     )._build_cache()
 
     assert isinstance(cache, aiocache.RedisCache)
+
+
+def test__dumps__normal_input__success():
+    # Arrange
+    serializer = CacheCompressionSerializer()
+
+    # Act & Assert
+    assert (
+        serializer.dumps(CACHE_COMPRESSION_VALID_UNSERIALIZED_INPUT)
+        == CACHE_COMPRESSION_VALID_SERIALIZED_INPUT
+    )
+
+
+def test__loads__normal_input__success():
+    # Arrange
+    serializer = CacheCompressionSerializer()
+
+    # Act & Assert
+    assert (
+        serializer.loads(CACHE_COMPRESSION_VALID_SERIALIZED_INPUT)
+        == CACHE_COMPRESSION_VALID_UNSERIALIZED_INPUT
+    )
+    assert (
+        serializer.loads(serializer.dumps(CACHE_COMPRESSION_VALID_UNSERIALIZED_INPUT))
+        == CACHE_COMPRESSION_VALID_UNSERIALIZED_INPUT
+    )
+
+
+def test__loads__none_input__success():
+    # Arrange
+    serializer = CacheCompressionSerializer()
+
+    # Act & Assert
+    assert serializer.loads(None) is None
 
 
 @pytest.mark.asyncio

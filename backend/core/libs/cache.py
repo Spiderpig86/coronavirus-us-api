@@ -54,30 +54,32 @@ class Cache:
         await self.cache.close()
 
 
+""" Cache serializer that supports compression. """
+
+
 class CacheCompressionSerializer(BaseSerializer):
+
     # This is needed because zlib works with bytes.
     # this way the underlying backend knows how to
     # store/retrieve values
     DEFAULT_ENCODING = None
 
     def dumps(self, value):
-        value = self._serialize(value)
-        compressed = zlib.compress(value)
+        compressed = self._serialize(value)
         return compressed
 
     def loads(self, value):
         if not value:
             return None
-        decompressed = zlib.decompress(value)
-        decompressed = self._deserialize(decompressed)
-        return decompressed
+        return self._deserialize(value)
 
     def _serialize(self, item: object):
-        serialized = json.dumps(item)
-        serialized = serialized.encode("utf-8")
+        serialized = json.dumps(item).encode()
+        compressed = zlib.compress(serialized)
+        # compressed = b64encode(compressed).decode('ascii')
+        return compressed
 
-        return serialized
-
-    def _deserialize(self, item: str):
-        deserialzed = json.loads(b64decode(item))
-        return deserialzed
+    def _deserialize(self, item: bytes):
+        # decompressed = json.loads(zlib.decompress(b64decode(item)))
+        decompressed = json.loads(zlib.decompress(item))
+        return decompressed

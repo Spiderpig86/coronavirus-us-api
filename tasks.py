@@ -103,9 +103,10 @@ def e2e(ctx):
 
 @invoke.task
 def coverage(ctx):
-    """Generate detailed test coverage report.
+    """Generate detailed test coverage report and outputs HTML report.
 
     Arguments:
         ctx {context} -- program context execution.
     """
     ctx.run(" ".join(["coverage", "report", "-m"]))
+    ctx.run(" ".join(["coverage", "html"]))

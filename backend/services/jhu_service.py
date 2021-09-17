@@ -114,9 +114,11 @@ class JhuDataService(AbstractDataService):
         # First check cache
         # TODO: Refactor all of caching
         cache_result = await Container.cache().get_item("jhu_data")
+        print("ack")
         if cache_result:
             return self._deserialize_cache(cache_result)
 
+        print("work")
         location_result = {}
         to_serialize = {"locations": {}}
         for stat, locations in data:

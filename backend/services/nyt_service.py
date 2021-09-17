@@ -123,7 +123,6 @@ class NytDataService(AbstractDataService):
             )
             location_result[location_id]["deaths"][updated_date] = int(deaths or 0)
 
-        print(len(location_result))
         return location_result
 
     @async_timed(description="Elapsed time for _build_results_cached")

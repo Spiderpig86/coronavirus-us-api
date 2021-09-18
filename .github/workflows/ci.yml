@@ -48,12 +48,12 @@ jobs:
 
             - name: Run Unit Tests
               run: |
-                invoke test
-                coverage report
-                codecov
+                pipenv run invoke test
+                pipenv run coverage report
+                pipenv run codecov
 
             - name: Run Integration Tests
-              run: invoke e2e
+              run: pipenv run invoke e2e
 
             - name: Deploy to Heroku
               uses: akhileshns/heroku-deploy@v3.12.12

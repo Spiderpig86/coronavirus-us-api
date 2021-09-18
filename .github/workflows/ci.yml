@@ -23,7 +23,6 @@ jobs:
         runs-on: ${{ matrix.os }}-latest
         env:
             CODECOV_TOKEN: 'R8j3dn7hMp45rFO/PbP+5FOob4wo9nONhb07kVcvoasRTWiVIHb3/9ckOT7vgnS2DJaRIQPXnG89fHv42xQmtH+jJlz4yoaheyI7mUh/2IbGfdg1I9cjaSg19WnKFQ/3/jIzoN923xLbWxVMmczlg/lvPEAf+QA/AyAxPe9mrzlknEb5N5Er/VgHu7HfKX6NBfIKS9EOlj24Bm9Wss75CbFfSlLkJQIbRqi9RHiNkGs9mbCAW4vcPSoOsYAyVOS+Bkh9CYCbZNT33YMiY6kf+5mpkjF5LKfOYZSkWz/vs/gA8Zepey0bPYFjAzDZARbXeCm/J/gJ9v44eqnCbHzgS5ikIwZ3DG+VmMOci0i4KnsFeq07ZRHyfJfpGhW62KVdJFrnwJxRfNsqGuUtuC5bT6xFzoSFrHdKDb+gXwi0X8PFXnIkd5T4MK3owD+OyHp4iVmYsqP4aooc3h68+9pKX0c/TpqcJqDgKl3o73TsTurQo/l6fvr0ufnFrUnFmXr+ZkkjAxtYYiELfh1JP+MWS06OtUxrx37B6yHQF+D8MkaM2gw1KtSZOxbgkat+vc7JT8ez1Xt6qg7OWb+JogqDJid3RHqN3wxGuZHUynJpIpJgjF0z64ibnJEx7pF61r0hPCQQjvNCeweD+O1AmgP2462S3C4FPTZcbldm2G98G68='
-            HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         steps:
             - name: Checkout
               uses: actions/checkout@v2.3.4
@@ -55,14 +54,6 @@ jobs:
 
             - name: Run Integration Tests
               run: pipenv run invoke e2e
-
-            - name: Deploy to Heroku
-              uses: akhileshns/heroku-deploy@v3.12.12
-              with:
-                  heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-                  heroku_app_name: ${{ secrets.HEROKU_APP }} #Must be unique in Heroku
-                  heroku_email: ${{ secrets.EMAIL }}
-                  dontautocreate: true
 
     lint:
         strategy:
@@ -98,3 +89,23 @@ jobs:
 
             - name: Lint
               run: pipenv run invoke check --format --sort --diff
+
+    deploy:
+        needs: [build, lint]
+        runs-on: ubuntu-latest
+        env:
+            # Must be set so `akhileshns/heroku-deploy` doesn't fail.
+            # When unset, the action will try to open a browser window to prompt for login.
+            HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2.3.4
+              
+            - name: Deploy to Heroku
+              uses: akhileshns/heroku-deploy@v3.12.12
+              with:
+                  heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+                  heroku_app_name: ${{ secrets.HEROKU_APP }} #Must be unique in Heroku
+                  heroku_email: ${{ secrets.EMAIL }}
+                  dontautocreate: true

@@ -17,6 +17,10 @@ class E2ETestClient(asynctest.TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        asyncio.get_event_loop().run_until_complete(cls.asyncSetupClass())
+
+    @classmethod
+    async def asyncSetupClass(cls):
         cls.process = Process(
             target=uvicorn.run,
             args=("backend.main:api",),
@@ -29,6 +33,7 @@ class E2ETestClient(asynctest.TestCase):
         )
 
         cls.process.start()
+        await asyncio.sleep(0.5) # Server may start up late
 
     @classmethod
     def tearDownClass(cls):
@@ -46,77 +51,77 @@ class E2ETestClient(asynctest.TestCase):
 
         assert data == {"is_alive": True}
 
-    # @pytest.mark.asyncio
-    # async def test_sources_success(self):
-    #     async with aiohttp.ClientSession() as session:
-    #         async with session.get(
-    #             f"http://{self.LOCALHOST}:{self.PORT}/api/data/sources"
-    #         ) as response:
-    #             assert response.status == 200
-    #             data = await response.json()
+    @pytest.mark.asyncio
+    async def test_sources_success(self):
+        async with aiohttp.ClientSession() as session:
+            async with session.get(
+                f"http://{self.LOCALHOST}:{self.PORT}/api/data/sources"
+            ) as response:
+                assert response.status == 200
+                data = await response.json()
 
-    #     assert data == {"sources": ["nyt", "jhu"]}
+        assert data == {"sources": ["nyt", "jhu"]}
 
-    # @pytest.mark.asyncio
-    # async def test_county_all_with_parameters_success(self):
-    #     # Arrange
-    #     async with aiohttp.ClientSession() as session:
-    #         # Act
-    #         async with session.get(
-    #             f"http://{self.LOCALHOST}:{self.PORT}/api/county/all?properties=true&timelines=true"
-    #         ) as response:
+    @pytest.mark.asyncio
+    async def test_county_all_with_parameters_success(self):
+        # Arrange
+        async with aiohttp.ClientSession() as session:
+            # Act
+            async with session.get(
+                f"http://{self.LOCALHOST}:{self.PORT}/api/county/all?properties=true&timelines=true"
+            ) as response:
 
-    #             # Assert
-    #             assert response.status == 200
-    #             data = await response.json()
+                # Assert
+                assert response.status == 200
+                data = await response.json()
 
-    #     self._validate_all_fields(data)
+        self._validate_all_fields(data)
 
-    # @pytest.mark.asyncio
-    # async def test_state_all_with_parameters_success(self):
-    #     # Arrange
-    #     async with aiohttp.ClientSession() as session:
-    #         # Act
-    #         async with session.get(
-    #             f"http://{self.LOCALHOST}:{self.PORT}/api/state/all?properties=true&timelines=true"
-    #         ) as response:
+    @pytest.mark.asyncio
+    async def test_state_all_with_parameters_success(self):
+        # Arrange
+        async with aiohttp.ClientSession() as session:
+            # Act
+            async with session.get(
+                f"http://{self.LOCALHOST}:{self.PORT}/api/state/all?properties=true&timelines=true"
+            ) as response:
 
-    #             # Assert
-    #             assert response.status == 200
-    #             data = await response.json()
+                # Assert
+                assert response.status == 200
+                data = await response.json()
 
-    #     self._validate_all_fields(data)
+        self._validate_all_fields(data)
 
-    # @pytest.mark.asyncio
-    # async def test_country_all_with_parameters_success(self):
-    #     # Arrange
-    #     async with aiohttp.ClientSession() as session:
-    #         # Act
-    #         async with session.get(
-    #             f"http://{self.LOCALHOST}:{self.PORT}/api/country/all?properties=true&timelines=true"
-    #         ) as response:
+    @pytest.mark.asyncio
+    async def test_country_all_with_parameters_success(self):
+        # Arrange
+        async with aiohttp.ClientSession() as session:
+            # Act
+            async with session.get(
+                f"http://{self.LOCALHOST}:{self.PORT}/api/country/all?properties=true&timelines=true"
+            ) as response:
 
-    #             # Assert
-    #             assert response.status == 200
-    #             data = await response.json()
+                # Assert
+                assert response.status == 200
+                data = await response.json()
 
-    #     self._validate_all_fields(data)
+        self._validate_all_fields(data)
 
-    # @pytest.mark.asyncio
-    # async def test_country_latest(self):
-    #     # Arrange
-    #     async with aiohttp.ClientSession() as session:
-    #         # Act
-    #         async with session.get(
-    #             f"http://{self.LOCALHOST}:{self.PORT}/api/country/latest"
-    #         ) as response:
+    @pytest.mark.asyncio
+    async def test_country_latest(self):
+        # Arrange
+        async with aiohttp.ClientSession() as session:
+            # Act
+            async with session.get(
+                f"http://{self.LOCALHOST}:{self.PORT}/api/country/latest"
+            ) as response:
 
-    #             # Assert
-    #             assert response.status == 200
-    #             data = await response.json()
+                # Assert
+                assert response.status == 200
+                data = await response.json()
 
-    #     assert data.get("latest", None) is not None
-    #     assert data.get("last_updated", None) is not None
+        assert data.get("latest", None) is not None
+        assert data.get("last_updated", None) is not None
 
     def _validate_all_fields(self, data: dict):
         assert data.get("latest", None) is not None

@@ -10,49 +10,58 @@ import uvicorn
 class E2ETestClient(asynctest.TestCase):
 
     HOST = "0.0.0.0"
+    LOCALHOST = "localhost"
     PORT = 5000
     LOG_LEVEL = "info"
 
-    async def setUp(self):
-        self.process = Process(
+    @classmethod
+    @pytest.mark.asyncio
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.process = Process(
             target=uvicorn.run,
             args=("backend.main:api",),
-            kwargs={"host": self.HOST, "port": self.PORT, "log_level": self.LOG_LEVEL},
+            kwargs={"host": cls.HOST, "port": cls.PORT, "log_level": cls.LOG_LEVEL},
             daemon=True,
         )
 
-        self.process.start()
-        await asyncio.sleep(0.5)
+        cls.process.start()
 
-    async def tearDown(self):
-        self.process.terminate()
+    @classmethod
+    @pytest.mark.asyncio
+    def tearDownClass(cls):
+        super().tearDownClass()
+        cls.process.terminate()
 
+    @pytest.mark.asyncio
     async def test_heartbeat_success(self):
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                f"http://{self.HOST}:{self.PORT}/api/health/heartbeat"
+                f"http://{self.LOCALHOST}:{self.PORT}/api/health/heartbeat"
             ) as response:
                 assert response.status == 200
                 data = await response.json()
 
         assert data == {"is_alive": True}
 
+    @pytest.mark.asyncio
     async def test_sources_success(self):
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                f"http://{self.HOST}:{self.PORT}/api/data/sources"
+                f"http://{self.LOCALHOST}:{self.PORT}/api/data/sources"
             ) as response:
                 assert response.status == 200
                 data = await response.json()
 
         assert data == {"sources": ["nyt", "jhu"]}
 
+    @pytest.mark.asyncio
     async def test_county_all_with_parameters_success(self):
         # Arrange
         async with aiohttp.ClientSession() as session:
             # Act
             async with session.get(
-                f"http://{self.HOST}:{self.PORT}/api/county/all?properties=true&timelines=true"
+                f"http://{self.LOCALHOST}:{self.PORT}/api/county/all?properties=true&timelines=true"
             ) as response:
 
                 # Assert
@@ -61,12 +70,13 @@ class E2ETestClient(asynctest.TestCase):
 
         self._validate_all_fields(data)
 
+    @pytest.mark.asyncio
     async def test_state_all_with_parameters_success(self):
         # Arrange
         async with aiohttp.ClientSession() as session:
             # Act
             async with session.get(
-                f"http://{self.HOST}:{self.PORT}/api/state/all?properties=true&timelines=true"
+                f"http://{self.LOCALHOST}:{self.PORT}/api/state/all?properties=true&timelines=true"
             ) as response:
 
                 # Assert
@@ -75,12 +85,13 @@ class E2ETestClient(asynctest.TestCase):
 
         self._validate_all_fields(data)
 
+    @pytest.mark.asyncio
     async def test_country_all_with_parameters_success(self):
         # Arrange
         async with aiohttp.ClientSession() as session:
             # Act
             async with session.get(
-                f"http://{self.HOST}:{self.PORT}/api/country/all?properties=true&timelines=true"
+                f"http://{self.LOCALHOST}:{self.PORT}/api/country/all?properties=true&timelines=true"
             ) as response:
 
                 # Assert
@@ -89,12 +100,13 @@ class E2ETestClient(asynctest.TestCase):
 
         self._validate_all_fields(data)
 
-    async def test_counrty_latest(self):
+    @pytest.mark.asyncio
+    async def test_country_latest(self):
         # Arrange
         async with aiohttp.ClientSession() as session:
             # Act
             async with session.get(
-                f"http://{self.HOST}:{self.PORT}/api/country/latest"
+                f"http://{self.LOCALHOST}:{self.PORT}/api/country/latest"
             ) as response:
 
                 # Assert

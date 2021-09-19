@@ -50,7 +50,14 @@ jobs:
               run: |
                   pipenv run invoke test
                   pipenv run coverage report
-                  pipenv run codecov
+            
+            - name: CodeCov Upload
+              uses: codecov/codecov-action@v2
+              with:
+                token: ${{ secrets.CODECOV_TOKEN }}
+                files: ./.coverage
+                fail_ci_if_error: true # optional (default = false)
+                verbose: true # optional (default = false)
 
             - name: Run Integration Tests
               run: pipenv run invoke e2e
@@ -101,11 +108,11 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v2.3.4
-              
+
             - name: Deploy to Heroku
               uses: akhileshns/heroku-deploy@v3.12.12
               with:
                   heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-                  heroku_app_name: ${{ secrets.HEROKU_APP }} #Must be unique in Heroku
+                  heroku_app_name: ${{ secrets.HEROKU_APP }}
                   heroku_email: ${{ secrets.EMAIL }}
                   dontautocreate: true

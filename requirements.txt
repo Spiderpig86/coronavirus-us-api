@@ -9,7 +9,7 @@ asyncio==3.4.3
 attrs==21.2.0
 cached==2020.12.3
 cachetools==4.2.2
-certifi==2021.5.30
+certifi==2022.12.7
 chardet==3.0.4
 click==7.1.2
 coverage==5.5
